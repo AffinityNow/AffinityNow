@@ -16,7 +16,7 @@ Il suffira d'execute simplement la commande : *ng serve* pour lancer le serveur.
 Naviguez vers http://localhost:4200/. L'application se rechargera automatiquement si vous modifiez l'un des fichiers sources.
 
 * BACK :
-Il suffira d'executer simplement la commande : *gradle clean build* pour lancer le serveur.
+Il suffira d'executer simplement la commande : *gradle bootRun* pour lancer le serveur.
 Une fois cela effectuer le serveur sera en marche et vous pourrz consulter la liste des End Points via _http://localhost:8080/swagger-ui.html_
 
 == Les Fonctionalités de SmartMapper
