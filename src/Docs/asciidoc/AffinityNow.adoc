@@ -35,9 +35,10 @@ Aujourd'hui avec la version V1.0 de AffinityNow on peut :
 
 == ts
 
+
 Nous aurons quatre services principaux :
 
-* Service  Marching
+* Service  Matching
 * Service  Chat
 
 
