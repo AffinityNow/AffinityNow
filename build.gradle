@@ -16,7 +16,7 @@ plugins {
 
 group = 'com.affinitynow'
 version = '0.0.1'
-sourceCompatibility = '15'
+sourceCompatibility = '14'
 
 // plugin to get the version of the project
 // from https://stackoverflow.com/questions/13198358/how-to-get-project-version-in-custom-gradle-plugin
