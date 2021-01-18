@@ -8,7 +8,6 @@ Written in JAVA, CometChat and Firebase services.
 
 ### Screenshots
 
-Chat :  
    ......coming soon
 
 ### Features
