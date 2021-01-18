@@ -1,0 +1,36 @@
+@startuml diagram
+
+class Utilisateur {
+    + pseudo: string
+    + topic: Set<Topic>
+    + match: Matching
+    + Utilisateur(nom: string)
+    + getPseudo(): string
+    + setPseudo(): void
+    + getTopic(): string
+    + setTopic(): void
+    + equals(user: Utilisateur): boolean
+    + hashcode(): integer
+    + toString(): string
+}
+
+class Topic {
+    + nom: string
+    + this(nom: string)
+    + getNom(): string
+    + setNom(): void
+}
+
+interface Matching {
+    + match(user1: Utilisateur, user2:Utilisateur ): double
+}
+
+class ScoreMatching implements Matching {
+    + match(user1: Utilisateur, user2:Utilisateur ): double
+}
+
+
+Utilisateur *--> "1" Matching
+Utilisateur --> "*" Topic
+
+@enduml
