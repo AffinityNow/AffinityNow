@@ -8,7 +8,7 @@ Le projet AffinityNow une partie front _https://github.com/AffinityNow/AffinityN
 et une partie back _https://github.com/AffinityNow/AffinityNow_.
 
 Le back est écrit en Java et quand au front il s'agit d'une application angular donc
-vous devrez avoir sur votre machine une version assez récente de Java (8 minimum), gradle (6) ainsi que Node (14).
+vous devrez avoir sur votre machine une version assez récente de Java (14 minimum), gradle (6) ainsi que Node (14).
 
 === Installation
 * FRONT:
@@ -178,7 +178,7 @@ POST / GET / PUT / DELETE
 
 == Diagramme de classes
 
-image::../diagrammeDeClasse.PNG[Diagramme de classe du projet]
+image::../diagrammeDeClasse.svg[Diagramme de classe du projet]
 
 == Diagramme de Séquence
 
