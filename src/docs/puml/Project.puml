@@ -1,50 +1,72 @@
 @startuml diagram
+!include ../style/commons.style
 
 package com.affinitynow.app {
     package model {
-        class Utilisateur {
+        class User {
+            + id: long
             + pseudo: string
             + topic: Set<Topic>
             + match: Matching
-            + Utilisateur(nom: string)
+            + User(nom: string)
             + getPseudo(): string
             + setPseudo(): void
             + getTopic(): string
             + setTopic(): void
-            + equals(user: Utilisateur): boolean
+            + addTopic(): void
+            + removeTopic(): void
+            + equals(user: User): boolean
             + hashcode(): integer
             + toString(): string
         }
 
         class Topic {
+            + id: long
             + nom: string
+            + User: User
             + this(nom: string)
             + getNom(): string
             + setNom(): void
+            + getUser(): string
+            + setUser(): void
         }
 
         interface Matching {
-            + match(user1: Utilisateur, user2:Utilisateur ): double
+            + match(user1: User): double
         }
 
         class ScoreMatching implements Matching {
-            + match(user1: Utilisateur, user2:Utilisateur ): double
+            + match(user1: User): double
         }
     }
 
-    package controler {
-        class UtilisateurControler {
-            + utilisateur: Utilisateur
-            + createNewUser(): void , POST/utilisateur
-            + addTopicsForUserById(id: long, topics: List<Topics>): void , POST/utilisateur/{id}/topics
-            + getUserMatchingListById(id: long) , GET/utilisateur/{id}/match
+    package user {
+        package controler {
+            class UserControler {
+                + User: User
+                + createNewUser(): User , POST/User
+                + removeTopicById(id: long): User , DELETE/User
+                + addTopicsForUserById(id: long, topics: List<Topics>): void , POST/User/{id}/topics
+                + getUserMatchingListById(id: long) , GET/User/{id}/match
+            }
+        }
+        package dto {
+            class UserDto {
+
+            }
+        }
+        package repository {
+            class UserRepository {
+
+            }
         }
     }
 }
 
 
 
-Utilisateur *--> "1" Matching
-Utilisateur --> "*" Topic
-
+User *--> "1" Matching
+User "1" --> "*" Topic
+UserControler --> User: "uses"
+UserDto --> UserRepository : "uses"
 @enduml
