@@ -1,71 +1,233 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="618px" preserveAspectRatio="none" style="width:1020px;height:618px;" version="1.1" viewBox="0 0 1020 618" width="1020px" zoomAndPan="magnify"><defs><filter height="300%" id="f1hqu2sr8kdya7" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[6d3afe2e29c99f1e23df872cd8f8d252]
-cluster com.affinitynow.app--><polygon fill="#FFFFFF" filter="url(#f1hqu2sr8kdya7)" points="16,6,161,6,168,29.6094,1003,29.6094,1003,611,16,611,16,6" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="16" x2="168" y1="29.6094" y2="29.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="139" x="20" y="22.5332">com.affinitynow.app</text><!--MD5=[5d4cd377749310b66bf14896f5cd8d9b]
-cluster model--><polygon fill="#FFFFFF" filter="url(#f1hqu2sr8kdya7)" points="538,50,587,50,594,73.6094,979,73.6094,979,587,538,587,538,50" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="538" x2="594" y1="73.6094" y2="73.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="542" y="66.5332">model</text><!--MD5=[c6c442252c4ecb9d9d15b38a7cdbe0d2]
-cluster controler--><polygon fill="#FFFFFF" filter="url(#f1hqu2sr8kdya7)" points="40,98.5,111,98.5,118,122.1094,514,122.1094,514,253.5,40,253.5,40,98.5" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="40" x2="118" y1="122.1094" y2="122.1094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="65" x="44" y="115.0332">controler</text><!--MD5=[354e8650cefe639d77b0834953981666]
-class Utilisateur--><rect codeLine="4" fill="#FEFECE" filter="url(#f1hqu2sr8kdya7)" height="200.1953" id="Utilisateur" style="stroke:#A80036;stroke-width:1.5;" width="185" x="644.5" y="86"/><ellipse cx="704.75" cy="102" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M707.5156,97.875 Q707.6719,97.6563 707.8594,97.5469 Q708.0469,97.4375 708.2656,97.4375 Q708.6406,97.4375 708.875,97.7031 Q709.1094,97.9531 709.1094,98.5625 L709.1094,100.0156 Q709.1094,100.625 708.875,100.8906 Q708.6406,101.1563 708.2656,101.1563 Q707.9219,101.1563 707.7188,100.9531 Q707.5156,100.7656 707.4063,100.25 Q707.3594,99.8906 707.1719,99.7031 Q706.8438,99.3281 706.2344,99.1094 Q705.625,98.8906 705,98.8906 Q704.2344,98.8906 703.5938,99.2188 Q702.9688,99.5469 702.4688,100.2969 Q701.9844,101.0469 701.9844,102.0781 L701.9844,103.1719 Q701.9844,104.4063 702.875,105.2344 Q703.7656,106.0469 705.3594,106.0469 Q706.2969,106.0469 706.9531,105.7969 Q707.3438,105.6406 707.7656,105.2031 Q708.0313,104.9375 708.1719,104.8594 Q708.3281,104.7813 708.5313,104.7813 Q708.8594,104.7813 709.1094,105.0469 Q709.375,105.2969 709.375,105.6406 Q709.375,105.9844 709.0313,106.3906 Q708.5313,106.9688 707.7344,107.2969 Q706.6563,107.75 705.3594,107.75 Q703.8438,107.75 702.6406,107.125 Q701.6563,106.625 700.9688,105.5625 Q700.2813,104.4844 700.2813,103.2031 L700.2813,102.0469 Q700.2813,100.7188 700.8906,99.5781 Q701.5156,98.4219 702.6094,97.8125 Q703.7031,97.1875 704.9375,97.1875 Q705.6719,97.1875 706.3125,97.3594 Q706.9688,97.5156 707.5156,97.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="56" x="725.25" y="106.9102">Utilisateur</text><line style="stroke:#A80036;stroke-width:1.5;" x1="645.5" x2="828.5" y1="118" y2="118"/><ellipse cx="655.5" cy="129" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="69" x="664.5" y="133.4189">pseudo: string</text><ellipse cx="655.5" cy="142.8359" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="83" x="664.5" y="147.2549">topic: Set&lt;Topic&gt;</text><ellipse cx="655.5" cy="156.6719" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="78" x="664.5" y="161.0908">match: Matching</text><line style="stroke:#A80036;stroke-width:1.5;" x1="645.5" x2="828.5" y1="167.5078" y2="167.5078"/><ellipse cx="655.5" cy="178.5078" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="108" x="664.5" y="182.9268">Utilisateur(nom: string)</text><ellipse cx="655.5" cy="192.3438" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="92" x="664.5" y="196.7627">getPseudo(): string</text><ellipse cx="655.5" cy="206.1797" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="85" x="664.5" y="210.5986">setPseudo(): void</text><ellipse cx="655.5" cy="220.0156" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="82" x="664.5" y="224.4346">getTopic(): string</text><ellipse cx="655.5" cy="233.8516" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="75" x="664.5" y="238.2705">setTopic(): void</text><ellipse cx="655.5" cy="247.6875" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="159" x="664.5" y="252.1064">equals(user: Utilisateur): boolean</text><ellipse cx="655.5" cy="261.5234" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="95" x="664.5" y="265.9424">hashcode(): integer</text><ellipse cx="655.5" cy="275.3594" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="78" x="664.5" y="279.7783">toString(): string</text><!--MD5=[1d7f89d46fe5890de77e49145f8259d3]
-class Topic--><rect codeLine="18" fill="#FEFECE" filter="url(#f1hqu2sr8kdya7)" height="103.3438" id="Topic" style="stroke:#A80036;stroke-width:1.5;" width="104" x="554" y="346"/><ellipse cx="587.9" cy="362" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M590.6656,357.875 Q590.8219,357.6563 591.0094,357.5469 Q591.1969,357.4375 591.4156,357.4375 Q591.7906,357.4375 592.025,357.7031 Q592.2594,357.9531 592.2594,358.5625 L592.2594,360.0156 Q592.2594,360.625 592.025,360.8906 Q591.7906,361.1563 591.4156,361.1563 Q591.0719,361.1563 590.8688,360.9531 Q590.6656,360.7656 590.5563,360.25 Q590.5094,359.8906 590.3219,359.7031 Q589.9938,359.3281 589.3844,359.1094 Q588.775,358.8906 588.15,358.8906 Q587.3844,358.8906 586.7438,359.2188 Q586.1188,359.5469 585.6188,360.2969 Q585.1344,361.0469 585.1344,362.0781 L585.1344,363.1719 Q585.1344,364.4063 586.025,365.2344 Q586.9156,366.0469 588.5094,366.0469 Q589.4469,366.0469 590.1031,365.7969 Q590.4938,365.6406 590.9156,365.2031 Q591.1813,364.9375 591.3219,364.8594 Q591.4781,364.7813 591.6813,364.7813 Q592.0094,364.7813 592.2594,365.0469 Q592.525,365.2969 592.525,365.6406 Q592.525,365.9844 592.1813,366.3906 Q591.6813,366.9688 590.8844,367.2969 Q589.8063,367.75 588.5094,367.75 Q586.9938,367.75 585.7906,367.125 Q584.8063,366.625 584.1188,365.5625 Q583.4313,364.4844 583.4313,363.2031 L583.4313,362.0469 Q583.4313,360.7188 584.0406,359.5781 Q584.6656,358.4219 585.7594,357.8125 Q586.8531,357.1875 588.0875,357.1875 Q588.8219,357.1875 589.4625,357.3594 Q590.1188,357.5156 590.6656,357.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="30" x="606.1" y="366.9102">Topic</text><line style="stroke:#A80036;stroke-width:1.5;" x1="555" x2="657" y1="378" y2="378"/><ellipse cx="565" cy="389" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="53" x="574" y="393.4189">nom: string</text><line style="stroke:#A80036;stroke-width:1.5;" x1="555" x2="657" y1="399.8359" y2="399.8359"/><ellipse cx="565" cy="410.8359" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="78" x="574" y="415.2549">this(nom: string)</text><ellipse cx="565" cy="424.6719" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="77" x="574" y="429.0908">getNom(): string</text><ellipse cx="565" cy="438.5078" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="70" x="574" y="442.9268">setNom(): void</text><!--MD5=[2184976f08065c351186e002aedbbc07]
-class Matching--><rect codeLine="25" fill="#FEFECE" filter="url(#f1hqu2sr8kdya7)" height="61.8359" id="Matching" style="stroke:#A80036;stroke-width:1.5;" width="269" x="693.5" y="366.5"/><ellipse cx="799.25" cy="382.5" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M800.2031,379.1406 L800.2031,385.7969 L801.9219,385.7969 Q802.5313,385.7969 802.7969,386.0313 Q803.0625,386.2656 803.0625,386.6563 Q803.0625,387.0313 802.7969,387.2656 Q802.5313,387.5 801.9219,387.5 L796.7813,387.5 Q796.1719,387.5 795.9063,387.2656 Q795.6406,387.0313 795.6406,386.6406 Q795.6406,386.2656 795.9063,386.0313 Q796.1719,385.7969 796.7813,385.7969 L798.5,385.7969 L798.5,379.1406 L796.7813,379.1406 Q796.1719,379.1406 795.9063,378.9063 Q795.6406,378.6719 795.6406,378.2813 Q795.6406,377.9063 795.9063,377.6719 Q796.1719,377.4375 796.7813,377.4375 L801.9219,377.4375 Q802.5313,377.4375 802.7969,377.6719 Q803.0625,377.9063 803.0625,378.2813 Q803.0625,378.6719 802.7969,378.9063 Q802.5313,379.1406 801.9219,379.1406 L800.2031,379.1406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="49" x="819.75" y="387.4102">Matching</text><line style="stroke:#A80036;stroke-width:1.5;" x1="694.5" x2="961.5" y1="398.5" y2="398.5"/><line style="stroke:#A80036;stroke-width:1.5;" x1="694.5" x2="961.5" y1="406.5" y2="406.5"/><ellipse cx="704.5" cy="417.5" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="243" x="713.5" y="421.9189">match(user1: Utilisateur, user2:Utilisateur ): double</text><!--MD5=[7265fede3da290517b0e3c2752555eb1]
-class ScoreMatching--><rect codeLine="29" fill="#FEFECE" filter="url(#f1hqu2sr8kdya7)" height="61.8359" id="ScoreMatching" style="stroke:#A80036;stroke-width:1.5;" width="269" x="693.5" y="509"/><ellipse cx="783.25" cy="525" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M786.0156,520.875 Q786.1719,520.6563 786.3594,520.5469 Q786.5469,520.4375 786.7656,520.4375 Q787.1406,520.4375 787.375,520.7031 Q787.6094,520.9531 787.6094,521.5625 L787.6094,523.0156 Q787.6094,523.625 787.375,523.8906 Q787.1406,524.1563 786.7656,524.1563 Q786.4219,524.1563 786.2188,523.9531 Q786.0156,523.7656 785.9063,523.25 Q785.8594,522.8906 785.6719,522.7031 Q785.3438,522.3281 784.7344,522.1094 Q784.125,521.8906 783.5,521.8906 Q782.7344,521.8906 782.0938,522.2188 Q781.4688,522.5469 780.9688,523.2969 Q780.4844,524.0469 780.4844,525.0781 L780.4844,526.1719 Q780.4844,527.4063 781.375,528.2344 Q782.2656,529.0469 783.8594,529.0469 Q784.7969,529.0469 785.4531,528.7969 Q785.8438,528.6406 786.2656,528.2031 Q786.5313,527.9375 786.6719,527.8594 Q786.8281,527.7813 787.0313,527.7813 Q787.3594,527.7813 787.6094,528.0469 Q787.875,528.2969 787.875,528.6406 Q787.875,528.9844 787.5313,529.3906 Q787.0313,529.9688 786.2344,530.2969 Q785.1563,530.75 783.8594,530.75 Q782.3438,530.75 781.1406,530.125 Q780.1563,529.625 779.4688,528.5625 Q778.7813,527.4844 778.7813,526.2031 L778.7813,525.0469 Q778.7813,523.7188 779.3906,522.5781 Q780.0156,521.4219 781.1094,520.8125 Q782.2031,520.1875 783.4375,520.1875 Q784.1719,520.1875 784.8125,520.3594 Q785.4688,520.5156 786.0156,520.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="81" x="803.75" y="529.9102">ScoreMatching</text><line style="stroke:#A80036;stroke-width:1.5;" x1="694.5" x2="961.5" y1="541" y2="541"/><line style="stroke:#A80036;stroke-width:1.5;" x1="694.5" x2="961.5" y1="549" y2="549"/><ellipse cx="704.5" cy="560" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="243" x="713.5" y="564.4189">match(user1: Utilisateur, user2:Utilisateur ): double</text><!--MD5=[ef071ca33a07b1cb2e0a11d53e812f92]
-class UtilisateurControler--><rect codeLine="35" fill="#FEFECE" filter="url(#f1hqu2sr8kdya7)" height="103.3438" id="UtilisateurControler" style="stroke:#A80036;stroke-width:1.5;" width="442" x="56" y="134.5"/><ellipse cx="219.25" cy="150.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M222.0156,146.375 Q222.1719,146.1563 222.3594,146.0469 Q222.5469,145.9375 222.7656,145.9375 Q223.1406,145.9375 223.375,146.2031 Q223.6094,146.4531 223.6094,147.0625 L223.6094,148.5156 Q223.6094,149.125 223.375,149.3906 Q223.1406,149.6563 222.7656,149.6563 Q222.4219,149.6563 222.2188,149.4531 Q222.0156,149.2656 221.9063,148.75 Q221.8594,148.3906 221.6719,148.2031 Q221.3438,147.8281 220.7344,147.6094 Q220.125,147.3906 219.5,147.3906 Q218.7344,147.3906 218.0938,147.7188 Q217.4688,148.0469 216.9688,148.7969 Q216.4844,149.5469 216.4844,150.5781 L216.4844,151.6719 Q216.4844,152.9063 217.375,153.7344 Q218.2656,154.5469 219.8594,154.5469 Q220.7969,154.5469 221.4531,154.2969 Q221.8438,154.1406 222.2656,153.7031 Q222.5313,153.4375 222.6719,153.3594 Q222.8281,153.2813 223.0313,153.2813 Q223.3594,153.2813 223.6094,153.5469 Q223.875,153.7969 223.875,154.1406 Q223.875,154.4844 223.5313,154.8906 Q223.0313,155.4688 222.2344,155.7969 Q221.1563,156.25 219.8594,156.25 Q218.3438,156.25 217.1406,155.625 Q216.1563,155.125 215.4688,154.0625 Q214.7813,152.9844 214.7813,151.7031 L214.7813,150.5469 Q214.7813,149.2188 215.3906,148.0781 Q216.0156,146.9219 217.1094,146.3125 Q218.2031,145.6875 219.4375,145.6875 Q220.1719,145.6875 220.8125,145.8594 Q221.4688,146.0156 222.0156,146.375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="107" x="239.75" y="155.4102">UtilisateurControler</text><line style="stroke:#A80036;stroke-width:1.5;" x1="57" x2="497" y1="166.5" y2="166.5"/><ellipse cx="67" cy="177.5" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="99" x="76" y="181.9189">utilisateur: Utilisateur</text><line style="stroke:#A80036;stroke-width:1.5;" x1="57" x2="497" y1="188.3359" y2="188.3359"/><ellipse cx="67" cy="199.3359" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="196" x="76" y="203.7549">createNewUser(): void , POST/utilisateur</text><ellipse cx="67" cy="213.1719" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="416" x="76" y="217.5908">addTopicsForUserById(id: long, topics: List&lt;Topics&gt;): void , POST/utilisateur/{id}/topics</text><ellipse cx="67" cy="227.0078" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="290" x="76" y="231.4268">getUserMatchingListById(id: long) , GET/utilisateur/{id}/match</text><!--MD5=[d3498455eac280fa9587508737008cb9]
-reverse link Matching to ScoreMatching--><path d="M828,448.81 C828,468.92 828,491.42 828,508.91 " fill="none" id="Matching-backto-ScoreMatching" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="821,448.64,828,428.64,835,448.64,821,448.64" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[16ee606f6506668a77015fa4d41558e8]
-link Utilisateur to Matching--><path codeLine="46" d="M784.878,297.2378 C784.878,297.2378 802.44,337.65 809.55,354.02 " fill="none" id="Utilisateur-Matching" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="814.93,366.42,815.0102,356.5715,812.9366,361.8346,807.6735,359.761,814.93,366.42" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="812.9366" x2="809.755" y1="361.8346" y2="354.495"/><polygon fill="#A80036" points="780.1,286.23,778.8197,293.3265,784.878,297.2378,786.1582,290.1412,780.1,286.23" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="7" x="804.3053" y="355.4228">1</text><!--MD5=[390fe952255c5329a38a866af10d99b9]
-link Utilisateur to Topic--><path codeLine="47" d="M674.95,286.23 C663.06,305.24 651.02,324.5 640.4,341.48 " fill="none" id="Utilisateur-to-Topic" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="637.74,345.75,645.907,340.2454,640.3938,341.5124,639.1268,335.9993,637.74,345.75" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="636.6691" y="335.2167">*</text><!--MD5=[3c2cef9797c6ff9471e7855c586d85ed]
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="981px" preserveAspectRatio="none" style="width:1207px;height:981px;" version="1.1" viewBox="0 0 1207 981" width="1207px" zoomAndPan="magnify"><defs/><g><!--MD5=[6d3afe2e29c99f1e23df872cd8f8d252]
+cluster com.affinitynow.app--><polygon fill="#FFFFFF" points="16,6,167,6,174,28.4883,1190,28.4883,1190,974,16,974,16,6" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="16" x2="174" y1="28.4883" y2="28.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="145" x="20" y="21.5352">com.affinitynow.app</text><!--MD5=[5d4cd377749310b66bf14896f5cd8d9b]
+cluster model--><polygon fill="#FFFFFF" points="771,311,822,311,829,333.4883,1166,333.4883,1166,950,771,950,771,311" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="771" x2="829" y1="333.4883" y2="333.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="45" x="775" y="326.5352">model</text><!--MD5=[cb8ac4b308bf29cccff4fabd2ec04d9c]
+cluster user--><polygon fill="#FFFFFF" points="40,49,77,49,84,71.4883,747,71.4883,747,516.5,40,516.5,40,49" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="40" x2="84" y1="71.4883" y2="71.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="31" x="44" y="64.5352">user</text><!--MD5=[c6c442252c4ecb9d9d15b38a7cdbe0d2]
+cluster controler--><polygon fill="#FFFFFF" points="217,92,288,92,295,114.4883,723,114.4883,723,256,217,256,217,92" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="217" x2="295" y1="114.4883" y2="114.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="65" x="221" y="107.5352">controler</text><!--MD5=[e6eced616a98d47334dd1aaaa829ffd5]
+cluster dto--><polygon fill="#FFFFFF" points="64,132.5,94,132.5,101,154.9883,174,154.9883,174,215.5,64,215.5,64,132.5" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="64" x2="101" y1="154.9883" y2="154.9883"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="24" x="68" y="148.0352">dto</text><!--MD5=[bd0bd4c41e0e5269e37474fd45a6abb7]
+cluster repository--><polygon fill="#FFFFFF" points="64,409.5,144,409.5,151,431.9883,216,431.9883,216,492.5,64,492.5,64,409.5" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="64" x2="151" y1="431.9883" y2="431.9883"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="74" x="68" y="425.0352">repository</text><!--MD5=[3fd616f346a44cd59a91eb10b19e157c]
+class User--><rect codeLine="5" fill="#F8F8FF" height="229.3711" id="User" rx="5" ry="5" style="stroke: #000000; stroke-width: 1.5;" width="173" x="787.5" y="346"/><ellipse cx="856.75" cy="362" fill="#6495ED" rx="11" ry="11" style="stroke: #000000; stroke-width: 1.0;"/><path d="M859.2231,368.1431 Q858.6421,368.4419 858.0029,368.5913 Q857.3638,368.7407 856.6582,368.7407 Q854.1514,368.7407 852.8315,367.0889 Q851.5117,365.437 851.5117,362.3159 Q851.5117,359.1865 852.8315,357.5347 Q854.1514,355.8828 856.6582,355.8828 Q857.3638,355.8828 858.0112,356.0322 Q858.6587,356.1816 859.2231,356.4805 L859.2231,359.2031 Q858.5923,358.6221 857.9988,358.3523 Q857.4053,358.0825 856.7744,358.0825 Q855.4297,358.0825 854.7449,359.1492 Q854.0601,360.2158 854.0601,362.3159 Q854.0601,364.4077 854.7449,365.4744 Q855.4297,366.541 856.7744,366.541 Q857.4053,366.541 857.9988,366.2712 Q858.5923,366.0015 859.2231,365.4204 Z "/><text fill="#6495ED" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="26" x="877.25" y="366.5352">User</text><line style="stroke: #000000; stroke-width: 1.5;" x1="788.5" x2="959.5" y1="378" y2="378"/><ellipse cx="798.5" cy="389" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="40" x="807.5" y="392.6348">id: long</text><ellipse cx="798.5" cy="401.9551" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="78" x="807.5" y="405.5898">pseudo: string</text><ellipse cx="798.5" cy="414.9102" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="97" x="807.5" y="418.5449">topic: Set&lt;Topic&gt;</text><ellipse cx="798.5" cy="427.8652" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="88" x="807.5" y="431.5">match: Matching</text><line style="stroke: #000000; stroke-width: 1.5;" x1="788.5" x2="959.5" y1="437.8203" y2="437.8203"/><ellipse cx="798.5" cy="448.8203" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="95" x="807.5" y="452.4551">User(nom: string)</text><ellipse cx="798.5" cy="461.7754" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="102" x="807.5" y="465.4102">getPseudo(): string</text><ellipse cx="798.5" cy="474.7305" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="92" x="807.5" y="478.3652">setPseudo(): void</text><ellipse cx="798.5" cy="487.6855" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="93" x="807.5" y="491.3203">getTopic(): string</text><ellipse cx="798.5" cy="500.6406" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="83" x="807.5" y="504.2754">setTopic(): void</text><ellipse cx="798.5" cy="513.5957" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="87" x="807.5" y="517.2305">addTopic(): void</text><ellipse cx="798.5" cy="526.5508" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="107" x="807.5" y="530.1855">removeTopic(): void</text><ellipse cx="798.5" cy="539.5059" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="147" x="807.5" y="543.1406">equals(user: User): boolean</text><ellipse cx="798.5" cy="552.4609" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="104" x="807.5" y="556.0957">hashcode(): integer</text><ellipse cx="798.5" cy="565.416" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="89" x="807.5" y="569.0508">toString(): string</text><!--MD5=[1d7f89d46fe5890de77e49145f8259d3]
+class Topic--><rect codeLine="22" fill="#F8F8FF" height="151.6406" id="Topic" rx="5" ry="5" style="stroke: #000000; stroke-width: 1.5;" width="116" x="787" y="652"/><ellipse cx="825.4" cy="668" fill="#6495ED" rx="11" ry="11" style="stroke: #000000; stroke-width: 1.0;"/><path d="M827.8731,674.1431 Q827.2921,674.4419 826.6529,674.5913 Q826.0138,674.7407 825.3082,674.7407 Q822.8014,674.7407 821.4815,673.0889 Q820.1617,671.437 820.1617,668.3159 Q820.1617,665.1865 821.4815,663.5347 Q822.8014,661.8828 825.3082,661.8828 Q826.0138,661.8828 826.6612,662.0322 Q827.3087,662.1816 827.8731,662.4805 L827.8731,665.2031 Q827.2423,664.6221 826.6488,664.3523 Q826.0553,664.0825 825.4244,664.0825 Q824.0797,664.0825 823.3949,665.1492 Q822.7101,666.2158 822.7101,668.3159 Q822.7101,670.4077 823.3949,671.4744 Q824.0797,672.541 825.4244,672.541 Q826.0553,672.541 826.6488,672.2712 Q827.2423,672.0015 827.8731,671.4204 Z "/><text fill="#6495ED" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="32" x="844.6" y="672.5352">Topic</text><line style="stroke: #000000; stroke-width: 1.5;" x1="788" x2="902" y1="684" y2="684"/><ellipse cx="798" cy="695" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="40" x="807" y="698.6348">id: long</text><ellipse cx="798" cy="707.9551" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="62" x="807" y="711.5898">nom: string</text><ellipse cx="798" cy="720.9102" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="56" x="807" y="724.5449">User: User</text><line style="stroke: #000000; stroke-width: 1.5;" x1="788" x2="902" y1="730.8652" y2="730.8652"/><ellipse cx="798" cy="741.8652" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="90" x="807" y="745.5">this(nom: string)</text><ellipse cx="798" cy="754.8203" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="88" x="807" y="758.4551">getNom(): string</text><ellipse cx="798" cy="767.7754" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="78" x="807" y="771.4102">setNom(): void</text><ellipse cx="798" cy="780.7305" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="88" x="807" y="784.3652">getUser(): string</text><ellipse cx="798" cy="793.6855" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="78" x="807" y="797.3203">setUser(): void</text><!--MD5=[2184976f08065c351186e002aedbbc07]
+class Matching--><rect codeLine="33" fill="#F8F8FF" height="52.9551" id="Matching" rx="5" ry="5" style="stroke: #000000; stroke-width: 1.5;" width="172" x="978" y="701.5"/><ellipse cx="1034.25" cy="717.5" fill="#B4A7E5" rx="11" ry="11" style="stroke: #000000; stroke-width: 1.0;"/><path d="M1030.6777,713.7651 L1030.6777,711.6069 L1038.0571,711.6069 L1038.0571,713.7651 L1035.5918,713.7651 L1035.5918,721.8418 L1038.0571,721.8418 L1038.0571,724 L1030.6777,724 L1030.6777,721.8418 L1033.1431,721.8418 L1033.1431,713.7651 Z "/><text fill="#6495ED" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="51" x="1054.75" y="722.0352">Matching</text><line style="stroke: #000000; stroke-width: 1.5;" x1="979" x2="1149" y1="733.5" y2="733.5"/><ellipse cx="989" cy="744.5" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="146" x="998" y="748.1348">match(user1: User): double</text><!--MD5=[7265fede3da290517b0e3c2752555eb1]
+class ScoreMatching--><rect codeLine="37" fill="#F8F8FF" height="52.9551" id="ScoreMatching" rx="5" ry="5" style="stroke: #000000; stroke-width: 1.5;" width="172" x="978" y="881"/><ellipse cx="1019.1" cy="897" fill="#6495ED" rx="11" ry="11" style="stroke: #000000; stroke-width: 1.0;"/><path d="M1021.5731,903.1431 Q1020.9921,903.4419 1020.3529,903.5913 Q1019.7138,903.7407 1019.0082,903.7407 Q1016.5014,903.7407 1015.1815,902.0889 Q1013.8617,900.437 1013.8617,897.3159 Q1013.8617,894.1865 1015.1815,892.5347 Q1016.5014,890.8828 1019.0082,890.8828 Q1019.7138,890.8828 1020.3612,891.0322 Q1021.0087,891.1816 1021.5731,891.4805 L1021.5731,894.2031 Q1020.9423,893.6221 1020.3488,893.3523 Q1019.7553,893.0825 1019.1244,893.0825 Q1017.7797,893.0825 1017.0949,894.1492 Q1016.4101,895.2158 1016.4101,897.3159 Q1016.4101,899.4077 1017.0949,900.4744 Q1017.7797,901.541 1019.1244,901.541 Q1019.7553,901.541 1020.3488,901.2712 Q1020.9423,901.0015 1021.5731,900.4204 Z "/><text fill="#6495ED" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="82" x="1038.9" y="901.5352">ScoreMatching</text><line style="stroke: #000000; stroke-width: 1.5;" x1="979" x2="1149" y1="913" y2="913"/><ellipse cx="989" cy="924" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="146" x="998" y="927.6348">match(user1: User): double</text><!--MD5=[d94669b27577752e7d908d710cd63c54]
+class UserControler--><rect codeLine="44" fill="#F8F8FF" height="112.7754" id="UserControler" rx="5" ry="5" style="stroke: #000000; stroke-width: 1.5;" width="473" x="233.5" y="127"/><ellipse cx="426.25" cy="143" fill="#6495ED" rx="11" ry="11" style="stroke: #000000; stroke-width: 1.0;"/><path d="M428.7231,149.1431 Q428.1421,149.4419 427.5029,149.5913 Q426.8638,149.7407 426.1582,149.7407 Q423.6514,149.7407 422.3315,148.0889 Q421.0117,146.437 421.0117,143.3159 Q421.0117,140.1865 422.3315,138.5347 Q423.6514,136.8828 426.1582,136.8828 Q426.8638,136.8828 427.5112,137.0322 Q428.1587,137.1816 428.7231,137.4805 L428.7231,140.2031 Q428.0923,139.6221 427.4988,139.3523 Q426.9053,139.0825 426.2744,139.0825 Q424.9297,139.0825 424.2449,140.1492 Q423.5601,141.2158 423.5601,143.3159 Q423.5601,145.4077 424.2449,146.4744 Q424.9297,147.541 426.2744,147.541 Q426.9053,147.541 427.4988,147.2712 Q428.0923,147.0015 428.7231,146.4204 Z "/><text fill="#6495ED" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="79" x="446.75" y="147.5352">UserControler</text><line style="stroke: #000000; stroke-width: 1.5;" x1="234.5" x2="705.5" y1="159" y2="159"/><ellipse cx="244.5" cy="170" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="56" x="253.5" y="173.6348">User: User</text><line style="stroke: #000000; stroke-width: 1.5;" x1="234.5" x2="705.5" y1="179.9551" y2="179.9551"/><ellipse cx="244.5" cy="190.9551" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="187" x="253.5" y="194.5898">createNewUser(): User , POST/User</text><ellipse cx="244.5" cy="203.9102" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="250" x="253.5" y="207.5449">removeTopicById(id: long): User , DELETE/User</text><ellipse cx="244.5" cy="216.8652" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="447" x="253.5" y="220.5">addTopicsForUserById(id: long, topics: List&lt;Topics&gt;): void , POST/User/{id}/topics</text><ellipse cx="244.5" cy="229.8203" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="304" x="253.5" y="233.4551">getUserMatchingListById(id: long) , GET/User/{id}/match</text><!--MD5=[d52bb4e0af23ce21220aa3b18c0ca397]
+class UserDto--><rect codeLine="53" fill="#F8F8FF" height="32" id="UserDto" rx="5" ry="5" style="stroke: #000000; stroke-width: 1.5;" width="78" x="80" y="167.5"/><ellipse cx="95" cy="183.5" fill="#6495ED" rx="11" ry="11" style="stroke: #000000; stroke-width: 1.0;"/><path d="M97.4731,189.6431 Q96.8921,189.9419 96.2529,190.0913 Q95.6138,190.2407 94.9082,190.2407 Q92.4014,190.2407 91.0815,188.5889 Q89.7617,186.937 89.7617,183.8159 Q89.7617,180.6865 91.0815,179.0347 Q92.4014,177.3828 94.9082,177.3828 Q95.6138,177.3828 96.2612,177.5322 Q96.9087,177.6816 97.4731,177.9805 L97.4731,180.7031 Q96.8423,180.1221 96.2488,179.8523 Q95.6553,179.5825 95.0244,179.5825 Q93.6797,179.5825 92.9949,180.6492 Q92.3101,181.7158 92.3101,183.8159 Q92.3101,185.9077 92.9949,186.9744 Q93.6797,188.041 95.0244,188.041 Q95.6553,188.041 96.2488,187.7712 Q96.8423,187.5015 97.4731,186.9204 Z "/><text fill="#6495ED" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="46" x="109" y="188.0352">UserDto</text><!--MD5=[093c210125347143eef5bb9199eae634]
+class UserRepository--><rect codeLine="58" fill="#F8F8FF" height="32" id="UserRepository" rx="5" ry="5" style="stroke: #000000; stroke-width: 1.5;" width="119" x="80.5" y="444.5"/><ellipse cx="95.5" cy="460.5" fill="#6495ED" rx="11" ry="11" style="stroke: #000000; stroke-width: 1.0;"/><path d="M97.9731,466.6431 Q97.3921,466.9419 96.7529,467.0913 Q96.1138,467.2407 95.4082,467.2407 Q92.9014,467.2407 91.5815,465.5889 Q90.2617,463.937 90.2617,460.8159 Q90.2617,457.6865 91.5815,456.0347 Q92.9014,454.3828 95.4082,454.3828 Q96.1138,454.3828 96.7612,454.5322 Q97.4087,454.6816 97.9731,454.9805 L97.9731,457.7031 Q97.3423,457.1221 96.7488,456.8523 Q96.1553,456.5825 95.5244,456.5825 Q94.1797,456.5825 93.4949,457.6492 Q92.8101,458.7158 92.8101,460.8159 Q92.8101,462.9077 93.4949,463.9744 Q94.1797,465.041 95.5244,465.041 Q96.1553,465.041 96.7488,464.7712 Q97.3423,464.5015 97.9731,463.9204 Z "/><text fill="#6495ED" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="87" x="109.5" y="465.0352">UserRepository</text><!--MD5=[d3498455eac280fa9587508737008cb9]
+reverse link Matching to ScoreMatching--><path d="M1064,775.14 C1064,808.87 1064,853.37 1064,880.95 " fill="none" id="Matching-backto-ScoreMatching" style="stroke: #808080; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="none" points="1057,774.81,1064,754.81,1071,774.81,1057,774.81" style="stroke: #808080; stroke-width: 1.0;"/><!--MD5=[9bac95efa77fad0fd9b0312abc50e267]
+link User to Matching--><path codeLine="67" d="M962.3786,585.0121 C962.3786,585.0121 1018.45,663.34 1038,690.66 " fill="none" id="User-Matching" style="stroke: #808080; stroke-width: 1.0;"/><polygon fill="#808080" points="1045.57,701.25,1043.5901,691.6022,1042.6622,697.1824,1037.082,696.2546,1045.57,701.25" style="stroke: #808080; stroke-width: 1.0;"/><line style="stroke: #808080; stroke-width: 1.0;" x1="1042.6622" x2="1038" y1="697.1824" y2="690.675"/><polygon fill="#808080" points="955.4,575.25,955.6353,582.4573,962.3786,585.0121,962.1433,577.8049,955.4,575.25" style="stroke: #808080; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1032.3831" y="690.9391">1</text><!--MD5=[5e6a68f9c17f62ad74ef7b0956a22e4b]
+link User to Topic--><path codeLine="68" d="M861.58,575.25 C858.95,599.33 856.22,624.25 853.76,646.78 " fill="none" id="User-to-Topic" style="stroke: #808080; stroke-width: 1.0;"/><polygon fill="#808080" points="853.21,651.84,858.1633,643.3274,853.7528,646.8695,850.2106,642.459,853.21,651.84" style="stroke: #808080; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="852.4768" y="596.03">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="6" x="847.7229" y="641.2061">*</text><!--MD5=[343462c3b271085ffe7ec171e4faa8a2]
+link UserControler to User--><path codeLine="69" d="M551.76,240.15 C618.76,285.76 713.52,350.27 782.94,397.52 " fill="none" id="UserControler-to-User" style="stroke: #808080; stroke-width: 1.0;"/><polygon fill="#808080" points="787.48,400.61,782.2964,392.2356,783.3486,397.7938,777.7904,398.8459,787.48,400.61" style="stroke: #808080; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="29" x="624" y="291.5684">uses</text><!--MD5=[ba8fe75d6c530200d010e5662effe7b6]
+link UserDto to UserRepository--><path codeLine="70" d="M120.16,199.68 C123.71,246.16 134.43,386.6 138.45,439.26 " fill="none" id="UserDto-to-UserRepository" style="stroke: #808080; stroke-width: 1.0;"/><polygon fill="#808080" points="138.84,444.37,142.1339,435.0883,138.4543,439.3849,134.1577,435.7053,138.84,444.37" style="stroke: #808080; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="29" x="129" y="291.5684">uses</text><!--MD5=[83df8e5315b05a064c1da0bc57783174]
 @startuml diagram
+!include ../style/commons.style
 
 package com.affinitynow.app {
     package model {
-        class Utilisateur {
+        class User {
+            + id: long
             + pseudo: string
             + topic: Set<Topic>
             + match: Matching
-            + Utilisateur(nom: string)
+            + User(nom: string)
             + getPseudo(): string
             + setPseudo(): void
             + getTopic(): string
             + setTopic(): void
-            + equals(user: Utilisateur): boolean
+            + addTopic(): void
+            + removeTopic(): void
+            + equals(user: User): boolean
             + hashcode(): integer
             + toString(): string
         }
 
         class Topic {
+            + id: long
             + nom: string
+            + User: User
             + this(nom: string)
             + getNom(): string
             + setNom(): void
+            + getUser(): string
+            + setUser(): void
         }
 
         interface Matching {
-            + match(user1: Utilisateur, user2:Utilisateur ): double
+            + match(user1: User): double
         }
 
         class ScoreMatching implements Matching {
-            + match(user1: Utilisateur, user2:Utilisateur ): double
+            + match(user1: User): double
         }
     }
 
-    package controler {
-        class UtilisateurControler {
-            + utilisateur: Utilisateur
-            + createNewUser(): void , POST/utilisateur
-            + addTopicsForUserById(id: long, topics: List<Topics>): void , POST/utilisateur/{id}/topics
-            + getUserMatchingListById(id: long) , GET/utilisateur/{id}/match
+    package user {
+        package controler {
+            class UserControler {
+                + User: User
+                + createNewUser(): User , POST/User
+                + removeTopicById(id: long): User , DELETE/User
+                + addTopicsForUserById(id: long, topics: List<Topics>): void , POST/User/{id}/topics
+                + getUserMatchingListById(id: long) , GET/User/{id}/match
+            }
+        }
+        package dto {
+            class UserDto {
+
+            }
+        }
+        package repository {
+            class UserRepository {
+
+            }
         }
     }
 }
 
 
 
-Utilisateur *- -> "1" Matching
-Utilisateur - -> "*" Topic
-
+User *- -> "1" Matching
+User "1" - -> "*" Topic
+UserControler - -> User: "uses"
+UserDto - -> UserRepository : "uses"
 @enduml
 
-PlantUML version 1.2020.22(Sun Dec 06 10:36:27 CET 2020)
+@startuml diagram
+
+skinparam nodesep 75
+skinparam ranksep 75
+hide empty members
+
+skinparam noteFontSize 10
+skinparam noteFontName Courier
+
+skinparam monochrome  false
+skinparam shadowing   false
+skinparam roundcorner 10
+skinparam linetype polyline
+
+skinparam class {
+    BackgroundColor GhostWhite
+    ArrowColor      Gray
+    BorderColor     Black
+    fontColor       CornFlowerBlue
+}
+
+skinparam state {
+    BackgroundColor GhostWhite
+    ArrowColor      Gray
+    BorderColor     Black
+    fontColor       CornFlowerBlue
+}
+
+skinparam object {
+    BackgroundColor GhostWhite
+    ArrowColor      Gray
+    BorderColor     Black
+}
+
+skinparam package<<Layout>> {
+  borderColor         Transparent
+  backgroundColor     Transparent
+  fontColor           Transparent
+  stereotypeFontColor Transparent
+}
+
+skinparam sequence {
+	ArrowColor                  Gray
+  LifeLineBorderColor         CornFlowerBlue
+  LifeLineBackgroundColor     GhostWhite
+	ParticipantBorderColor      CornFlowerBlue
+	ParticipantBackgroundColor  GhostWhite
+  ActorBorderColor            CornFlowerBlue
+	ActorBackgroundColor        GhostWhite
+  BoxBorderColor         CornFlowerBlue
+  BoxBackgroundColor         GhostWhite
+}
+
+skinparam stereotypeCBackgroundColor CornflowerBlue
+
+hide footbox
+hide empty members
+
+skinparam note {
+ BackgroundColor GhostWhite
+ BorderColor         CornFlowerBlue
+}
+
+package com.affinitynow.app {
+    package model {
+        class User {
+            + id: long
+            + pseudo: string
+            + topic: Set<Topic>
+            + match: Matching
+            + User(nom: string)
+            + getPseudo(): string
+            + setPseudo(): void
+            + getTopic(): string
+            + setTopic(): void
+            + addTopic(): void
+            + removeTopic(): void
+            + equals(user: User): boolean
+            + hashcode(): integer
+            + toString(): string
+        }
+
+        class Topic {
+            + id: long
+            + nom: string
+            + User: User
+            + this(nom: string)
+            + getNom(): string
+            + setNom(): void
+            + getUser(): string
+            + setUser(): void
+        }
+
+        interface Matching {
+            + match(user1: User): double
+        }
+
+        class ScoreMatching implements Matching {
+            + match(user1: User): double
+        }
+    }
+
+    package user {
+        package controler {
+            class UserControler {
+                + User: User
+                + createNewUser(): User , POST/User
+                + removeTopicById(id: long): User , DELETE/User
+                + addTopicsForUserById(id: long, topics: List<Topics>): void , POST/User/{id}/topics
+                + getUserMatchingListById(id: long) , GET/User/{id}/match
+            }
+        }
+        package dto {
+            class UserDto {
+
+            }
+        }
+        package repository {
+            class UserRepository {
+
+            }
+        }
+    }
+}
+
+
+
+User *- -> "1" Matching
+User "1" - -> "*" Topic
+UserControler - -> User: "uses"
+UserDto - -> UserRepository : "uses"
+@enduml
+
+PlantUML version 1.2020.19(Mon Oct 12 17:10:01 CEST 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Default Encoding: Cp1252
+Default Encoding: UTF-8
 Language: fr
 Country: FR
 --></g></svg>

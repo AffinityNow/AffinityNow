@@ -19,27 +19,52 @@ Naviguez vers http://localhost:4200/. L'application se rechargera automatiquemen
 Il suffira d'executer simplement la commande : *gradle bootRun* pour lancer le serveur.
 Une fois cela effectuer le serveur sera en marche et vous pourrz consulter la liste des End Points via _http://localhost:8080/swagger-ui.html_
 
-== Les Fonctionalités de SmartMapper
+== Les Fonctionalités d'Affinity Now
 
 Aujourd'hui avec la version V1.0 de AffinityNow on peut :
 
-1. Avoir la possibilité de renseigner les topics(centre d'intérêt) favori
+1. Avoir la possibilité de renseigner les topics (centre d'intérêt)favoris
 
-2. Pouvoir marché avec une personne ayant les mêmes centres d'intérêt.
+2. Pouvoir matcher avec une (ou plusieurs) personnes ayant les mêmes centres d'intérêt que soi.
 
-3. Avoir la possibilité de pouvoir discuter avec la personne via chat écrit/vidéo
+3. Avoir la possibilité de discuter avec la personne via chat écrit/vidéo.
+
+== Wireframes et Mockups "Affinity Now"
+Main Page
+
+image::../MainPage.png[Main Page]
+
+SignIn
+
+image::../SignIn.png[SignIn]
+
+Matching
+
+image::../Matching.png[Matching]
 
 
 == Scénario d'utilisation
-=== Cas Numéro 1:
+=== Cas Numéro 1 :
 
-== ts
+****
+Vous avez envie de discuter sur vos sujets (topics) favoris avec des gens qui eux aussi
+les partagent. Vous vous connectez sur l'application Affinity Now , ensuite vous renseignez vos topics
+puis vous chercher des matchs. Enfin une liste s'affiche en vous montrant les personnes avec qui vous avez des
+topics en communs.
+****
 
-Nous aurons quatre services principaux :
+=== Cas Numéro 2 :
+****
 
+****
+
+== Services proposés
+
+Nous aurons deux services principaux :
+
+* Service  User
 * Service  Matching
-* Service  Chat
-
+* Service  Topics
 
 ==== SERVICE USER
 ****
@@ -77,7 +102,7 @@ POST / GET / PUT / DELETE
 |
 
 |===
-==== SERVICE ITINERAIRE
+==== SERVICE MATCHING
 ****
 POST / GET / PUT / DELETE
 ****
@@ -108,7 +133,7 @@ POST / GET / PUT / DELETE
 |===
 
 
-==== SERVICE POINT INTERET
+==== SERVICE TOPICS
 ****
 POST / GET / PUT / DELETE
 ****
@@ -146,35 +171,6 @@ POST / GET / PUT / DELETE
 
 |===
 
-==== SERVICE STATISTIQUE
-****
-POST / GET / PUT / DELETE
-****
-
-|===
-|URL |METHODE |ACTION
-
-|
-|
-|
-
-|
-|
-|
-
-|
-|
-|
-
-|
-|
-|
-
-|
-|
-|
-
-|===
 
 == Diagramme de classes
 
