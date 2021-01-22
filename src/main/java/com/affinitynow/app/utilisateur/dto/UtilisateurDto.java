@@ -4,11 +4,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.UniqueConstraint;
 
 import com.affinitynow.app.model.Matching;
 import com.affinitynow.app.model.Topic;
@@ -16,12 +18,13 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import org.springframework.lang.Nullable;
 
+@Entity
 public class UtilisateurDto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String pseudo;
-    @OneToMany(targetEntity=Topic.class, mappedBy="utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity=Topic.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @Nullable
     @JsonManagedReference
     private Set<Topic> topics;
@@ -82,5 +85,18 @@ public class UtilisateurDto {
     public UtilisateurDto(String pseudo, Matching matching) {
         this.pseudo = pseudo;
         this.topics = new HashSet<>();
+    }
+
+    public void addTopic(Topic t) {
+        topics.add( t);
+        t.setUtilisateurDto(this);
+    }
+
+    public void removeTopic(Topic t) {
+        topics.remove(t);
+        t.setUtilisateurDto(null);
+    }
+
+    public UtilisateurDto() {
     }
 }

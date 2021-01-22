@@ -75,14 +75,4 @@ public class Utilisateur {
         this.matching = matching;
         this.topics = new HashMap<>();
     }
-
-    public void addTopic(Topic t) {
-        topics.put(t.getName(), t);
-        t.setUtilisateur(this);
-    }
-
-    public void removeTopic(Topic t) {
-        topics.remove(t.getName());
-        t.setUtilisateur(null);
-    }
 }
