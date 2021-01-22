@@ -4,7 +4,10 @@ import java.util.List;
 
 import com.affinitynow.app.model.Topic;
 import com.affinitynow.app.model.Utilisateur;
+import com.affinitynow.app.utilisateur.dto.UtilisateurDto;
+import com.affinitynow.app.utilisateur.repository.UtilisateurRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,11 +16,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 public class UtilisateurController {
+
+    @Autowired
+    UtilisateurRepository repository;
     
     @PostMapping(value="/utilisateur")
     public Utilisateur createNewUtilisateur() {
         //TODO: process POST request
         return null;
+    }
+
+    @GetMapping(value="/utilisateur")
+    public List<UtilisateurDto> createNewUtilisateurA() {
+        
+        return repository.findAll();
     }
 
     @PostMapping(value="/utilisateur/{id}/topics")

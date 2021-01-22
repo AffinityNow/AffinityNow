@@ -1,14 +1,17 @@
 package com.affinitynow.app.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.affinitynow.app.utilisateur.dto.UtilisateurDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import org.springframework.lang.Nullable;
 
+@Entity
 public class Topic {
 
     @Id
@@ -19,7 +22,8 @@ public class Topic {
     @ManyToOne
     @JsonBackReference
     @Nullable
-    private Utilisateur utilisateur;
+    private UtilisateurDto utilisateurDto;
+
 
     public String getName() {
         return name;
@@ -70,11 +74,19 @@ public class Topic {
     public Topic() {
     }
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+    public Long getId() {
+        return id;
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public UtilisateurDto getUtilisateurDto() {
+        return utilisateurDto;
+    }
+
+    public void setUtilisateurDto(UtilisateurDto utilisateurDto) {
+        this.utilisateurDto = utilisateurDto;
     }
 }
