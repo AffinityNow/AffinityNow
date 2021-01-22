@@ -26,12 +26,6 @@ public class UtilisateurController {
         return null;
     }
 
-    @GetMapping(value="/utilisateur")
-    public List<UtilisateurDto> createNewUtilisateurA() {
-        
-        return repository.findAll();
-    }
-
     @PostMapping(value="/utilisateur/{id}/topics")
     public void addTopicsForUserById(@PathVariable Long id,
                                      @PathVariable List<Topic> topics) {
