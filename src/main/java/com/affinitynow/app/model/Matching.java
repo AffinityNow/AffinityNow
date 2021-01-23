@@ -1,5 +1,6 @@
 package com.affinitynow.app.model;
 
+import java.util.List;
 public interface Matching {
-    void matching(Utilisateur utilisateur);
+    List<Utilisateur> matching(Utilisateur utilisateur);
 }

@@ -75,4 +75,8 @@ public class Utilisateur {
         this.matching = matching;
         this.topics = new HashMap<>();
     }
+
+    public void matching(Utilisateur utilisateur) {
+        this.matching.matching(this);
+    }
 }
