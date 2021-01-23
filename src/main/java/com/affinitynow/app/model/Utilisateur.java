@@ -1,11 +1,13 @@
 package com.affinitynow.app.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Utilisateur {
     private String pseudo;
-    private Map<String, Topic> topics;
+    private List<Topic> topics;
     private Matching matching;
 
     public String getPseudo() {
@@ -16,11 +18,11 @@ public class Utilisateur {
         this.pseudo = pseudo;
     }
 
-    public Map<String, Topic> getTopics() {
+    public List<Topic> getTopics() {
         return topics;
     }
 
-    public void setTopics(Map<String, Topic> topics) {
+    public void setTopics(List<Topic> topics) {
         this.topics = topics;
     }
 
@@ -73,6 +75,6 @@ public class Utilisateur {
     public Utilisateur(String pseudo, Matching matching) {
         this.pseudo = pseudo;
         this.matching = matching;
-        this.topics = new HashMap<>();
+        this.topics = new ArrayList<>();
     }
 }

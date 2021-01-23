@@ -29,6 +29,7 @@ public class UtilisateurController {
     @PostMapping(value="/utilisateur/{id}/topics")
     public void addTopicsForUserById(@PathVariable Long id,
                                      @PathVariable List<Topic> topics) {
+        // userService.addTipics(
         //TODO: process POST request
     }
 
@@ -40,6 +41,6 @@ public class UtilisateurController {
     @GetMapping(value="/utilisateur/{id}/match")
     public List<Utilisateur> getUtilisateurMatchingListById(@PathVariable Long id) {
         //TODO: process GET request
-        return null;
+        return List.of();
     }
 }
