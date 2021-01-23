@@ -1,52 +1,100 @@
 package com.affinitynow.app.utilisateur.dto;
 
-import com.affinitynow.app.model.Utilisateur;
-import com.sun.istack.Nullable;
-
+import java.util.HashSet;
 import java.util.Set;
 
-import static java.util.stream.Collectors.toSet;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import com.affinitynow.app.model.Matching;
+import com.affinitynow.app.model.Topic;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import org.springframework.lang.Nullable;
+
+@Entity
 public class UtilisateurDto {
-    @Nullable
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String pseudo;
-    private Set<TopicDto> topics;
-
-    public Long getId() {
-        return id;
-    }
-
-    public UtilisateurDto setId(Long id) {
-        this.id = id;
-        return this;
-    }
+    @OneToMany(targetEntity=Topic.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Nullable
+    @JsonManagedReference
+    private Set<Topic> topics;
 
     public String getPseudo() {
         return pseudo;
     }
 
-    public UtilisateurDto setPseudo(String pseudo) {
+    public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
-        return this;
     }
 
-    public Set<TopicDto> getTopics() {
+    public Set<Topic> getTopics() {
         return topics;
     }
 
-    public UtilisateurDto setTopics(Set<TopicDto> topics) {
+    public void setTopics(Set<Topic> topics) {
         this.topics = topics;
-        return this;
     }
 
-    public Utilisateur toUtilisateur() {
-        return new Utilisateur().setId(id).setPseudo(pseudo)
-                .setTopics(topics.stream().map(TopicDto::toTopic).collect(toSet()));
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Utilisateur [matching=");
+        builder.append(", pseudo=");
+        builder.append(pseudo);
+        builder.append(", topics=");
+        builder.append(topics);
+        builder.append("]");
+        return builder.toString();
     }
 
-    public static UtilisateurDto from(Utilisateur src) {
-        return new UtilisateurDto().setId(src.getId()).setPseudo(src.getPseudo())
-                .setTopics(src.getTopics().stream().map(TopicDto::from).collect(toSet()));
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((pseudo == null) ? 0 : pseudo.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        UtilisateurDto other = (UtilisateurDto) obj;
+        if (pseudo == null) {
+            if (other.pseudo != null)
+                return false;
+        } else if (!pseudo.equals(other.pseudo))
+            return false;
+        return true;
+    }
+
+    public UtilisateurDto(String pseudo, Matching matching) {
+        this.pseudo = pseudo;
+        this.topics = new HashSet<>();
+    }
+
+    public void addTopic(Topic t) {
+        topics.add( t);
+        t.setUtilisateurDto(this);
+    }
+
+    public void removeTopic(Topic t) {
+        topics.remove(t);
+        t.setUtilisateurDto(null);
+    }
+
+    public UtilisateurDto() {
     }
 }
