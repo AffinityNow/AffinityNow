@@ -18,57 +18,29 @@ public class Topic {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Double score;
+    private Integer score;
     @ManyToOne
     @JsonBackReference
     @Nullable
-    private UtilisateurDto utilisateurDto;
+    private Utilisateur utilisateur;
 
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Topic setName(String name) {
         this.name = name;
+        return this;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Topic other = (Topic) obj;
-        if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        return true;
-    }
-
-    public Double getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(Double score) {
+    public Topic setScore(Integer score) {
         this.score = score;
-    }
-
-    public Topic(String name, Double score) {
-        this.name = name;
-        this.score = score;
+        return this;
     }
 
     public Topic() {
@@ -78,15 +50,10 @@ public class Topic {
         return id;
     }
 
-    public void setId(Long id) {
+    public Topic setId(Long id) {
         this.id = id;
+        return this;
     }
 
-    public UtilisateurDto getUtilisateurDto() {
-        return utilisateurDto;
-    }
 
-    public void setUtilisateurDto(UtilisateurDto utilisateurDto) {
-        this.utilisateurDto = utilisateurDto;
-    }
 }
