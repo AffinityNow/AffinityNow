@@ -1,44 +1,48 @@
 package com.affinitynow.app.utilisateur.controller;
 
+import com.affinitynow.app.utilisateur.dto.UtilisateurDto;
+import com.affinitynow.app.utilisateur.service.UtilisateurService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 import com.affinitynow.app.model.Topic;
 import com.affinitynow.app.model.Utilisateur;
 import com.affinitynow.app.utilisateur.repository.UtilisateurRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PostMapping;
+import java.util.List;
 
 @RestController
 public class UtilisateurController {
 
-    @Autowired
-    UtilisateurRepository repository;
-    
-    @PostMapping(value="/utilisateur")
-    public Utilisateur createNewUtilisateur() {
+    private final UtilisateurService userService;
+
+    public UtilisateurController(UtilisateurService userService) {
+        this.userService = userService;
+    }
+
+    @PostMapping(value = "/utilisateur")
+    public UtilisateurDto createNewUtilisateur() {
         //TODO: process POST request
         return null;
     }
 
-    @PostMapping(value="/utilisateur/{id}/topics")
-    public void addTopicsForUserById(@PathVariable Long id,
-                                     @PathVariable List<Topic> topics) {
-        //TODO: process POST request
+    @CrossOrigin
+    @PostMapping(value = "/utilisateur/topics")
+    public ResponseEntity<UtilisateurDto> createNewUtilisateurWithTopics(@RequestBody UtilisateurDto dto) {
+        userService.save(dto);
+        return ResponseEntity.ok(dto);
     }
 
     @DeleteMapping(value = "/utilisateur/{id}/topic/{name}")
     public void removeTopicById(@PathVariable Long id, @PathVariable String topicName) {
         //TODO: process DELETE request
     }
-    
-    @GetMapping(value="/utilisateur/{id}/match")
-    public List<Utilisateur> getUtilisateurMatchingListById(@PathVariable Long id) {
+
+    @GetMapping(value = "/utilisateur/{id}/match")
+    public List<UtilisateurDto> getUtilisateurMatchingListById(@PathVariable Long id) {
         //TODO: process GET request
-        return null;
+        return List.of();
     }
 }

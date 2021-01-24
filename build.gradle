@@ -1,15 +1,15 @@
 plugins {
-	id 'org.springframework.boot' version '2.4.2'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.4.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
 
-	//Sonar
-	id "org.sonarqube" version "3.0"
+    //Sonar
+    id "org.sonarqube" version "3.0"
 
-	//CodeCov
+    //CodeCov
     id 'jacoco'
 
-	// AsciiDoctor (doc)
+    // AsciiDoctor (doc)
     id 'org.asciidoctor.jvm.pdf' version '3.2.0'
     id 'org.asciidoctor.jvm.gems' version '3.2.0'
 }
@@ -37,40 +37,45 @@ apply plugin: 'jacoco'
 apply plugin: VersionPlugin
 
 repositories {
-	mavenCentral()
-	jcenter()
+    mavenCentral()
+    jcenter()
     ruby.gems()
 }
 
 jacoco {
-  reportsDir = file("${buildDir}/reports/jacoco") // this is the default
+    reportsDir = file("${buildDir}/reports/jacoco") // this is the default
 }
 
 jacocoTestReport {
     reports {
-        xml.enabled = true 
+        xml.enabled = true
         html.enabled = false
     }
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testCompile "org.assertj:assertj-core:3.18.1"
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '3.7.7'
+
+
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
 
 sonarqube {
-  properties {
-    property "sonar.projectKey", "AffinityNow_AffinityNow2"
-    property "sonar.organization", "smartmapperproject"
-    property "sonar.host.url", "https://sonarcloud.io"
-  }
+    properties {
+        property "sonar.projectKey", "AffinityNow_AffinityNow2"
+        property "sonar.organization", "smartmapperproject"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
 }
 
 application {
