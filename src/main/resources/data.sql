@@ -1,6 +1,4 @@
 
-DELETE FROM topic;
-DELETE FROM utilisateur;
 
 INSERT INTO topic(id, name)
 VALUES (1000, 'Gastronomy'),
