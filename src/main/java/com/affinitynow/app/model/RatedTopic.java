@@ -11,50 +11,57 @@ import com.affinitynow.app.utilisateur.dto.UtilisateurDto;
 @Entity
 public class RatedTopic {
     @EmbeddedId
-    RatedTopicKey id;
+    private RatedTopicKey id;
 
     @ManyToOne
     @MapsId("topicId")
     @JoinColumn(name = "topic_id")
-    Topic topic;
+    private Topic topic;
 
     @ManyToOne
     @MapsId("userId")
     @JoinColumn(name = "user_id")
-    UtilisateurDto user;
+    private Utilisateur user;
 
-    int rating;
+    private  int rating;
+
+    public RatedTopic() {
+    }
 
     public RatedTopicKey getId() {
         return id;
     }
 
-    public void setId(RatedTopicKey id) {
+    public RatedTopic setId(RatedTopicKey id) {
         this.id = id;
+        return this;
     }
 
     public Topic getTopic() {
         return topic;
     }
 
-    public void setTopic(Topic topic) {
+    public RatedTopic setTopic(Topic topic) {
         this.topic = topic;
+        return this;
     }
 
-    public UtilisateurDto getUser() {
+    public Utilisateur getUser() {
         return user;
     }
 
-    public void setUser(UtilisateurDto user) {
+    public RatedTopic setUser(Utilisateur user) {
         this.user = user;
+        return this;
     }
 
     public int getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public RatedTopic setRating(int rating) {
         this.rating = rating;
+        return this;
     }
 
     @Override
@@ -80,12 +87,5 @@ public class RatedTopic {
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }
-
-    public RatedTopic(RatedTopicKey id, Topic topic, UtilisateurDto user, int rating) {
-        this.id = id;
-        this.topic = topic;
-        this.user = user;
-        this.rating = rating;
     }
 }
