@@ -1,8 +1,7 @@
 package com.affinitynow.app.utilisateur.controller;
 
-import com.affinitynow.app.model.Utilisateur;
 import com.affinitynow.app.utilisateur.dto.UtilisateurDto;
-import com.affinitynow.app.utilisateur.repository.UtilisateurRepository;
+import com.affinitynow.app.utilisateur.service.UtilisateurService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,10 +10,10 @@ import java.util.List;
 @RestController
 public class UtilisateurController {
 
-    private final UtilisateurRepository repository;
+    private final UtilisateurService userService;
 
-    public UtilisateurController(UtilisateurRepository repository) {
-        this.repository = repository;
+    public UtilisateurController(UtilisateurService userService) {
+        this.userService = userService;
     }
 
     @PostMapping(value = "/utilisateur")
@@ -26,8 +25,8 @@ public class UtilisateurController {
     @CrossOrigin
     @PostMapping(value = "/utilisateur/topics")
     public ResponseEntity<UtilisateurDto> createNewUtilisateurWithTopics(@RequestBody UtilisateurDto dto) {
-        Utilisateur created = repository.save(dto.toUtilisateur());
-        return ResponseEntity.ok(UtilisateurDto.from(created));
+        userService.save(dto);
+        return ResponseEntity.ok(dto);
     }
 
     @DeleteMapping(value = "/utilisateur/{id}/topic/{name}")

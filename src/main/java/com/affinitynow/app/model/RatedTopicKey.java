@@ -14,25 +14,27 @@ public class RatedTopicKey implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Column(name = "topic_id")
-    Long topicId;
+    private Long topicId;
 
     @Column(name = "user_id")
-    Long userId;
+    private Long userId;
 
     public Long getTopicId() {
         return topicId;
     }
 
-    public void setTopicId(Long topicId) {
+    public RatedTopicKey setTopicId(Long topicId) {
         this.topicId = topicId;
+        return this;
     }
 
     public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public RatedTopicKey setUserId(Long userId) {
         this.userId = userId;
+        return this;
     }
 
     @Override
@@ -64,10 +66,5 @@ public class RatedTopicKey implements Serializable {
         } else if (!userId.equals(other.userId))
             return false;
         return true;
-    }
-
-    public RatedTopicKey(Long topicId, Long userId) {
-        this.topicId = topicId;
-        this.userId = userId;
     }
 }

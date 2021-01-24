@@ -9,7 +9,7 @@ import java.util.*;
 @Entity
 public class Utilisateur {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private String pseudo;
     @OneToMany(targetEntity=Topic.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)

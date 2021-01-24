@@ -1,6 +1,6 @@
 package com.affinitynow.app.utilisateur.controller;
 
-import com.affinitynow.app.utilisateur.dto.TopicDto;
+import com.affinitynow.app.utilisateur.dto.RatedTopicDto;
 import com.affinitynow.app.utilisateur.dto.UtilisateurDto;
 import com.affinitynow.app.utilisateur.repository.UtilisateurRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,7 +32,7 @@ class UtilisateurControllerTest {
     @Test
     void testcreateNewUtilisateurWithTopics() {
         // Given:
-        final UtilisateurDto dto = new UtilisateurDto().setPseudo("ABC").setTopics(Set.of(new TopicDto().setName("T1")));
+        final UtilisateurDto dto = new UtilisateurDto().setPseudo("ABC").setTopics(Set.of(new RatedTopicDto().setName("T1")));
         Mockito.when(repository.save(any())).thenAnswer(invoc -> invoc.getArgument(0));
 
         // When:
@@ -41,6 +41,6 @@ class UtilisateurControllerTest {
         // Then:
         assertThat(created.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(created.getBody()).usingRecursiveComparison()
-                .isEqualTo(new UtilisateurDto().setPseudo("ABC").setTopics(Set.of(new TopicDto().setName("T1"))));
+                .isEqualTo(new UtilisateurDto().setPseudo("ABC").setTopics(Set.of(new RatedTopicDto().setName("T1"))));
     }
 }
