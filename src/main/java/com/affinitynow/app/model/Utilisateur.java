@@ -44,8 +44,4 @@ public class Utilisateur {
         this.topics = topics;
         return this;
     }
-
-    public void matching() {
-        this.matching.matching(this);
-    }
 }
