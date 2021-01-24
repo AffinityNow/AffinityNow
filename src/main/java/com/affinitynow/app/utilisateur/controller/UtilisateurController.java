@@ -49,7 +49,7 @@ public class UtilisateurController {
         List<Utilisateur> rtr = new ArrayList<>();
         List<Utilisateur> allUsersExceptId = utilisateurRepository.findAll().stream().filter(l -> !l.getId().equals(id)).collect(Collectors.toList());
 
-        allUsersExceptId.stream().forEach(l -> {
+        allUsersExceptId.forEach(l -> {
             if(userService.matching(id, strategyName, utilisateurRepository.findById(id).get()))
                 rtr.add(l);
         });
