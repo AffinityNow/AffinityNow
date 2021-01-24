@@ -10,8 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.UniqueConstraint;
-
 import com.affinitynow.app.model.Matching;
 import com.affinitynow.app.model.Topic;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
