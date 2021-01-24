@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Set;
 
 @Entity
 public class Utilisateur {
@@ -12,7 +12,7 @@ public class Utilisateur {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private String pseudo;
-    @OneToMany(targetEntity=Topic.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Topic.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @Nullable
     @JsonManagedReference
     private Set<Topic> topics;

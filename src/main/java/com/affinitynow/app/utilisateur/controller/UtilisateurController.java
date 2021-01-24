@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import com.affinitynow.app.model.Topic;
+import com.affinitynow.app.model.Utilisateur;
+import com.affinitynow.app.utilisateur.repository.UtilisateurRepository;
+
+import java.util.List;
+
 @RestController
 public class UtilisateurController {
 
