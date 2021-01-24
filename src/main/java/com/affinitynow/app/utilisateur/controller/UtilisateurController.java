@@ -47,13 +47,13 @@ public class UtilisateurController {
     @GetMapping(value = "/utilisateur/{id}/match/{name}")
     public List<Utilisateur> getUtilisateurMatchingList(@PathVariable Long id, @PathVariable String strategyName) {
         List<Utilisateur> rtr = new ArrayList<>();
-        List<Utilisateur> allUsersExceptId = utilisateurRepository.findAll().stream().filter(l -> !l.getId().equals(id)).collect(Collectors.toList());
-
-        allUsersExceptId.forEach(l -> {
-            if(userService.matching(id, strategyName, utilisateurRepository.findById(id).get()))
-                rtr.add(l);
-        });
-        
+        utilisateurRepository.findAll().stream()
+            .filter(l -> !l.getId().equals(id))
+            .collect(Collectors.toList())
+            .forEach(l -> {
+                if(userService.matching(id, strategyName, utilisateurRepository.findById(id).get()))
+                    rtr.add(l);
+            });        
         return rtr;
     }
 }
