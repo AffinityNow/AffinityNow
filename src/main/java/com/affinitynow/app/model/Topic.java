@@ -1,15 +1,15 @@
 package com.affinitynow.app.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
-import com.affinitynow.app.utilisateur.dto.UtilisateurDto;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import org.springframework.lang.Nullable;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Topic {
@@ -18,11 +18,8 @@ public class Topic {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Double score;
-    @ManyToOne
-    @JsonBackReference
-    @Nullable
-    private UtilisateurDto utilisateurDto;
+    @OneToMany(targetEntity=RatedTopic.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "topic")
+    private Set<RatedTopic> ratedTopics;
 
 
     public String getName() {
@@ -58,19 +55,6 @@ public class Topic {
         return true;
     }
 
-    public Double getScore() {
-        return score;
-    }
-
-    public void setScore(Double score) {
-        this.score = score;
-    }
-
-    public Topic(String name, Double score) {
-        this.name = name;
-        this.score = score;
-    }
-
     public Topic() {
     }
 
@@ -82,11 +66,16 @@ public class Topic {
         this.id = id;
     }
 
-    public UtilisateurDto getUtilisateurDto() {
-        return utilisateurDto;
+    public Set<RatedTopic> getRatedTopics() {
+        return ratedTopics;
     }
 
-    public void setUtilisateurDto(UtilisateurDto utilisateurDto) {
-        this.utilisateurDto = utilisateurDto;
+    public void setRatedTopics(Set<RatedTopic> ratedTopics) {
+        this.ratedTopics = ratedTopics;
+    }
+
+    public Topic(String name) {
+        this.name = name;
+        this.ratedTopics = new HashSet<>();
     }
 }
