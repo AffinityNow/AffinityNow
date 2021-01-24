@@ -74,7 +74,7 @@ public class Utilisateur {
         this.ratedTopics = ratedTopics;
     }
 
-    public void matching(Utilisateur utilisateur) {
+    public void matching() {
         this.matching.matching(this);
     }
 }

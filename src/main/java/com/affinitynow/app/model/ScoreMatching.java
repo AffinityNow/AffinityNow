@@ -1,6 +1,9 @@
 package com.affinitynow.app.model;
 
 import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 public class ScoreMatching implements Matching {
 
     private List<Utilisateur> utilisateurs;
@@ -11,12 +14,14 @@ public class ScoreMatching implements Matching {
 
     @Override
     public List<Utilisateur> matching(Utilisateur utilisateur1) {
-        
+        return null;
     }
 
-    public boolean userHasAtLeast4CommonTopics(Utilisateur utilisateur1, Utilisateur utilisateur2) {
-        return utilisateur1.getTopics().keySet().stream()
-                .filter(utilisateur2.getTopics().keySet()::contains)
-                .count() >= 4;
-    }
+    BiFunction<Utilisateur, Utilisateur, List<RatedTopic>> commontRatedTopicsBetweenTwoUsers = (x,y) -> 
+        x.getRatedTopics().stream()
+        .flatMap(l -> y.getRatedTopics().stream()
+                .filter(p -> l.topic.equals(p.topic)))
+        .collect(Collectors.toList());
+
+    Predicate<List<RatedTopic>> userHasAtLeast4CommonTopics = x -> x.size() > 4;
 }
