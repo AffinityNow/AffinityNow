@@ -73,7 +73,7 @@ POST / GET / PUT / DELETE
 |===
 |URL |METHODE |ACTION
 
-|
+|/utilisateur/topics|POST|Insértion d'un utilisateur ainsi que ses topics et les notations choisis
 |
 |
 
