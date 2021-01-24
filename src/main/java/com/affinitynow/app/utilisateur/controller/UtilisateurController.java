@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.affinitynow.app.model.Topic;
 import com.affinitynow.app.model.Utilisateur;
-import com.affinitynow.app.utilisateur.dto.UtilisateurDto;
 import com.affinitynow.app.utilisateur.repository.UtilisateurRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

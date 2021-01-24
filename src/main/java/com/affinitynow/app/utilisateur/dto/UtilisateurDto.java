@@ -1,6 +1,5 @@
 package com.affinitynow.app.utilisateur.dto;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,11 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import com.affinitynow.app.model.Matching;
-import com.affinitynow.app.model.Topic;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.affinitynow.app.model.RatedTopic;
 
-import org.springframework.lang.Nullable;
 
 @Entity
 public class UtilisateurDto {
@@ -22,10 +18,8 @@ public class UtilisateurDto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String pseudo;
-    @OneToMany(targetEntity=Topic.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @Nullable
-    @JsonManagedReference
-    private Set<Topic> topics;
+    @OneToMany(targetEntity=RatedTopic.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private Set<RatedTopic> ratedTopics;
 
     public String getPseudo() {
         return pseudo;
@@ -35,14 +29,6 @@ public class UtilisateurDto {
         this.pseudo = pseudo;
     }
 
-    public Set<Topic> getTopics() {
-        return topics;
-    }
-
-    public void setTopics(Set<Topic> topics) {
-        this.topics = topics;
-    }
-
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
@@ -50,7 +36,6 @@ public class UtilisateurDto {
         builder.append(", pseudo=");
         builder.append(pseudo);
         builder.append(", topics=");
-        builder.append(topics);
         builder.append("]");
         return builder.toString();
     }
@@ -80,21 +65,22 @@ public class UtilisateurDto {
         return true;
     }
 
-    public UtilisateurDto(String pseudo, Matching matching) {
-        this.pseudo = pseudo;
-        this.topics = new HashSet<>();
-    }
-
-    public void addTopic(Topic t) {
-        topics.add( t);
-        t.setUtilisateurDto(this);
-    }
-
-    public void removeTopic(Topic t) {
-        topics.remove(t);
-        t.setUtilisateurDto(null);
-    }
-
     public UtilisateurDto() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<RatedTopic> getRatedTopics() {
+        return ratedTopics;
+    }
+
+    public void setRatedTopics(Set<RatedTopic> ratedTopics) {
+        this.ratedTopics = ratedTopics;
     }
 }
