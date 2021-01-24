@@ -1,12 +1,12 @@
 package com.affinitynow.app.model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Utilisateur {
     private String pseudo;
-    private Map<String, Topic> topics;
     private Matching matching;
+    private Set<RatedTopic> ratedTopics;
 
     public String getPseudo() {
         return pseudo;
@@ -14,14 +14,6 @@ public class Utilisateur {
 
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
-    }
-
-    public Map<String, Topic> getTopics() {
-        return topics;
-    }
-
-    public void setTopics(Map<String, Topic> topics) {
-        this.topics = topics;
     }
 
     public Matching getMatching() {
@@ -39,8 +31,6 @@ public class Utilisateur {
         builder.append(matching);
         builder.append(", pseudo=");
         builder.append(pseudo);
-        builder.append(", topics=");
-        builder.append(topics);
         builder.append("]");
         return builder.toString();
     }
@@ -73,7 +63,15 @@ public class Utilisateur {
     public Utilisateur(String pseudo, Matching matching) {
         this.pseudo = pseudo;
         this.matching = matching;
-        this.topics = new HashMap<>();
+        this.ratedTopics = new HashSet<>();
+    }
+
+    public Set<RatedTopic> getRatedTopics() {
+        return ratedTopics;
+    }
+
+    public void setRatedTopics(Set<RatedTopic> ratedTopics) {
+        this.ratedTopics = ratedTopics;
     }
 
     public void matching(Utilisateur utilisateur) {
