@@ -1,2 +1,4 @@
-package com.affinitynow.app.model;public class TopicRef {
+package com.affinitynow.app.model;
+
+public class TopicRef {
 }

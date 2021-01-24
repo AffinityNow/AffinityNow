@@ -3,6 +3,7 @@ package com.affinitynow.app.utilisateur.controller;
 import com.affinitynow.app.model.Utilisateur;
 import com.affinitynow.app.utilisateur.dto.UtilisateurDto;
 import com.affinitynow.app.utilisateur.repository.UtilisateurRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,10 +23,11 @@ public class UtilisateurController {
         return null;
     }
 
+    @CrossOrigin
     @PostMapping(value = "/utilisateur/topics")
-    public UtilisateurDto createNewUtilisateurWithTopics(@RequestBody UtilisateurDto dto) {
+    public ResponseEntity<UtilisateurDto> createNewUtilisateurWithTopics(@RequestBody UtilisateurDto dto) {
         Utilisateur created = repository.save(dto.toUtilisateur());
-        return UtilisateurDto.from(created);
+        return ResponseEntity.ok(UtilisateurDto.from(created));
     }
 
     @DeleteMapping(value = "/utilisateur/{id}/topic/{name}")
