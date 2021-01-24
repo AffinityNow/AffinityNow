@@ -32,10 +32,12 @@ public class UtilisateurDto {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Utilisateur [matching=");
+        builder.append("UtilisateurDto [id=");
+        builder.append(id);
         builder.append(", pseudo=");
         builder.append(pseudo);
-        builder.append(", topics=");
+        builder.append(", ratedTopics=");
+        builder.append(ratedTopics);
         builder.append("]");
         return builder.toString();
     }
