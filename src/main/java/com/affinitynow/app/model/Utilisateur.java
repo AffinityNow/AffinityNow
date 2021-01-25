@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+
+import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -16,6 +18,8 @@ public class Utilisateur {
     @Nullable
     @JsonManagedReference
     private Set<Topic> topics;
+    @Embedded
+    private Map<String, Connaissance> connaissances;
 
     public Long getId() {
         return id;
@@ -44,4 +48,12 @@ public class Utilisateur {
         this.topics = topics;
         return this;
     }
+
+	public Map<String, Connaissance> getConnaissances() {
+		return connaissances;
+	}
+
+	public void setConnaissances(Map<String, Connaissance> connaissances) {
+		this.connaissances = connaissances;
+	}
 }

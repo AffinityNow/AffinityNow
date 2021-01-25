@@ -8,13 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.affinitynow.app.model.Topic;
 import com.affinitynow.app.model.Utilisateur;
 import com.affinitynow.app.utilisateur.repository.UtilisateurRepository;
-
-import java.util.List;
-
 @RestController
 public class UtilisateurController {
 
@@ -45,15 +40,17 @@ public class UtilisateurController {
     }
 
     @GetMapping(value = "/utilisateur/{id}/match/{name}")
-    public List<Utilisateur> getUtilisateurMatchingList(@PathVariable Long id, @PathVariable String strategyName) {
-        List<Utilisateur> rtr = new ArrayList<>();
-        utilisateurRepository.findAll().stream()
-            .filter(l -> !l.getId().equals(id))
-            .collect(Collectors.toList())
-            .forEach(l -> {
-                if(userService.matching(id, strategyName, utilisateurRepository.findById(id).get()))
-                    rtr.add(l);
-            });        
-        return rtr;
+    public List<Utilisateur> getUtilisateurMatchingList(@PathVariable("id") Long id, @PathVariable String name) {
+        // List<Utilisateur> rtr = new ArrayList<>();
+        // utilisateurRepository.findAll().stream()
+        //     .filter(l -> !l.getId().equals(id))
+        //     .collect(Collectors.toList())
+        //     .forEach(l -> {
+        //         if(userService.matching(id, name, utilisateurRepository.findById(id).get()))
+        //             rtr.add(l);
+        //     });        
+        // return rtr;
+
+        return null;
     }
 }

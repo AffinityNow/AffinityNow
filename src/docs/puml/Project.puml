@@ -6,15 +6,13 @@ package com.affinitynow.app {
         class User {
             + id: long
             + pseudo: string
-            + topic: Set<Topic>
-            + match: Matching
+            + connaissances: Map<String, Connaissance>
             + User(nom: string)
             + getPseudo(): string
             + setPseudo(): void
             + getTopic(): string
             + setTopic(): void
-            + addTopic(): void
-            + removeTopic(): void
+            + getConnaissance(): Map<String, Connaissance>
             + equals(user: User): boolean
             + hashcode(): integer
             + toString(): string
@@ -23,20 +21,20 @@ package com.affinitynow.app {
         class Topic {
             + id: long
             + nom: string
-            + User: User
             + this(nom: string)
             + getNom(): string
             + setNom(): void
-            + getUser(): string
-            + setUser(): void
         }
 
-        interface Matching {
-            + match(user1: User): double
+        class Connaissance {
+            + topic: Topic
+            + niveau: Niveau
+            + topic(): Topic
+            + niveau(topic: Topic): Optional<Niveau>
         }
 
-        class ScoreMatching implements Matching {
-            + match(user1: User): double
+        enum Niveau {
+            Un, Deux, Trois, Quatre, Cinq
         }
     }
 
@@ -50,23 +48,47 @@ package com.affinitynow.app {
                 + getUserMatchingListById(id: long) , GET/User/{id}/match
             }
         }
-        package dto {
-            class UserDto {
 
+        package service {
+            class UserService {
+                creerConnaissance(topic: Topic, niveau: Niveau, user: User): void
+                connaissances(user: User): Stream<Connaissance>
+                connait(topic: Topic, user:User): boolean 
+            }
+            
+            interface Matching {
+                + match(user1: User, user2: User): MatchResult
+            }
+
+            class ScoreMatching implements Matching {
+                + match(user1: User, user2: User): MatchResult
+            }
+
+            interface MatchResult{
+                + isSucess(): boolean
+            }
+
+            class ClassicMatchResult implements MatchResult, Comparable{
+                 + isSucess(): boolean
             }
         }
-        package repository {
-            class UserRepository {
 
-            }
+        package dto {
+            class UserDto {}
+        }
+
+        package repository {
+            class UserRepository {}
         }
     }
 }
 
-
-
-User *--> "1" Matching
-User "1" --> "*" Topic
-UserControler --> User: "uses"
-UserDto --> UserRepository : "uses"
+UserService *--> "1" Matching
+UserControler --> UserService: "uses"
+UserService --> UserRepository: "uses"
+UserRepository --> User: "uses"
+Connaissance *--> "1" Topic
+Connaissance *--> "1" Niveau
+User *--> "*" Connaissance: "connaissance"
+Matching --> MatchResult: "uses"
 @enduml
