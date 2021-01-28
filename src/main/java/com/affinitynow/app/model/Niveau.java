@@ -1,10 +1,13 @@
 package com.affinitynow.app.model;
 
-import javax.persistence.Embeddable;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Embeddable
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Niveau {
-    UN, DEUX, TROIS, QUATRE, CINQ;
+
+    UN("UN"), DEUX("DEUX"), TROIS("TROIS"), QUATRE("QUATRE"), CINQ("CINQ");
+
+    private String niveau;
 
     public int value() {
         return switch (this) {
@@ -14,5 +17,20 @@ public enum Niveau {
             case QUATRE -> 4;
             case CINQ -> 5;
         };
+    }
+
+    private Niveau(String niveau) {
+        this.niveau = niveau;
+    }
+
+    public String getNiveau() {
+        return niveau;
+    }
+
+    public void setNiveau(String niveau) {
+        this.niveau = niveau;
+    }
+
+    private Niveau() {
     }
 }

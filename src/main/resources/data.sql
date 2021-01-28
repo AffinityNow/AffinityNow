@@ -21,3 +21,15 @@ VALUES
 (17,"Louise"),
 (18,"Ginnette"),
 (19,"Francoise");
+
+INSERT INTO utilisateur_connaissances(utilisateur_id,niveau,id,name,connaissances_key)
+VALUES
+(10,"CINQ",1000,"Gastronomy","Gastronomy"),
+(10,"CINQ",1001,"Comic book","Comic book"),
+(10,"CINQ",1009,"Literature","Literature"),
+(10,"CINQ",1000,"Gastronomy","Gastronomy"),
+(11,"TROIS",1000,"Gastronomy","Gastronomy"),
+(12,"DEUX",1000,"Gastronomy","Gastronomy"),
+(13,"QUATRE",1000,"Gastronomy","Gastronomy"),
+(19,"CINQ",1000,"Gastronomy","Gastronomy"),
+(18,"DEUX",1000,"Gastronomy","Gastronomy");

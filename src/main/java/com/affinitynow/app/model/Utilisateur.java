@@ -5,6 +5,7 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,8 +19,9 @@ public class Utilisateur {
     @Nullable
     @JsonManagedReference
     private Set<Topic> topics;
-    @Embedded
-    private Map<String, Connaissance> connaissances;
+    @ElementCollection
+    // @CollectionTable(name= "utilisateur_connaissances", joinColumns = @JoinColumn(name = "connaisanace_id"), foreignKey = @ForeignKey(name = "utilisateur_connaissances_fk"))
+    private Map<String, Connaissance> connaissances = Collections.emptyMap();
 
     public Long getId() {
         return id;
@@ -56,4 +58,12 @@ public class Utilisateur {
 	public void setConnaissances(Map<String, Connaissance> connaissances) {
 		this.connaissances = connaissances;
 	}
+
+    public Utilisateur(String pseudo, Map<String, Connaissance> connaissances) {
+        this.pseudo = pseudo;
+        this.connaissances = connaissances;
+    }
+
+    public Utilisateur() {
+    }
 }

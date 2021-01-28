@@ -18,8 +18,8 @@ public class Topic {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @OneToMany(targetEntity = RatedTopic.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "topic")
-    private Set<RatedTopic> ratedTopics;
+    // @OneToMany(targetEntity = RatedTopic.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "topic")
+    // private Set<RatedTopic> ratedTopics;
 
     public String getName() {
         return name;
@@ -42,16 +42,16 @@ public class Topic {
         return this;
     }
 
-    public Set<RatedTopic> getRatedTopics() {
-        return ratedTopics;
-    }
+    // public Set<RatedTopic> getRatedTopics() {
+    //     return ratedTopics;
+    // }
 
-    public void setRatedTopics(Set<RatedTopic> ratedTopics) {
-        this.ratedTopics = ratedTopics;
-    }
+    // public void setRatedTopics(Set<RatedTopic> ratedTopics) {
+    //     this.ratedTopics = ratedTopics;
+    // }
 
     public Topic(String name) {
         this.name = name;
-        this.ratedTopics = new HashSet<>();
+        // this.ratedTopics = new HashSet<>();
     }
 }
