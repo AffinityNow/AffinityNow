@@ -4,9 +4,9 @@
 package com.affinitynow.app {
     package model {
         class User {
-            + id: long
-            + pseudo: string
-            + connaissances: Map<String, Connaissance>
+            - id: long
+            - pseudo: string
+            - connaissances: Map<String, Connaissance>
             + User(nom: string)
             + getPseudo(): string
             + setPseudo(): void
@@ -19,41 +19,44 @@ package com.affinitynow.app {
         }
 
         class Topic {
-            + id: long
-            + nom: string
+            - id: long
+            - nom: string
             + this(nom: string)
             + getNom(): string
             + setNom(): void
         }
 
         class Connaissance {
-            + topic: Topic
-            + niveau: Niveau
+            - topic: Topic
+            - niveau: Niveau
             + topic(): Topic
-            + niveau(topic: Topic): Optional<Niveau>
+            + niveau(topic: Topic): Niveau
         }
 
         enum Niveau {
-            Un, Deux, Trois, Quatre, Cinq
+            UN, DEUX, TROIS, QUATRE, CINQUE
         }
     }
 
     package user {
         package controler {
             class UserControler {
-                + User: User
+                - userService: UserService
+                - utilisateurRepository: UtilisateurRepository
                 + createNewUser(): User , POST/User
                 + removeTopicById(id: long): User , DELETE/User
                 + addTopicsForUserById(id: long, topics: List<Topics>): void , POST/User/{id}/topics
-                + getUserMatchingListById(id: long) , GET/User/{id}/match
+                + getUserMatchingListById(id: long, strategyName:string) , GET/User/{id}/match/{strategyName}
             }
         }
 
         package service {
             class UserService {
-                creerConnaissance(topic: Topic, niveau: Niveau, user: User): void
-                connaissances(user: User): Stream<Connaissance>
-                connait(topic: Topic, user:User): boolean 
+                - matchingStrategy: Map<String, Matching>
+                + connaissances(user: User): Stream<Connaissance>
+                + connait(topic: Topic, user:User): boolean 
+                + niveau(topic: Topic, user: User): Optional<Niveau>
+                + matching
             }
             
             interface Matching {
@@ -64,17 +67,30 @@ package com.affinitynow.app {
                 + match(user1: User, user2: User): MatchResult
             }
 
-            interface MatchResult{
+            interface MatchResult extends Comparable{
                 + isSucess(): boolean
             }
 
-            class ClassicMatchResult implements MatchResult, Comparable{
+            class BooleanMatchResult implements MatchResult{
                  + isSucess(): boolean
             }
         }
 
         package dto {
-            class UserDto {}
+            class UserDto {
+                - id: long
+                - pseudo: string
+                - connaissances: Map<string, Connaissance>
+                + getId(): long
+                + setId(id: Long): UtilisateurDto
+                + getPseudo(): string
+                + setPseudo(pseudo: string): UtilisateurDto
+                + getPseudo(): string
+                + setConnaissances(pseudo: string): UtilisateurDto
+                + addConnaissance(name: string, connaissance: Connaissance)
+
+
+            }
         }
 
         package repository {

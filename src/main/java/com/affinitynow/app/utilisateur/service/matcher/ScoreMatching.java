@@ -2,9 +2,10 @@ package com.affinitynow.app.utilisateur.service.matcher;
 
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.IntPredicate;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import javax.print.attribute.standard.MediaSize.Other;
 
 import com.affinitynow.app.model.Connaissance;
 import com.affinitynow.app.model.Niveau;
@@ -24,10 +25,12 @@ public class ScoreMatching implements Matching {
     public MatchResult matching(Utilisateur utilisateur, Utilisateur utilisateur1) {
         Set<Connaissance> intersection = userService.connaissance(utilisateur)
             .filter(c -> userService.connait(c.topic(), utilisateur1))
-            .filter(p -> userService.niveau(utilisateur, p.topic()).map(Niveau::value).get()>= 3
-                && userService.niveau(utilisateur1, p.topic()).map(Niveau::value).get() >= 3)
+            .filter(p -> userService.niveau(utilisateur, p.topic()).map(Niveau::value).filter(isHigherThan3::test).isPresent()
+                && userService.niveau(utilisateur1, p.topic()).map(Niveau::value).filter(isHigherThan3::test).isPresent())
             .collect(Collectors.toSet());
 
         return MatchHelper.checkFunctionBooleanMatchResult.apply(intersection);
     }
+
+    IntPredicate isHigherThan3 = x -> x >= 3;
 }

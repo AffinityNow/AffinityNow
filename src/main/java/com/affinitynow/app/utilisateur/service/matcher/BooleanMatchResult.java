@@ -1,16 +1,11 @@
 package com.affinitynow.app.utilisateur.service.matcher;
 
-public class BooleanMatchResult implements MatchResult, Comparable<BooleanMatchResult> {
+public class BooleanMatchResult implements MatchResult {
     private final boolean success;
 
     @Override
     public boolean isSuccess() {
       return success;
-    }
-
-    @Override
-    public int compareTo(BooleanMatchResult o) {
-      return (this.success == o.isSuccess()) ? 0 : (o.isSuccess() ? 1 : -1);
     }
 
     public BooleanMatchResult(boolean success) {
@@ -37,5 +32,10 @@ public class BooleanMatchResult implements MatchResult, Comparable<BooleanMatchR
       if (success != other.success)
         return false;
       return true;
+    }
+
+    @Override
+    public int compareTo(MatchResult o) {
+      return (this.success == o.isSuccess()) ? 0 : (o.isSuccess() ? 1 : -1);
     }
 }

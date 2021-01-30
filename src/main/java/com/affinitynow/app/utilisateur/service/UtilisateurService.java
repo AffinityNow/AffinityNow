@@ -60,14 +60,8 @@ public class UtilisateurService {
        return  user.getConnaissances().get(topic.getName()) == null ? false : true;
     }
 
-    public void saveUserWithConnaissance(UtilisateurDto user) {
-        Map<String, Connaissance> mConaissance = user.getConnaissances();
-        final Utilisateur utilisateur = new Utilisateur(user.getPseudo(), mConaissance);
-        userRepo.save(utilisateur);
-    }
-
     public Optional<Niveau> niveau(Utilisateur user, Topic topic) {
-        return Optional.ofNullable(user.getConnaissances().get(topic.getName()).niveau());
+        return Optional.ofNullable(user.getConnaissances().getOrDefault(topic.getName(), null).niveau());
     }
 
     public MatchResult matching(String strategyName, Utilisateur utilisateur, Utilisateur utilisateur2) {

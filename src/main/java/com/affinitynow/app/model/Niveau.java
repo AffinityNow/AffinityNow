@@ -7,7 +7,7 @@ public enum Niveau {
 
     UN("UN"), DEUX("DEUX"), TROIS("TROIS"), QUATRE("QUATRE"), CINQ("CINQ");
 
-    private String niveau;
+    private final String niveau;
 
     public int value() {
         return switch (this) {
@@ -27,10 +27,4 @@ public enum Niveau {
         return niveau;
     }
 
-    public void setNiveau(String niveau) {
-        this.niveau = niveau;
-    }
-
-    private Niveau() {
-    }
 }

@@ -14,6 +14,7 @@ public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
+    @Column(unique=true)
     private String pseudo;
     @OneToMany(targetEntity = Topic.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @Nullable
