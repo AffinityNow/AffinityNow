@@ -1,18 +1,17 @@
 package com.affinitynow.app.utilisateur.dto;
 
 import com.affinitynow.app.model.Connaissance;
-import com.sun.istack.Nullable;
+
+import org.springframework.lang.Nullable;
 
 import java.util.Collections;
 import java.util.Map;
-import java.util.Set;
 
 
 public class UtilisateurDto {
     @Nullable
     private Long id;
     private String pseudo;
-    // private Set<RatedTopicDto> topics;
     private Map<String, Connaissance> connaissances = Collections.emptyMap();
 
     public Long getId() {
@@ -32,15 +31,6 @@ public class UtilisateurDto {
         this.pseudo = pseudo;
         return this;
     }
-
-    // public Set<RatedTopicDto> getTopics() {
-    //     return topics;
-    // }
-
-    // public UtilisateurDto setTopics(Set<RatedTopicDto> topics) {
-    //     this.topics = topics;
-    //     return this;
-    // }
 
     public Map<String, Connaissance> getConnaissances() {
         return connaissances;

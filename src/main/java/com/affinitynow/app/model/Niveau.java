@@ -2,7 +2,7 @@ package com.affinitynow.app.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum Niveau {
 
     UN("UN"), DEUX("DEUX"), TROIS("TROIS"), QUATRE("QUATRE"), CINQ("CINQ");

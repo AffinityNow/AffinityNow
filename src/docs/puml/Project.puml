@@ -43,9 +43,7 @@ package com.affinitynow.app {
             class UserControler {
                 - userService: UserService
                 - utilisateurRepository: UtilisateurRepository
-                + createNewUser(): User , POST/User
-                + removeTopicById(id: long): User , DELETE/User
-                + addTopicsForUserById(id: long, topics: List<Topics>): void , POST/User/{id}/topics
+                + createNewUtilisateurWithConnaissance(dto: UtilisateurDto): UtilisateurDto, POST/utilisateur/connaissances
                 + getUserMatchingListById(id: long, strategyName:string) , GET/User/{id}/match/{strategyName}
             }
         }
@@ -56,7 +54,7 @@ package com.affinitynow.app {
                 + connaissances(user: User): Stream<Connaissance>
                 + connait(topic: Topic, user:User): boolean 
                 + niveau(topic: Topic, user: User): Optional<Niveau>
-                + matching
+                + matching(strategyName: string, utilisateur: Utilisateur, utilisateur2: Utilisateur)
             }
             
             interface Matching {

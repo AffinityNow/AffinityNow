@@ -27,8 +27,6 @@ Aujourd'hui avec la version V1.0 de AffinityNow on peut :
 
 2. Pouvoir matcher avec une (ou plusieurs) personnes ayant les mêmes centres d'intérêt que soi.
 
-3. Avoir la possibilité de discuter avec la personne via chat écrit/vidéo.
-
 == Wireframes et Mockups "Affinity Now"
 Main Page
 
@@ -60,11 +58,7 @@ topics en communs.
 
 == Services proposés
 
-Nous aurons deux services principaux :
-
-* Service  User
-* Service  Matching
-* Service  Topics
+* Service  Utilisateur
 
 ==== SERVICE USER
 ****
@@ -73,12 +67,8 @@ POST / GET / PUT / DELETE
 |===
 |URL |METHODE |ACTION
 
-|/utilisateur/topics|POST|Insértion d'un utilisateur ainsi que ses topics et les notations choisis
-|
-|
-
-|
-|
+|/utilisateur/connaissances|POST|Insertion d'un utilisateur ainsi que ses topics et les notations choisis
+|/utilisateur/{id}/match/{name}|GET|Récupérer la liste des matchs d'un utilisateur donnée
 |
 
 |
@@ -100,81 +90,16 @@ POST / GET / PUT / DELETE
 |
 |
 |
-
-|===
-==== SERVICE MATCHING
-****
-POST / GET / PUT / DELETE
-****
-
-|===
-|URL |METHODE |ACTION
-
-|
-|
-|
-
-|
-|
-|
-
-|
-|
-|
-
-|
-|
-|
-
-|
-|
-|
-
-|===
-
-
-==== SERVICE TOPICS
-****
-POST / GET / PUT / DELETE
-****
-|===
-|URL |METHODE |ACTION
-
-|
-|
-|
-
-|
-|
-|
-
-|
-|
-|
-
-|
-|
-|
-
-|
-|
-|
-
-|
-|
-|
-
 
 |
 |
 |
 
 |===
-
 
 == Diagramme de classes
 
-image::../diagrammeDeClasse.svg[Diagramme de classe du projet]
+image::../diagram.svg[Diagramme de classe du projet]
 
 == Diagramme de Séquence
 
