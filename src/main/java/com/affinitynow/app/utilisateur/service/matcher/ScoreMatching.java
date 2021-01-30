@@ -1,17 +1,12 @@
 package com.affinitynow.app.utilisateur.service.matcher;
 
-import java.util.Optional;
 import java.util.Set;
 import java.util.function.IntPredicate;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
-
-
 import com.affinitynow.app.model.Connaissance;
 import com.affinitynow.app.model.Niveau;
 import com.affinitynow.app.model.Utilisateur;
 import com.affinitynow.app.utilisateur.service.UtilisateurService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +15,7 @@ public class ScoreMatching implements Matching {
 
     @Autowired
     private UtilisateurService userService;
+    IntPredicate isHigherThan3 = x -> x >= 3;
 
     @Override
     public MatchResult matching(Utilisateur utilisateur, Utilisateur utilisateur1) {
@@ -32,5 +28,4 @@ public class ScoreMatching implements Matching {
         return MatchHelper.checkFunctionBooleanMatchResult.apply(intersection);
     }
 
-    IntPredicate isHigherThan3 = x -> x >= 3;
 }

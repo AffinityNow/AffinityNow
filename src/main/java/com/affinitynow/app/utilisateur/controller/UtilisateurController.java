@@ -2,17 +2,15 @@ package com.affinitynow.app.utilisateur.controller;
 
 import com.affinitynow.app.utilisateur.dto.UtilisateurDto;
 import com.affinitynow.app.utilisateur.service.UtilisateurService;
-
-import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
 import com.affinitynow.app.exceptions.UserNotFoundException;
 import com.affinitynow.app.model.Utilisateur;
 import com.affinitynow.app.utilisateur.repository.UtilisateurRepository;
 @RestController
+@CrossOrigin
 public class UtilisateurController {
 
     private final UtilisateurService userService;
@@ -23,22 +21,10 @@ public class UtilisateurController {
         this.utilisateurRepository = utilisateurRepository;
     }
 
-    @PostMapping(value = "/utilisateur")
-    public UtilisateurDto createNewUtilisateur() {
-        //TODO: process POST request
-        return null;
-    }
-
-    // @CrossOrigin
-    // @PostMapping(value = "/utilisateur/topics")
-    // public ResponseEntity<UtilisateurDto> createNewUtilisateurWithTopics(@RequestBody UtilisateurDto dto) {
-    //     userService.save(dto);
-    //     return ResponseEntity.ok(dto);
-    // }
-
-    @DeleteMapping(value = "/utilisateur/{id}/topic/{name}")
-    public void removeTopicById(@PathVariable Long id, @PathVariable String topicName) {
-        //TODO: process DELETE request
+    @PostMapping(value = "/utilisateur/connaissances")
+    public ResponseEntity<UtilisateurDto> createNewUtilisateurWithConnaissance(@RequestBody UtilisateurDto dto) {
+        userService.save(dto);
+        return ResponseEntity.ok(dto);
     }
 
     @GetMapping(value = "/utilisateur/{id}/match/{name}")

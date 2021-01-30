@@ -1,13 +1,8 @@
 package com.affinitynow.app.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.springframework.lang.Nullable;
-
 import javax.persistence.*;
-
 import java.util.Collections;
 import java.util.Map;
-import java.util.Set;
 
 @Entity
 public class Utilisateur {
@@ -16,12 +11,7 @@ public class Utilisateur {
     private Long id;
     @Column(unique=true)
     private String pseudo;
-    @OneToMany(targetEntity = Topic.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @Nullable
-    @JsonManagedReference
-    private Set<Topic> topics;
     @ElementCollection
-    // @CollectionTable(name= "utilisateur_connaissances", joinColumns = @JoinColumn(name = "connaisanace_id"), foreignKey = @ForeignKey(name = "utilisateur_connaissances_fk"))
     private Map<String, Connaissance> connaissances = Collections.emptyMap();
 
     public Long getId() {
@@ -42,15 +32,6 @@ public class Utilisateur {
         return this;
     }
 
-    @Nullable
-    public Set<Topic> getTopics() {
-        return topics;
-    }
-
-    public Utilisateur setTopics(@Nullable Set<Topic> topics) {
-        this.topics = topics;
-        return this;
-    }
 
 	public Map<String, Connaissance> getConnaissances() {
 		return connaissances;
