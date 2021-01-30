@@ -1,11 +1,18 @@
-package com.affinitynow.app.topic.repository;
+// package com.affinitynow.app.topic.repository;
 
-import com.affinitynow.app.model.RatedTopic;
-import com.affinitynow.app.model.RatedTopicKey;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+// import java.util.Collection;
+// import java.util.List;
 
-@Repository
-public interface RatedTopicRepository extends JpaRepository<RatedTopic, RatedTopicKey> {
-}
+// import com.affinitynow.app.model.RatedTopic;
+// import com.affinitynow.app.model.RatedTopicKey;
+// import com.affinitynow.app.model.Topic;
+
+// import org.springframework.data.jpa.repository.JpaRepository;
+// import org.springframework.stereotype.Repository;
+
+// @Repository
+// public interface RatedTopicRepository extends JpaRepository<RatedTopic, RatedTopicKey> {
+
+// 	List<RatedTopic> findByUserId(Long id);
+// }
 

@@ -4,69 +4,107 @@
 package com.affinitynow.app {
     package model {
         class User {
-            + id: long
-            + pseudo: string
-            + topic: Set<Topic>
-            + match: Matching
+            - id: long
+            - pseudo: string
+            - connaissances: Map<String, Connaissance>
             + User(nom: string)
             + getPseudo(): string
             + setPseudo(): void
             + getTopic(): string
             + setTopic(): void
-            + addTopic(): void
-            + removeTopic(): void
+            + getConnaissance(): Map<String, Connaissance>
             + equals(user: User): boolean
             + hashcode(): integer
             + toString(): string
         }
 
         class Topic {
-            + id: long
-            + nom: string
-            + User: User
+            - id: long
+            - nom: string
             + this(nom: string)
             + getNom(): string
             + setNom(): void
-            + getUser(): string
-            + setUser(): void
         }
 
-        interface Matching {
-            + match(user1: User): double
+        class Connaissance {
+            - topic: Topic
+            - niveau: Niveau
+            + topic(): Topic
+            + niveau(topic: Topic): Niveau
         }
 
-        class ScoreMatching implements Matching {
-            + match(user1: User): double
+        enum Niveau {
+            UN, DEUX, TROIS, QUATRE, CINQUE
         }
     }
 
     package user {
         package controler {
             class UserControler {
-                + User: User
+                - userService: UserService
+                - utilisateurRepository: UtilisateurRepository
                 + createNewUser(): User , POST/User
                 + removeTopicById(id: long): User , DELETE/User
                 + addTopicsForUserById(id: long, topics: List<Topics>): void , POST/User/{id}/topics
-                + getUserMatchingListById(id: long) , GET/User/{id}/match
+                + getUserMatchingListById(id: long, strategyName:string) , GET/User/{id}/match/{strategyName}
             }
         }
+
+        package service {
+            class UserService {
+                - matchingStrategy: Map<String, Matching>
+                + connaissances(user: User): Stream<Connaissance>
+                + connait(topic: Topic, user:User): boolean 
+                + niveau(topic: Topic, user: User): Optional<Niveau>
+                + matching
+            }
+            
+            interface Matching {
+                + match(user1: User, user2: User): MatchResult
+            }
+
+            class ScoreMatching implements Matching {
+                + match(user1: User, user2: User): MatchResult
+            }
+
+            interface MatchResult extends Comparable{
+                + isSucess(): boolean
+            }
+
+            class BooleanMatchResult implements MatchResult{
+                 + isSucess(): boolean
+            }
+        }
+
         package dto {
             class UserDto {
+                - id: long
+                - pseudo: string
+                - connaissances: Map<string, Connaissance>
+                + getId(): long
+                + setId(id: Long): UtilisateurDto
+                + getPseudo(): string
+                + setPseudo(pseudo: string): UtilisateurDto
+                + getPseudo(): string
+                + setConnaissances(pseudo: string): UtilisateurDto
+                + addConnaissance(name: string, connaissance: Connaissance)
+
 
             }
         }
-        package repository {
-            class UserRepository {
 
-            }
+        package repository {
+            class UserRepository {}
         }
     }
 }
 
-
-
-User *--> "1" Matching
-User "1" --> "*" Topic
-UserControler --> User: "uses"
-UserDto --> UserRepository : "uses"
+UserService *--> "1" Matching
+UserControler --> UserService: "uses"
+UserService --> UserRepository: "uses"
+UserRepository --> User: "uses"
+Connaissance *--> "1" Topic
+Connaissance *--> "1" Niveau
+User *--> "*" Connaissance: "connaissance"
+Matching --> MatchResult: "uses"
 @enduml
