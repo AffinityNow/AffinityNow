@@ -1,16 +1,19 @@
 package com.affinitynow.app.utilisateur.controller;
 
+import com.affinitynow.app.exceptions.UserNotFoundException;
+import com.affinitynow.app.model.Utilisateur;
 import com.affinitynow.app.utilisateur.dto.UtilisateurDto;
+import com.affinitynow.app.utilisateur.repository.UtilisateurRepository;
 import com.affinitynow.app.utilisateur.service.UtilisateurService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.stream.Collectors;
-import com.affinitynow.app.exceptions.UserNotFoundException;
-import com.affinitynow.app.model.Utilisateur;
-import com.affinitynow.app.utilisateur.repository.UtilisateurRepository;
+
 @RestController
 @CrossOrigin
+@RequestMapping("/utilisateur")
 public class UtilisateurController {
 
     private final UtilisateurService userService;
@@ -21,13 +24,13 @@ public class UtilisateurController {
         this.utilisateurRepository = utilisateurRepository;
     }
 
-    @PostMapping(value = "/utilisateur/connaissances")
+    @PostMapping(value = "/connaissances")
     public ResponseEntity<UtilisateurDto> createNewUtilisateurWithConnaissance(@RequestBody UtilisateurDto dto) {
         userService.save(dto);
         return ResponseEntity.ok(dto);
     }
 
-    @GetMapping(value = "/utilisateur/{id}/match/{name}")
+    @GetMapping(value = "/{id}/match/{name}")
     public List<Utilisateur> getUtilisateurMatchingList(@PathVariable("id") Long id, @PathVariable String name)
             throws UserNotFoundException {
         Utilisateur user = utilisateurRepository.findById(id)
