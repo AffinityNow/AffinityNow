@@ -46,6 +46,10 @@ package com.affinitynow.app {
                 + createNewUtilisateurWithConnaissance(dto: UtilisateurDto): UtilisateurDto, POST/utilisateur/connaissances
                 + getUserMatchingListById(id: long, strategyName:string) , GET/User/{id}/match/{strategyName}
             }
+            class TopicControler {
+                - topicRepository: TopicRepository
+                + getTopics(): List<TopicDto>, GET/topic
+            }
         }
 
         package service {
