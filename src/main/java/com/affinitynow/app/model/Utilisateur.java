@@ -9,7 +9,7 @@ public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
-    @Column(unique=true)
+    @Column(unique=true, nullable = false)
     private String pseudo;
     @ElementCollection
     private Map<String, Connaissance> connaissances = Collections.emptyMap();
