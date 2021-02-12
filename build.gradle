@@ -1,24 +1,112 @@
 plugins {
-	id 'org.springframework.boot' version '2.4.2'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.4.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+
+    //Sonar
+    id "org.sonarqube" version "3.0"
+
+    //CodeCov
+    id 'jacoco'
+
+    // AsciiDoctor (doc)
+    id 'org.asciidoctor.jvm.pdf' version '3.2.0'
+    id 'org.asciidoctor.jvm.gems' version '3.2.0'
 }
 
 group = 'com.affinitynow'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '15'
+version = '1.1.0'
+sourceCompatibility = '14'
+
+// plugin to get the version of the project
+// from https://stackoverflow.com/questions/13198358/how-to-get-project-version-in-custom-gradle-plugin
+// uses version in build.gradle file
+class VersionPlugin implements Plugin<Project> {
+    public void apply(Project project) {
+        project.task('version') {
+            project.gradle.projectsEvaluated {
+                println "$project.version"
+            }
+        }
+    }
+}
+
+apply plugin: 'application'
+apply plugin: 'org.sonarqube'
+apply plugin: 'jacoco'
+apply plugin: VersionPlugin
 
 repositories {
-	mavenCentral()
+    mavenCentral()
+    jcenter()
+    ruby.gems()
+}
+
+jacoco {
+    reportsDir = file("${buildDir}/reports/jacoco") // this is the default
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = false
+    }
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'mysql:mysql-connector-java'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testCompile "org.assertj:assertj-core:3.18.1"
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '3.7.7'
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '3.7.7'
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "AffinityNow_AffinityNow2"
+        property "sonar.organization", "smartmapperproject"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
+
+application {
+    // Define the main class for the application.
+    mainClassName = 'com.affinitynow.app.AffinityNowApplication'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+}
+
+asciidoctorPdf {
+//   dependsOn asciidoctorGemsPrepare
+
+  baseDirFollowsSourceFile()
+
+  asciidoctorj {
+    requires 'rouge'
+    attributes 'build-gradle': file('build.gradle'),
+        'sourcedir': project.sourceSets.main.java.srcDirs[0],
+        'outputDir': file("${buildDir}/docs"),
+        'endpoint-url': 'http://example.org',
+        'source-highlighter': 'rouge',
+        //'imagesdir': './images',
+        'toc': 'left',
+        'icons': 'font',
+        'idprefix': '',
+        'idseparator': '-'
+  }
+}
+// alias
+task asciidoctor(dependsOn: asciidoctorPdf)

@@ -1,0 +1,112 @@
+@startuml diagram
+!include ../style/commons.style
+
+package com.affinitynow.app {
+    package model {
+        class User {
+            - id: long
+            - pseudo: string
+            - connaissances: Map<String, Connaissance>
+            + User(nom: string)
+            + getPseudo(): string
+            + setPseudo(): void
+            + getTopic(): string
+            + setTopic(): void
+            + getConnaissance(): Map<String, Connaissance>
+            + equals(user: User): boolean
+            + hashcode(): integer
+            + toString(): string
+        }
+
+        class Topic {
+            - id: long
+            - nom: string
+            + this(nom: string)
+            + getNom(): string
+            + setNom(): void
+        }
+
+        class Connaissance {
+            - topic: Topic
+            - niveau: Niveau
+            + topic(): Topic
+            + niveau(topic: Topic): Niveau
+        }
+
+        enum Niveau {
+            UN, DEUX, TROIS, QUATRE, CINQUE
+        }
+    }
+
+    package user {
+        package controler {
+            class UserControler {
+                - userService: UserService
+                - utilisateurRepository: UtilisateurRepository
+                + createNewUtilisateurWithConnaissance(dto: UtilisateurDto): UtilisateurDto, POST/utilisateur/connaissances
+                + getUserMatchingListById(id: long, strategyName:string) , GET/User/{id}/match/{strategyName}
+            }
+            class TopicControler {
+                - topicRepository: TopicRepository
+                + getTopics(): List<TopicDto>, GET/topic
+            }
+        }
+
+        package service {
+            class UserService {
+                - matchingStrategy: Map<String, Matching>
+                + connaissances(user: User): Stream<Connaissance>
+                + connait(topic: Topic, user:User): boolean 
+                + niveau(topic: Topic, user: User): Optional<Niveau>
+                + matching(strategyName: string, utilisateur: Utilisateur, utilisateur2: Utilisateur)
+            }
+            
+            interface Matching {
+                + match(user1: User, user2: User): MatchResult
+            }
+
+            class ScoreMatching implements Matching {
+                + match(user1: User, user2: User): MatchResult
+            }
+
+            interface MatchResult extends Comparable{
+                + isSucess(): boolean
+            }
+
+            class BooleanMatchResult implements MatchResult{
+                 + isSucess(): boolean
+            }
+        }
+
+        package dto {
+            class UserDto {
+                - id: long
+                - pseudo: string
+                - connaissances: Map<string, Connaissance>
+                + getId(): long
+                + setId(id: Long): UtilisateurDto
+                + getPseudo(): string
+                + setPseudo(pseudo: string): UtilisateurDto
+                + getPseudo(): string
+                + setConnaissances(pseudo: string): UtilisateurDto
+                + addConnaissance(name: string, connaissance: Connaissance)
+
+
+            }
+        }
+
+        package repository {
+            class UserRepository {}
+        }
+    }
+}
+
+UserService *--> "1" Matching
+UserControler --> UserService: "uses"
+UserService --> UserRepository: "uses"
+UserRepository --> User: "uses"
+Connaissance *--> "1" Topic
+Connaissance *--> "1" Niveau
+User *--> "*" Connaissance: "connaissance"
+Matching --> MatchResult: "uses"
+@enduml
