@@ -15,7 +15,7 @@ plugins {
 }
 
 group = 'com.affinitynow'
-version = '0.0.1'
+version = '1.1.0'
 sourceCompatibility = '14'
 
 // plugin to get the version of the project
@@ -64,9 +64,6 @@ dependencies {
     testCompile group: 'org.mockito', name: 'mockito-core', version: '3.7.7'
     // https://mvnrepository.com/artifact/org.mockito/mockito-core
     testCompile group: 'org.mockito', name: 'mockito-core', version: '3.7.7'
-
-
-
 }
 
 test {
@@ -91,3 +88,25 @@ jar {
         attributes 'Main-Class': mainClassName
     }
 }
+
+asciidoctorPdf {
+//   dependsOn asciidoctorGemsPrepare
+
+  baseDirFollowsSourceFile()
+
+  asciidoctorj {
+    requires 'rouge'
+    attributes 'build-gradle': file('build.gradle'),
+        'sourcedir': project.sourceSets.main.java.srcDirs[0],
+        'outputDir': file("${buildDir}/docs"),
+        'endpoint-url': 'http://example.org',
+        'source-highlighter': 'rouge',
+        //'imagesdir': './images',
+        'toc': 'left',
+        'icons': 'font',
+        'idprefix': '',
+        'idseparator': '-'
+  }
+}
+// alias
+task asciidoctor(dependsOn: asciidoctorPdf)
