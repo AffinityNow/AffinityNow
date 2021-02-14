@@ -6,13 +6,13 @@ package com.affinitynow.app {
         class User {
             - id: long
             - pseudo: string
-            - connaissances: Map<String, Connaissance>
-            + User(nom: string)
+            - knowledges: Map<String, Knowledge>
+            + User(name: string)
             + getPseudo(): string
             + setPseudo(): void
             + getTopic(): string
             + setTopic(): void
-            + getConnaissance(): Map<String, Connaissance>
+            + getKnowledge(): Map<String, Knowledge>
             + equals(user: User): boolean
             + hashcode(): integer
             + toString(): string
@@ -20,21 +20,21 @@ package com.affinitynow.app {
 
         class Topic {
             - id: long
-            - nom: string
-            + this(nom: string)
-            + getNom(): string
-            + setNom(): void
+            - Name: string
+            + this(Name: string)
+            + getName(): string
+            + setName(): void
         }
 
-        class Connaissance {
+        class Knowledge {
             - topic: Topic
-            - niveau: Niveau
+            - level: Level
             + topic(): Topic
-            + niveau(topic: Topic): Niveau
+            + Level(topic: Topic): Level
         }
 
-        enum Niveau {
-            UN, DEUX, TROIS, QUATRE, CINQUE
+        enum Level {
+            ONE, TWO, THREE, FOUR, FIVE
         }
     }
 
@@ -42,9 +42,9 @@ package com.affinitynow.app {
         package controler {
             class UserControler {
                 - userService: UserService
-                - utilisateurRepository: UtilisateurRepository
-                + createNewUtilisateurWithConnaissance(dto: UtilisateurDto): UtilisateurDto, POST/utilisateur/connaissances
-                + getUserMatchingListById(id: long, strategyName:string) , GET/User/{id}/match/{strategyName}
+                - userRepository: UserRepository
+                + createNewUserWithKnowledge(dto: UserDto): UserDto, POST/user/unowledges
+                + getUserMatchingListById(id: long, strategyName:string) , GET/user/{id}/match/{strategyName}
             }
             class TopicControler {
                 - topicRepository: TopicRepository
@@ -55,26 +55,62 @@ package com.affinitynow.app {
         package service {
             class UserService {
                 - matchingStrategy: Map<String, Matching>
-                + connaissances(user: User): Stream<Connaissance>
-                + connait(topic: Topic, user:User): boolean 
-                + niveau(topic: Topic, user: User): Optional<Niveau>
-                + matching(strategyName: string, utilisateur: Utilisateur, utilisateur2: Utilisateur)
+                + knowledges(user: User): Stream<Knowledge>
+                + know(topic: Topic, user:User): boolean 
+                + Level(topic: Topic, user: User): Optional<Level>
+                + matching(strategyName: string, user: User, matchingUser: User)
             }
             
-            interface Matching {
+            interface Matching<T> {
+                + match(user1: User, user2: User): Optional<IMatchResult<T>>
+            }
+
+            abstract class ScoreMatcher<T> implements Matching{
+                match(u:User, mu:User): Optional<IMatchResult<T>>
+            }
+
+            abstract class SeekedTopicMatcher<T> implements Matching{
+                match(u:User, mu:User): Optional<IMatchResult<T>>
+            }
+
+            class DoubleSeekedTopicMatcher<Double> extends SeekedTopicMatcher {
+                match(u:User, mu:User): Optional<IMatchResult<Double>>
+            }
+            
+            class BooleanScoreMatcher<Boolean> extends ScoreMatcher {
                 + match(user1: User, user2: User): MatchResult
             }
 
-            class ScoreMatching implements Matching {
-                + match(user1: User, user2: User): MatchResult
+            class DoubleScoreMatcher<Double> extends ScoreMatcher {
+                + match(user1: User, user2: User): IMatchResult
             }
 
-            interface MatchResult extends Comparable{
-                + isSucess(): boolean
+            interface IMatchResult<T> extends Comparable{
+                + result(): T
+                + user(): User
+                + mUser(): User
+                + qualite(): double
+                + default compareTo(m: IMatchResult<T>): int
             }
 
-            class BooleanMatchResult implements MatchResult{
-                 + isSucess(): boolean
+            class BooleanMatchResult<Boolean> implements IMatchResult{
+                - resultat: boolean
+                - user: User
+                - mUser: USer
+                + resultat(): boolean
+                + user(): User
+                + mUser(): User
+                + qualite(): double
+            }
+
+            class DoubleMatchResult<Double> implements IMatchResult{
+                + resultat: double
+                - user: User
+                - mUser: USer
+                + resultat(): double
+                + user(): User
+                + mUser(): User
+                + qualite(): double
             }
         }
 
@@ -82,14 +118,14 @@ package com.affinitynow.app {
             class UserDto {
                 - id: long
                 - pseudo: string
-                - connaissances: Map<string, Connaissance>
+                - Knowledges: Map<string, Knowledge>
                 + getId(): long
-                + setId(id: Long): UtilisateurDto
+                + setId(id: Long): UserDto
                 + getPseudo(): string
-                + setPseudo(pseudo: string): UtilisateurDto
+                + setPseudo(pseudo: string): UserDto
                 + getPseudo(): string
-                + setConnaissances(pseudo: string): UtilisateurDto
-                + addConnaissance(name: string, connaissance: Connaissance)
+                + setKnowledges(pseudo: string): UserDto
+                + addKnowledge(name: string, Knowledge: Knowledge)
 
 
             }
@@ -105,8 +141,8 @@ UserService *--> "1" Matching
 UserControler --> UserService: "uses"
 UserService --> UserRepository: "uses"
 UserRepository --> User: "uses"
-Connaissance *--> "1" Topic
-Connaissance *--> "1" Niveau
-User *--> "*" Connaissance: "connaissance"
-Matching --> MatchResult: "uses"
+Knowledge *--> "1" Topic
+Knowledge *--> "1" Level
+User *--> "*" Knowledge: "Knowledge"
+Matching --> IMatchResult: "uses"
 @enduml

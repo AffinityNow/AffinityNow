@@ -5,20 +5,20 @@ import java.util.Collections;
 import java.util.Map;
 
 @Entity
-public class Utilisateur {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     @Column(unique=true, nullable = false)
     private String pseudo;
     @ElementCollection
-    private Map<String, Connaissance> connaissances = Collections.emptyMap();
+    private Map<String, Knowledge> knowledge = Collections.emptyMap();
 
     public Long getId() {
         return id;
     }
 
-    public Utilisateur setId(Long id) {
+    public User setId(Long id) {
         this.id = id;
         return this;
     }
@@ -27,25 +27,25 @@ public class Utilisateur {
         return pseudo;
     }
 
-    public Utilisateur setPseudo(String pseudo) {
+    public User setPseudo(String pseudo) {
         this.pseudo = pseudo;
         return this;
     }
 
 
-	public Map<String, Connaissance> getConnaissances() {
-		return connaissances;
+	public Map<String, Knowledge> getKnowledge() {
+		return knowledge;
 	}
 
-	public void setConnaissances(Map<String, Connaissance> connaissances) {
-		this.connaissances = connaissances;
+	public void setConnaissances(Map<String, Knowledge> knowledges) {
+		this.knowledge = knowledges;
 	}
 
-    public Utilisateur(String pseudo, Map<String, Connaissance> connaissances) {
+    public User(String pseudo, Map<String, Knowledge> knowledges) {
         this.pseudo = pseudo;
-        this.connaissances = connaissances;
+        this.knowledge = knowledges;
     }
 
-    public Utilisateur() {
+    public User() {
     }
 }
