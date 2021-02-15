@@ -39,7 +39,7 @@ public class UserController {
     public List<IMatchResult<Object>> getUtilisateurMatchingList(@PathVariable("name") String name, @PathVariable String strategyName) throws UserNotFoundException {
         User user = userRepository.findByPseudo(name).orElseThrow(() -> new UserNotFoundException("User not found - " + name));
         return userRepository.findAll().stream()
-                .filter(l -> !l.getPseudo().equals(name))
+                .filter(l -> !l.getPseudo().equals(user.getPseudo()))
                 .collect(Collectors.toList())
                 .stream()
                 .map(o -> userService.matching(strategyName, user, o))

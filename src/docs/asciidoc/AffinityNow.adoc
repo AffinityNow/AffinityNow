@@ -21,11 +21,18 @@ Une fois cela effectuer le serveur sera en marche et vous pourrz consulter la li
 
 == Les Fonctionalités d'Affinity Now
 
-Aujourd'hui avec la version V1.0 de AffinityNow on peut :
+Aujourd'hui avec la version V1.2 de AffinityNow on peut :
 
 1. Avoir la possibilité de renseigner les topics (centre d'intérêt)favoris
 
-2. Pouvoir matcher avec une (ou plusieurs) personnes ayant les mêmes centres d'intérêt que soi.
+2. Pouvoir matcher avec une (ou plusieurs) personnes suivant une des méthodes de match suivantes :
+
+    Match en fonction des centres d'intérêts aimés en commun qui ont une note supérieur à un seuil fixe.
+
+    Match en fonction des centres d'intérêts aimés et recherchés en commun.
+
+3. Il existe 2 types de match : avec ou sans resultat.
+4. On peut déterminer la qualité d'un match entre 2 utilisateurs.
 
 == Wireframes et Mockups "Affinity Now"
 Main Page
@@ -67,8 +74,8 @@ POST / GET / PUT / DELETE
 |===
 |URL |METHODE |ACTION
 
-|/utilisateur/connaissances|POST|Insertion d'un utilisateur ainsi que ses topics et les notations choisis
-|/utilisateur/{id}/match/{name}|GET|Récupérer la liste des matchs d'un utilisateur donnée
+|/utilisateur/knowledges|POST|Insertion d'un utilisateur ainsi que ses topics et les notations choisis
+|/utilisateur/{name}/match/{nomdumatcher}|GET|Récupérer la liste des matchs d'un utilisateur donné.
 |
 
 |
