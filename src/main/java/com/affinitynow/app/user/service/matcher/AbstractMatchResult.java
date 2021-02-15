@@ -6,9 +6,10 @@ import com.affinitynow.app.model.Knowledge;
 import com.affinitynow.app.model.User;
 
 public abstract class AbstractMatchResult<T> implements IMatchResult<T> {
-  private final User user;
-  private final User mUser;
-  private final Set<Knowledge> commonTopics;
+  protected final User user;
+  protected final User mUser;
+  protected final Set<Knowledge> commonTopics;
+  protected java.lang.Double quality;
 
   @Override
   public User user() {
@@ -20,20 +21,9 @@ public abstract class AbstractMatchResult<T> implements IMatchResult<T> {
     return mUser;
   }
 
-  protected AbstractMatchResult(Set<Knowledge> commonTopics, User user, User mUser) {
-    this.commonTopics = commonTopics;
-    this.user = user;
-    this.mUser = mUser;
-  }
-
   @Override
   public Set<Knowledge> commonTopicsBetweenUsers() {
     return commonTopics;
-  }
-
-  @Override
-  public Double quality(){
-    return null;
   }
 
   public User getUser() {
@@ -47,4 +37,25 @@ public abstract class AbstractMatchResult<T> implements IMatchResult<T> {
   public Set<Knowledge> getCommonTopics() {
     return commonTopics;
   }
+
+  public java.lang.Double getQuality() {
+    return quality;
+  }
+
+  public void setQuality(java.lang.Double quality) {
+    this.quality = quality;
+  }
+
+  @Override
+  public double quality() {
+    return quality;
+  }
+
+  protected AbstractMatchResult(User user, User mUser, Set<Knowledge> commonTopics, Double quality) {
+    this.user = user;
+    this.mUser = mUser;
+    this.commonTopics = commonTopics;
+    this.quality = quality;
+  }
+
 }

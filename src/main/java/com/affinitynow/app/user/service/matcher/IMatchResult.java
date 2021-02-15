@@ -9,6 +9,6 @@ public interface IMatchResult<T> extends Comparable<IMatchResult<T>> {
     T result();
     User user();
     User mUSer();
-    Double quality();
+    double quality();
     Set<Knowledge> commonTopicsBetweenUsers();
 }

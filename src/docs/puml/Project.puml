@@ -6,13 +6,17 @@ package com.affinitynow.app {
         class User {
             - id: long
             - pseudo: string
-            - knowledges: Map<String, Knowledge>
+            - likedKnowledges: Map<String, Knowledge>
+            - seekedKnowledges: Map<String, Knowledge>
             + User(name: string)
             + getPseudo(): string
             + setPseudo(): void
             + getTopic(): string
             + setTopic(): void
-            + getKnowledge(): Map<String, Knowledge>
+            + getLikedKnowledge(knowledges: Map<String, Knowledge>): Map<String, Knowledge>
+            + setLikedKnowledges(): void
+            + getSeekedKnowledges(knowledges: Map<String, Knowledge>): Map<String, Knowledge>
+            + setSeekedKnowledges(): void
             + equals(user: User): boolean
             + hashcode(): integer
             + toString(): string
@@ -44,73 +48,78 @@ package com.affinitynow.app {
                 - userService: UserService
                 - userRepository: UserRepository
                 + createNewUserWithKnowledge(dto: UserDto): UserDto, POST/user/unowledges
-                + getUserMatchingListById(id: long, strategyName:string) , GET/user/{id}/match/{strategyName}
-            }
-            class TopicControler {
-                - topicRepository: TopicRepository
-                + getTopics(): List<TopicDto>, GET/topic
+                + getUserMatcherListById(id: long, strategyName:string) , GET/user/{id}/match/{strategyName}
             }
         }
 
         package service {
             class UserService {
-                - matchingStrategy: Map<String, Matching>
+                - matcherStrategy: Map<String, Matcher>
                 + knowledges(user: User): Stream<Knowledge>
                 + know(topic: Topic, user:User): boolean 
-                + Level(topic: Topic, user: User): Optional<Level>
-                + matching(strategyName: string, user: User, matchingUser: User)
-            }
-            
-            interface Matching<T> {
-                + match(user1: User, user2: User): Optional<IMatchResult<T>>
+                + level(topic: Topic, user: User): Optional<Level>
+                + match(strategyName: string, user: User, MatcherUser: User)
             }
 
-            abstract class ScoreMatcher<T> implements Matching{
-                match(u:User, mu:User): Optional<IMatchResult<T>>
-            }
+            package matcher {
+                interface Matcher {
+                    + match(user1: User, user2: User): Optional<IMatchResult>
+                    + calculateQuality(user: User, user: matchingUser, intersection: Set<Knowledge>);
+                }
 
-            abstract class SeekedTopicMatcher<T> implements Matching{
-                match(u:User, mu:User): Optional<IMatchResult<T>>
-            }
+                interface ScoreMatcher extends Matcher{}
 
-            class DoubleSeekedTopicMatcher<Double> extends SeekedTopicMatcher {
-                match(u:User, mu:User): Optional<IMatchResult<Double>>
-            }
-            
-            class BooleanScoreMatcher<Boolean> extends ScoreMatcher {
-                + match(user1: User, user2: User): MatchResult
-            }
+                interface SeekedTopicMatcher extends Matcher{}
 
-            class DoubleScoreMatcher<Double> extends ScoreMatcher {
-                + match(user1: User, user2: User): IMatchResult
-            }
+                class DoubleSeekedTopicMatcher implements SeekedTopicMatcher {
+                    + match(user1: User, user2: User): IMatchResult
+                    + calculateQuality(user: User, user: matchingUser, intersection: Set<Knowledge>);
+                }
+                
+                class BooleanScoreMatcher implements ScoreMatcher {
+                    + match(user1: User, user2: User): IMatchResult
+                    + calculateQuality(user: User, user: matchingUser, intersection: Set<Knowledge>);
+                }
 
-            interface IMatchResult<T> extends Comparable{
-                + result(): T
-                + user(): User
-                + mUser(): User
-                + qualite(): double
-                + default compareTo(m: IMatchResult<T>): int
-            }
+                class DoubleScoreMatcher implements ScoreMatcher {
+                    + match(user1: User, user2: User): IMatchResult
+                    + calculateQuality(user: User, user: matchingUser, intersection: Set<Knowledge>);
+                }
 
-            class BooleanMatchResult<Boolean> implements IMatchResult{
-                - resultat: boolean
-                - user: User
-                - mUser: USer
-                + resultat(): boolean
-                + user(): User
-                + mUser(): User
-                + qualite(): double
-            }
+                interface IMatchResult<T> extends java.lang.Comparable{
+                    + result(): T
+                    + user(): User
+                    + mUser(): User
+                    + qualite(): double
+                    + commonTopicsBetweenUsers(): set<Knowledge>
+                }
 
-            class DoubleMatchResult<Double> implements IMatchResult{
-                + resultat: double
-                - user: User
-                - mUser: USer
-                + resultat(): double
-                + user(): User
-                + mUser(): User
-                + qualite(): double
+                abstract class AbstractMatchResult<T> implements IMatchResult {
+                    - user: User
+                    - mUser: User
+                    - commonTopics: set<Knowledge>
+                    - quality: double
+                    ~ this(commonTopics: set<Knowledge>, user: User, mUser: User)
+                    + user(): User
+                    + mUser(): User
+                    + commonTopicsBetweenUsers(): set<Knowledge>
+                    + setQuality(quality: double)
+                    + qualite(): double
+                }
+
+                class BooleanMatchResult<Boolean> extends AbstractMatchResult{
+                    - resultat: boolean
+                    ~ this(commonTopics: set<Knowledge>, user: User, mUser: User, resultat: boolean)
+                    + resultat(): boolean
+                    + compareTo(o: IMatchResult<T>): integer
+                }
+
+                class DoubleMatchResult<Double> extends AbstractMatchResult{
+                    - resultat: double
+                    ~ this(commonTopics: set<Knowledge>, user: User, mUser: User, resultat: double)
+                    + resultat(): double
+                    + compareTo(o: IMatchResult<T>): integer
+                }
             }
         }
 
@@ -123,11 +132,8 @@ package com.affinitynow.app {
                 + setId(id: Long): UserDto
                 + getPseudo(): string
                 + setPseudo(pseudo: string): UserDto
-                + getPseudo(): string
                 + setKnowledges(pseudo: string): UserDto
                 + addKnowledge(name: string, Knowledge: Knowledge)
-
-
             }
         }
 
@@ -135,14 +141,42 @@ package com.affinitynow.app {
             class UserRepository {}
         }
     }
+
+    namespace topic {
+        namespace controler {
+            class TopicControler {
+                - topicRepository: TopicRepository
+                + getTopics(): List<TopicDto>, GET/topic
+            }
+        }
+
+        namespace service {
+        }
+
+        namespace dto {
+            class TopicDto {
+                - id: long
+                - name: string
+                + getId(): long
+                + setId(id: Long): TopicDto
+                + getName(): string
+                + setName(pseudo: string): TopicDto
+            }
+        }
+
+        namespace repository {
+            class TopicRepository {}
+        }
+    }
 }
 
-UserService *--> "1" Matching
+UserService *--> "*" Matcher
 UserControler --> UserService: "uses"
 UserService --> UserRepository: "uses"
 UserRepository --> User: "uses"
 Knowledge *--> "1" Topic
 Knowledge *--> "1" Level
-User *--> "*" Knowledge: "Knowledge"
-Matching --> IMatchResult: "uses"
+User *--> "*" Knowledge: "liked knowledge"
+User *--> "*" Knowledge: "seeked knowledge"
+Matcher --> IMatchResult: "uses"
 @enduml

@@ -31,21 +31,28 @@ public class UserService {
         userRepo.save(new User(newUser.getPseudo(), newUser.getConnaissances()));
     }
 
-    public Stream<Knowledge> knownTopics(User user) {
-        Optional<Collection<Knowledge>> list = Optional.ofNullable(user.getKnowledge().values());
+    public Stream<Knowledge> listOfTopicsByType(User user, String type) {
         Stream<Knowledge> rtr = Stream.empty();
+        Optional<Collection<Knowledge>> list = switch(type) {
+            case "liked" -> Optional.ofNullable(user.getLikedKnowledges().values());
+            case "seeked" -> Optional.ofNullable(user.getSeekedKnowledges().values());
+            default -> Optional.empty();
+        };
         if(list.isPresent()) 
             rtr = list.get().stream();
-        
         return rtr;
     }
 
-    public boolean userKnowTopic(Topic topic, User user) {
-       return  user.getKnowledge().get(topic.getName()) == null ? false : true;
+    public boolean isLikedTopic(Topic topic, User user) {
+       return  user.getLikedKnowledges().get(topic.getName()) == null ? false : true;
+    }
+    
+    public boolean isSeekedTopic(Topic topic, User user) {
+       return  user.getSeekedKnowledges().get(topic.getName()) == null ? false : true;
     }
 
-    public Optional<Level> level(User user, Topic topic) {
-        return Optional.ofNullable(user.getKnowledge().getOrDefault(topic.getName(), null).level());
+    public Optional<Level> levelOfLikedTopic(User user, Topic topic) {
+        return Optional.ofNullable(user.getLikedKnowledges().getOrDefault(topic.getName(), null).level());
     }
 
     public <T> Optional<IMatchResult<T>> matching(String strategyName, User user, User matchingUser){

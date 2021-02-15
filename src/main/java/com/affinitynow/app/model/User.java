@@ -12,7 +12,9 @@ public class User {
     @Column(unique=true, nullable = false)
     private String pseudo;
     @ElementCollection
-    private Map<String, Knowledge> knowledge = Collections.emptyMap();
+    private Map<String, Knowledge> likedKnowledges = Collections.emptyMap();
+    @ElementCollection
+    private Map<String, Knowledge> seekedKnowledges = Collections.emptyMap();
 
     public Long getId() {
         return id;
@@ -32,20 +34,27 @@ public class User {
         return this;
     }
 
-
-	public Map<String, Knowledge> getKnowledge() {
-		return knowledge;
+	public Map<String, Knowledge> getLikedKnowledges() {
+		return likedKnowledges;
 	}
 
-	public void setConnaissances(Map<String, Knowledge> knowledges) {
-		this.knowledge = knowledges;
+	public void setLikedKnowledges(Map<String, Knowledge> knowledges) {
+		this.likedKnowledges = knowledges;
 	}
 
     public User(String pseudo, Map<String, Knowledge> knowledges) {
         this.pseudo = pseudo;
-        this.knowledge = knowledges;
+        this.likedKnowledges = knowledges;
     }
 
     public User() {
+    }
+
+    public Map<String, Knowledge> getSeekedKnowledges() {
+        return seekedKnowledges;
+    }
+
+    public void setSeekedKnowledges(Map<String, Knowledge> seekedKnowledges) {
+        this.seekedKnowledges = seekedKnowledges;
     }
 }

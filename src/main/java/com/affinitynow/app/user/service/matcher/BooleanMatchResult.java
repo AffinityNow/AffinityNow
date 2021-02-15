@@ -8,8 +8,8 @@ import com.affinitynow.app.model.User;
 public class BooleanMatchResult<Boolean> extends AbstractMatchResult<Boolean> {
     private Boolean _result;
 
-    public BooleanMatchResult(Set<Knowledge> commonTopics, User user, User mUser, Boolean result) {
-        super(commonTopics, user, mUser);
+    public BooleanMatchResult(Set<Knowledge> commonTopics, User user, User mUser, Boolean result, double quality) {
+        super(mUser, user, commonTopics, quality);
         this._result = result;
     }
 
@@ -39,7 +39,7 @@ public class BooleanMatchResult<Boolean> extends AbstractMatchResult<Boolean> {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        BooleanMatchResult other = (BooleanMatchResult) obj;
+        BooleanMatchResult<Boolean> other = (BooleanMatchResult<Boolean>) obj;
         if (_result == null) {
             if (other._result != null)
                 return false;
@@ -55,5 +55,4 @@ public class BooleanMatchResult<Boolean> extends AbstractMatchResult<Boolean> {
     public void set_result(Boolean _result) {
         this._result = _result;
     }
-    
 }

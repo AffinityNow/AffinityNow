@@ -35,12 +35,11 @@ public class UserController {
         return ResponseEntity.ok(dto);
     }
 
-    @GetMapping(value = "/{id}/match/{strategyName}")
-    public List<IMatchResult<Object>> getUtilisateurMatchingList(@PathVariable("id") Long id, @PathVariable String strategyName) throws UserNotFoundException {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("User not found - " + id));
+    @GetMapping(value = "/{name}/match/{strategyName}")
+    public List<IMatchResult<Object>> getUtilisateurMatchingList(@PathVariable("name") String name, @PathVariable String strategyName) throws UserNotFoundException {
+        User user = userRepository.findByPseudo(name).orElseThrow(() -> new UserNotFoundException("User not found - " + name));
         return userRepository.findAll().stream()
-                .filter(l -> !l.getId().equals(id))
+                .filter(l -> !l.getPseudo().equals(name))
                 .collect(Collectors.toList())
                 .stream()
                 .map(o -> userService.matching(strategyName, user, o))
