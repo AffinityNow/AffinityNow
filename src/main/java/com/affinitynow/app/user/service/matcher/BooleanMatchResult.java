@@ -9,7 +9,7 @@ public class BooleanMatchResult<Boolean> extends AbstractMatchResult<Boolean> {
     private Boolean _result;
 
     public BooleanMatchResult(Set<Knowledge> commonTopics, User user, User mUser, Boolean result, double quality) {
-        super(mUser, user, commonTopics, quality);
+        super(user, mUser, commonTopics, quality);
         this._result = result;
     }
 

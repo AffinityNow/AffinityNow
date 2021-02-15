@@ -8,7 +8,7 @@ public class DoubleMatchResult<Double> extends AbstractMatchResult<Double> {
     private Double _result;
 
     protected DoubleMatchResult(Set<Knowledge> commonTopics, User user, User mUser, Double result, double quality) {
-        super(mUser, user, commonTopics, quality);
+        super(user, mUser, commonTopics, quality);
         this._result = result;
     }
 
