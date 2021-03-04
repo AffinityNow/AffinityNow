@@ -13,6 +13,8 @@ public class Utilisateur {
     private String pseudo;
     @ElementCollection
     private Map<String, Connaissance> connaissances = Collections.emptyMap();
+    @ElementCollection
+    private Map<String, Connaissance> seeked = Collections.emptyMap();
 
     public Long getId() {
         return id;
@@ -37,13 +39,22 @@ public class Utilisateur {
 		return connaissances;
 	}
 
+    public Map<String, Connaissance> getSeeked() {
+        return seeked;
+    }
+
 	public void setConnaissances(Map<String, Connaissance> connaissances) {
 		this.connaissances = connaissances;
 	}
 
-    public Utilisateur(String pseudo, Map<String, Connaissance> connaissances) {
+    public void setSeeked(Map<String, Connaissance> seeked) {
+        this.seeked = seeked;
+    }
+
+    public Utilisateur(String pseudo, Map<String, Connaissance> connaissances, Map<String, Connaissance> seeked) {
         this.pseudo = pseudo;
         this.connaissances = connaissances;
+        this.seeked = seeked;
     }
 
     public Utilisateur() {

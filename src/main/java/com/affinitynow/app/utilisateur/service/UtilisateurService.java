@@ -29,7 +29,7 @@ public class UtilisateurService {
     }
 
     public void save(UtilisateurDto newUser) {
-        userRepo.save(new Utilisateur(newUser.getPseudo(), newUser.getConnaissances()));
+        userRepo.save(new Utilisateur(newUser.getPseudo(), newUser.getConnaissances(), newUser.getSeeked()));
     }
 
     public Stream<Connaissance> connaissance(Utilisateur user) {
@@ -38,6 +38,15 @@ public class UtilisateurService {
         if(list.isPresent()) 
             rtr = list.get().stream();
         
+        return rtr;
+    }
+
+    public Stream<Connaissance> seeked(Utilisateur user) {
+        Optional<Collection<Connaissance>> list = Optional.ofNullable(user.getSeeked().values());
+        Stream<Connaissance> rtr = Stream.empty();
+        if(list.isPresent())
+            rtr = list.get().stream();
+
         return rtr;
     }
 
