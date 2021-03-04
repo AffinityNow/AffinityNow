@@ -7,12 +7,14 @@ package com.affinitynow.app {
             - id: long
             - pseudo: string
             - connaissances: Map<String, Connaissance>
+            - seeked: Map<String, Connaissance>
             + User(nom: string)
             + getPseudo(): string
             + setPseudo(): void
             + getTopic(): string
             + setTopic(): void
             + getConnaissance(): Map<String, Connaissance>
+            + getSeeked(): Map<String, Connaissance>
             + equals(user: User): boolean
             + hashcode(): integer
             + toString(): string
@@ -56,6 +58,7 @@ package com.affinitynow.app {
             class UserService {
                 - matchingStrategy: Map<String, Matching>
                 + connaissances(user: User): Stream<Connaissance>
+                + seeked(user: User): Stream<Connaissance>
                 + connait(topic: Topic, user:User): boolean 
                 + niveau(topic: Topic, user: User): Optional<Niveau>
                 + matching(strategyName: string, utilisateur: Utilisateur, utilisateur2: Utilisateur)
@@ -83,14 +86,16 @@ package com.affinitynow.app {
                 - id: long
                 - pseudo: string
                 - connaissances: Map<string, Connaissance>
+                - seeked: Map<string, Connaissance>
                 + getId(): long
                 + setId(id: Long): UtilisateurDto
                 + getPseudo(): string
                 + setPseudo(pseudo: string): UtilisateurDto
                 + getPseudo(): string
-                + setConnaissances(pseudo: string): UtilisateurDto
+                + setConnaissances(Map<String, Connaissance> connaissances): UtilisateurDto
                 + addConnaissance(name: string, connaissance: Connaissance)
-
+                + setSeeked(Map<String, Connaissance> seeked): UtilisateurDto
+                + addSeeked(name: string, seeked: Connaissance)
 
             }
         }
