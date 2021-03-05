@@ -6,13 +6,17 @@ package com.affinitynow.app {
         class User {
             - id: long
             - pseudo: string
-            - connaissances: Map<String, Connaissance>
-            + User(nom: string)
+            - likedKnowledges: Map<String, Knowledge>
+            - seekedKnowledges: Map<String, Knowledge>
+            + User(name: string)
             + getPseudo(): string
             + setPseudo(): void
             + getTopic(): string
             + setTopic(): void
-            + getConnaissance(): Map<String, Connaissance>
+            + getLikedKnowledge(knowledges: Map<String, Knowledge>): Map<String, Knowledge>
+            + setLikedKnowledges(): void
+            + getSeekedKnowledges(knowledges: Map<String, Knowledge>): Map<String, Knowledge>
+            + setSeekedKnowledges(): void
             + equals(user: User): boolean
             + hashcode(): integer
             + toString(): string
@@ -20,21 +24,21 @@ package com.affinitynow.app {
 
         class Topic {
             - id: long
-            - nom: string
-            + this(nom: string)
-            + getNom(): string
-            + setNom(): void
+            - Name: string
+            + this(Name: string)
+            + getName(): string
+            + setName(): void
         }
 
-        class Connaissance {
+        class Knowledge {
             - topic: Topic
-            - niveau: Niveau
+            - level: Level
             + topic(): Topic
-            + niveau(topic: Topic): Niveau
+            + Level(topic: Topic): Level
         }
 
-        enum Niveau {
-            UN, DEUX, TROIS, QUATRE, CINQUE
+        enum Level {
+            ONE, TWO, THREE, FOUR, FIVE
         }
     }
 
@@ -42,39 +46,80 @@ package com.affinitynow.app {
         package controler {
             class UserControler {
                 - userService: UserService
-                - utilisateurRepository: UtilisateurRepository
-                + createNewUtilisateurWithConnaissance(dto: UtilisateurDto): UtilisateurDto, POST/utilisateur/connaissances
-                + getUserMatchingListById(id: long, strategyName:string) , GET/User/{id}/match/{strategyName}
-            }
-            class TopicControler {
-                - topicRepository: TopicRepository
-                + getTopics(): List<TopicDto>, GET/topic
+                - userRepository: UserRepository
+                + createNewUserWithKnowledge(dto: UserDto): UserDto, POST/user/unowledges
+                + getUserMatcherListById(id: long, strategyName:string) , GET/user/{id}/match/{strategyName}
             }
         }
 
         package service {
             class UserService {
-                - matchingStrategy: Map<String, Matching>
-                + connaissances(user: User): Stream<Connaissance>
-                + connait(topic: Topic, user:User): boolean 
-                + niveau(topic: Topic, user: User): Optional<Niveau>
-                + matching(strategyName: string, utilisateur: Utilisateur, utilisateur2: Utilisateur)
-            }
-            
-            interface Matching {
-                + match(user1: User, user2: User): MatchResult
+                - matcherStrategy: Map<String, Matcher>
+                + knowledges(user: User): Stream<Knowledge>
+                + know(topic: Topic, user:User): boolean 
+                + level(topic: Topic, user: User): Optional<Level>
+                + match(strategyName: string, user: User, MatcherUser: User)
             }
 
-            class ScoreMatching implements Matching {
-                + match(user1: User, user2: User): MatchResult
-            }
+            package matcher {
+                interface Matcher {
+                    + match(user1: User, user2: User): Optional<IMatchResult>
+                    + calculateQuality(user: User, user: matchingUser, intersection: Set<Knowledge>);
+                }
 
-            interface MatchResult extends Comparable{
-                + isSucess(): boolean
-            }
+                interface ScoreMatcher extends Matcher{}
 
-            class BooleanMatchResult implements MatchResult{
-                 + isSucess(): boolean
+                interface SeekedTopicMatcher extends Matcher{}
+
+                class DoubleSeekedTopicMatcher implements SeekedTopicMatcher {
+                    + match(user1: User, user2: User): IMatchResult
+                    + calculateQuality(user: User, user: matchingUser, intersection: Set<Knowledge>);
+                }
+                
+                class BooleanScoreMatcher implements ScoreMatcher {
+                    + match(user1: User, user2: User): IMatchResult
+                    + calculateQuality(user: User, user: matchingUser, intersection: Set<Knowledge>);
+                }
+
+                class DoubleScoreMatcher implements ScoreMatcher {
+                    + match(user1: User, user2: User): IMatchResult
+                    + calculateQuality(user: User, user: matchingUser, intersection: Set<Knowledge>);
+                }
+
+                interface IMatchResult<T> extends java.lang.Comparable{
+                    + result(): T
+                    + user(): User
+                    + mUser(): User
+                    + qualite(): double
+                    + commonTopicsBetweenUsers(): set<Knowledge>
+                }
+
+                abstract class AbstractMatchResult<T> implements IMatchResult {
+                    - user: User
+                    - mUser: User
+                    - commonTopics: set<Knowledge>
+                    - quality: double
+                    ~ this(commonTopics: set<Knowledge>, user: User, mUser: User)
+                    + user(): User
+                    + mUser(): User
+                    + commonTopicsBetweenUsers(): set<Knowledge>
+                    + setQuality(quality: double)
+                    + qualite(): double
+                }
+
+                class BooleanMatchResult<Boolean> extends AbstractMatchResult{
+                    - resultat: boolean
+                    ~ this(commonTopics: set<Knowledge>, user: User, mUser: User, resultat: boolean)
+                    + resultat(): boolean
+                    + compareTo(o: IMatchResult<T>): integer
+                }
+
+                class DoubleMatchResult<Double> extends AbstractMatchResult{
+                    - resultat: double
+                    ~ this(commonTopics: set<Knowledge>, user: User, mUser: User, resultat: double)
+                    + resultat(): double
+                    + compareTo(o: IMatchResult<T>): integer
+                }
             }
         }
 
@@ -82,16 +127,13 @@ package com.affinitynow.app {
             class UserDto {
                 - id: long
                 - pseudo: string
-                - connaissances: Map<string, Connaissance>
+                - Knowledges: Map<string, Knowledge>
                 + getId(): long
-                + setId(id: Long): UtilisateurDto
+                + setId(id: Long): UserDto
                 + getPseudo(): string
-                + setPseudo(pseudo: string): UtilisateurDto
-                + getPseudo(): string
-                + setConnaissances(pseudo: string): UtilisateurDto
-                + addConnaissance(name: string, connaissance: Connaissance)
-
-
+                + setPseudo(pseudo: string): UserDto
+                + setKnowledges(pseudo: string): UserDto
+                + addKnowledge(name: string, Knowledge: Knowledge)
             }
         }
 
@@ -99,14 +141,42 @@ package com.affinitynow.app {
             class UserRepository {}
         }
     }
+
+    namespace topic {
+        namespace controler {
+            class TopicControler {
+                - topicRepository: TopicRepository
+                + getTopics(): List<TopicDto>, GET/topic
+            }
+        }
+
+        namespace service {
+        }
+
+        namespace dto {
+            class TopicDto {
+                - id: long
+                - name: string
+                + getId(): long
+                + setId(id: Long): TopicDto
+                + getName(): string
+                + setName(pseudo: string): TopicDto
+            }
+        }
+
+        namespace repository {
+            class TopicRepository {}
+        }
+    }
 }
 
-UserService *--> "1" Matching
+UserService *--> "*" Matcher
 UserControler --> UserService: "uses"
 UserService --> UserRepository: "uses"
 UserRepository --> User: "uses"
-Connaissance *--> "1" Topic
-Connaissance *--> "1" Niveau
-User *--> "*" Connaissance: "connaissance"
-Matching --> MatchResult: "uses"
+Knowledge *--> "1" Topic
+Knowledge *--> "1" Level
+User *--> "*" Knowledge: "liked knowledge"
+User *--> "*" Knowledge: "seeked knowledge"
+Matcher --> IMatchResult: "uses"
 @enduml

@@ -6,37 +6,37 @@ import javax.persistence.Embedded;
 
 
 @Embeddable
-public class Connaissance {
+public class Knowledge {
     @Embedded
     private Topic topic;
-    @Convert(converter = NiveauConverter.class, attributeName = "niveau")
-    private Niveau niveau;
+    @Convert(converter = LevelConverter.class, attributeName = "level")
+    private Level level;
 
     public Topic topic() {
         return topic;
     }
 
-    public Niveau niveau() {
-        return niveau;
+    public Level level() {
+        return level;
     }
 
-    public Connaissance(Topic topic, String niveau) {
+    public Knowledge(Topic topic, String level) {
         this.topic = topic;
-        this.niveau = Niveau.valueOf(niveau);
+        this.level = Level.valueOf(level);
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Connaissance [niveau=");
-        builder.append(niveau);
+        builder.append("Knowledge [level=");
+        builder.append(level);
         builder.append(", topic=");
         builder.append(topic);
         builder.append("]");
         return builder.toString();
     }
 
-    public Connaissance() {
+    public Knowledge() {
     }
 
     public Topic getTopic() {
@@ -47,11 +47,11 @@ public class Connaissance {
         this.topic = topic;
     }
 
-    public Niveau getNiveau() {
-        return niveau;
+    public Level getLevel() {
+        return level;
     }
 
-    public void setNiveau(Niveau niveau) {
-        this.niveau = niveau;
+    public void setLevel(Level niveau) {
+        this.level = niveau;
     }
 }
