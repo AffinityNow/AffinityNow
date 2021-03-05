@@ -12,7 +12,8 @@ public class UserDto {
     @Nullable
     private Long id;
     private String pseudo;
-    private Map<String, Knowledge> knowledge = Collections.emptyMap();
+    private Map<String, Knowledge> seekedKnowledges = Collections.emptyMap();
+    private Map<String, Knowledge> likedKnowledges = Collections.emptyMap();
 
     public Long getId() {
         return id;
@@ -32,16 +33,24 @@ public class UserDto {
         return this;
     }
 
-    public Map<String, Knowledge> getConnaissances() {
-        return knowledge;
+    public Map<String, Knowledge> getSeekedKnowledges() {
+        return seekedKnowledges;
     }
 
-    public UserDto setConnaissances(Map<String, Knowledge> knowledge) {
-        this.knowledge = knowledge;
+    public UserDto setSeekedKnowledges(Map<String, Knowledge> knowledge) {
+        this.seekedKnowledges = knowledge;
         return this;
     }
 
-    public void addConnaissance(String name, Knowledge knowledge) {
-        this.knowledge.put(name, knowledge);
+    public void addSeekedKnowledges(String name, Knowledge knowledge) {
+        this.seekedKnowledges.put(name, knowledge);
+    }
+
+    public Map<String, Knowledge> getLikedKnowledges() {
+        return likedKnowledges;
+    }
+
+    public void setLikedKnowledges(Map<String, Knowledge> likedKnowledges) {
+        this.likedKnowledges = likedKnowledges;
     }
 }

@@ -42,9 +42,10 @@ public class User {
 		this.likedKnowledges = knowledges;
 	}
 
-    public User(String pseudo, Map<String, Knowledge> knowledges) {
+    public User(String pseudo, Map<String, Knowledge> likedKnowledges, Map<String, Knowledge> seekedKnowledges) {
         this.pseudo = pseudo;
-        this.likedKnowledges = knowledges;
+        this.likedKnowledges = likedKnowledges;
+        this.seekedKnowledges = seekedKnowledges;
     }
 
     public User() {
