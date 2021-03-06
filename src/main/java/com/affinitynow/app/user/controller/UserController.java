@@ -7,8 +7,9 @@ import com.affinitynow.app.user.repository.UserRepository;
 import com.affinitynow.app.user.service.UserService;
 import com.affinitynow.app.user.service.matcher.IMatchResult;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,26 +18,28 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/utilisateur")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
-    private final UserService userService;
-    private final UserRepository userRepository;
+    private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private ModelMapper modelMapper;
 
-    public UserController(UserService userService, UserRepository utilisateurRepository) {
-        this.userService = userService;
-        this.userRepository = utilisateurRepository;
-    }
 
     @PostMapping(value = "/knowledges")
-    public ResponseEntity<UserDto> createNewUtilisateurWithConnaissance(@RequestBody UserDto dto) {
-        userService.save(dto);
-        return ResponseEntity.ok(dto);
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public UserDto createNewUserWithKnowledges(@RequestBody UserDto dto) {
+        User user = convertToEntity(dto);
+        User userCreated = userService.save(user);
+        return convertToDto(userCreated);
     }
 
     @GetMapping(value = "/{name}/match/{strategyName}")
-    public List<IMatchResult<Object>> getUtilisateurMatchingList(@PathVariable("name") String name, @PathVariable String strategyName) throws UserNotFoundException {
+    public List<IMatchResult<Object>> getUserMatchingList(@PathVariable("name") String name, @PathVariable String strategyName) throws UserNotFoundException {
         User user = userRepository.findByPseudo(name).orElseThrow(() -> new UserNotFoundException("User not found - " + name));
         return userRepository.findAll().stream()
                 .filter(l -> !l.getPseudo().equals(user.getPseudo()))
@@ -45,5 +48,21 @@ public class UserController {
                 .map(o -> userService.matching(strategyName, user, o))
                 .flatMap(Optional::stream)
                 .collect(Collectors.toList());
+    }
+
+    private UserDto convertToDto(User user) {
+        return modelMapper.map(user, UserDto.class);
+    }
+
+    private User convertToEntity(UserDto userDto) {
+        User user = modelMapper.map(userDto, User.class);
+     
+        if (userDto.getId() != null) {
+            if(userRepository.findById(userDto.getId()).isPresent()){
+                User oldUser = userRepository.findById(userDto.getId()).get();
+                user.setId(oldUser.getId());
+            }
+        }
+        return user;
     }
 }
