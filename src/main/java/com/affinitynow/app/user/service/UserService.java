@@ -27,8 +27,8 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
-    public void save(UserDto newUser) {
-        userRepo.save(new User(newUser.getPseudo(), newUser.getLikedKnowledges(), newUser.getSeekedKnowledges()));
+    public User save(User newUser) {
+        return userRepo.save(newUser);
     }
 
     public Stream<Knowledge> listOfTopicsByType(User user, String type) {
