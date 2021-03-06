@@ -53,4 +53,7 @@ public class UserDto {
     public void setLikedKnowledges(Map<String, Knowledge> likedKnowledges) {
         this.likedKnowledges = likedKnowledges;
     }
+
+    public UserDto() {
+    }
 }
