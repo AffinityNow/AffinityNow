@@ -74,10 +74,11 @@ public class UserController {
     @ResponseBody
     public UserDto addFriendToUserFriendList(@RequestBody UserDto dto, @PathVariable("username") String username) throws UserNotFoundException {
         User user = userRepository.findByPseudo(username).orElseThrow(() -> new UserNotFoundException(USERNOTFOUND + username));
-        User friend = convertToEntity(dto);
-        if(userRepository.findByPseudo(friend.getPseudo()).isEmpty())
-            throw  new UserNotFoundException(USERNOTFOUND + friend.getPseudo()); 
-        userService.addToFriendList(user, friend);
+        Optional<User> friend = userRepository.findByPseudo(dto.getPseudo());
+        if(friend.isPresent())
+            userService.addToFriendList(user, friend.get());
+        else
+            throw new UserNotFoundException(USERNOTFOUND + dto.getPseudo()); 
         userService.save(user);
         return convertToDto(user);
     }
