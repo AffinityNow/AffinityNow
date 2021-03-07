@@ -71,6 +71,7 @@ package com.affinitynow.app {
                 + removeFromFriendList(user, friend): void
                 + getFriendList(user: User): Set<User>
                 + getAllUsers(): List<User>
+                + subscrided(username:String): User
             }
 
             package matcher {
