@@ -76,7 +76,7 @@ public class UserController {
         User user = userRepository.findByPseudo(username).orElseThrow(() -> new UserNotFoundException(USERNOTFOUND + username));
         User friend = convertToEntity(dto);
         if(userRepository.findByPseudo(friend.getPseudo()).isEmpty())
-            userService.save(friend);
+            throw  new UserNotFoundException(USERNOTFOUND + friend.getPseudo()); 
         userService.addToFriendList(user, friend);
         userService.save(user);
         return convertToDto(user);
