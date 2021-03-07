@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
+
+import com.affinitynow.app.exceptions.UserNotFoundException;
 import com.affinitynow.app.model.Knowledge;
 import com.affinitynow.app.model.Level;
 import com.affinitynow.app.model.Topic;
@@ -74,6 +76,10 @@ public class UserService {
 
     public Set<User> getFriendList(User user){
         return user.getFriends();
+    }
+
+    public User subscrided(String username) throws UserNotFoundException {
+        return userRepo.findByPseudo(username).orElseThrow(() -> new UserNotFoundException("User not found - " + username ));
     }
 }
 
