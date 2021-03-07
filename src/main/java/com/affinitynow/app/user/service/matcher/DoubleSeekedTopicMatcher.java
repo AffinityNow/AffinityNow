@@ -15,11 +15,13 @@ import org.springframework.stereotype.Component;
 public class DoubleSeekedTopicMatcher implements SeekedTopicMatcher {
     @Autowired
     private UserService userService;
+    public static final String SEEKED = "seeked";
+    public static final String LIKED = "liked";
     
     @Override
     public Optional<IMatchResult<Double>> match(User user, User matchingUser) {
         Optional<IMatchResult<Double>> rtr = Optional.empty();
-        Set<Knowledge> intersection = userService.listOfTopicsByType(user, "seeked")
+        Set<Knowledge> intersection = userService.listOfTopicsByType(user, SEEKED)
             .filter(c -> userService.isLikedTopic(c.topic(), matchingUser))
             .collect(Collectors.toSet());
         if(!intersection.isEmpty())
@@ -29,18 +31,18 @@ public class DoubleSeekedTopicMatcher implements SeekedTopicMatcher {
 
     @Override
     public Double calculateQuality(User user, User matchingUser, Set<Knowledge> intersection) {
-        return getUserTotalScoreForKnowledge(user, intersection, "seeked") + getUserTotalScoreForKnowledge(matchingUser, intersection, "liked") / intersection.size();
+        return getUserTotalScoreForKnowledge(user, intersection, SEEKED) + getUserTotalScoreForKnowledge(matchingUser, intersection, LIKED) / intersection.size();
     }
 
     double getUserTotalScoreForKnowledge(User user, Set<Knowledge> intersection, String type) {
         return switch (type) {
-            case "liked" -> user.getLikedKnowledges().values()
+            case LIKED -> user.getLikedKnowledges().values()
                                     .stream()
                                     .filter(p -> intersection.contains(p))
                                     .map(Knowledge::getLevel)
                                     .mapToDouble(Level::value)
                                     .reduce(0.0, Double::sum);
-            case "seeked" -> user.getSeekedKnowledges().values()
+            case SEEKED -> user.getSeekedKnowledges().values()
                                     .stream()
                                     .filter(p -> intersection.contains(p))
                                     .map(Knowledge::getLevel)

@@ -32,7 +32,10 @@ Aujourd'hui avec la version V1.2 de AffinityNow on peut :
     Match en fonction des centres d'intérêts aimés et recherchés en commun.
 
 3. Il existe 2 types de match : avec ou sans resultat.
+
 4. On peut déterminer la qualité d'un match entre 2 utilisateurs.
+
+5. On peut gérer sa liste d'amis (Ajout, suppression)
 
 == Wireframes et Mockups "Affinity Now"
 Main Page
