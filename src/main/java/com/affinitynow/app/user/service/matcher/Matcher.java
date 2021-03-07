@@ -10,4 +10,7 @@ import org.springframework.stereotype.Component;
 public interface Matcher {
     <T> Optional<IMatchResult<T>> match(User user, User matchingUser);
     Double calculateQuality(User user, User matchingUser, Set<Knowledge> intersection);
+    boolean isExcluded(String topic);
+    Set<String> getFilteredTopic();
+    void setFilteredTopic(Set<String> topics);
 }
