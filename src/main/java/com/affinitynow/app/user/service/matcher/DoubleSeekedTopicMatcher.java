@@ -17,12 +17,14 @@ public class DoubleSeekedTopicMatcher implements SeekedTopicMatcher {
     private UserService userService;
     public static final String SEEKED = "seeked";
     public static final String LIKED = "liked";
-    
+    private Set<String> excludedTopics;
+
     @Override
     public Optional<IMatchResult<Double>> match(User user, User matchingUser) {
         Optional<IMatchResult<Double>> rtr = Optional.empty();
         Set<Knowledge> intersection = userService.listOfTopicsByType(user, SEEKED)
             .filter(c -> userService.isLikedTopic(c.topic(), matchingUser))
+            .filter(e -> !isExcluded(e.getTopic().getName()))
             .collect(Collectors.toSet());
         if(!intersection.isEmpty())
             rtr = Optional.of(new DoubleMatchResult<>(intersection, user, matchingUser, Double.valueOf(intersection.size()),  calculateQuality(user,  matchingUser, intersection)));
@@ -50,5 +52,20 @@ public class DoubleSeekedTopicMatcher implements SeekedTopicMatcher {
                                     .reduce(0.0, Double::sum);
             default -> 0.0;
         };
+    }
+    
+    @Override
+    public boolean isExcluded(String topic) {
+        return excludedTopics.contains(topic);
+    }
+
+    @Override
+    public Set<String> getFilteredTopic() {
+        return excludedTopics;
+    }
+
+    @Override
+    public void setFilteredTopic(Set<String> topics) {
+        excludedTopics = topics;
     }
 }

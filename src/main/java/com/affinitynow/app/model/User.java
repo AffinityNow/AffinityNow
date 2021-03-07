@@ -1,10 +1,6 @@
 package com.affinitynow.app.model;
 
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;

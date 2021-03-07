@@ -51,11 +51,14 @@ public class UserController {
     }
 
     @GetMapping(value = "/{username}/match/{strategyName}")
-    public List<IMatchResult<Object>> getUserMatchingList(@PathVariable("username") String username, @PathVariable String strategyName) throws UserNotFoundException {
+    public List<IMatchResult<Object>> getUserMatchingList(@PathVariable("username") String username,
+                                                          @PathVariable String strategyName,
+                                                          @RequestBody Set<String> excludedTopics) throws UserNotFoundException {
         User user = userRepository.findByPseudo(username).orElseThrow(() -> new UserNotFoundException(USERNOTFOUND + username));
+        Optional<Set<String>> topics = Optional.of(excludedTopics);
         return userRepository.findAll().stream()
             .filter(l -> !l.getPseudo().equals(user.getPseudo()))
-            .map(o -> userService.matching(strategyName, user, o))
+            .map(o -> userService.matching(strategyName, user, o, topics))
             .flatMap(Optional::stream)
             .collect(Collectors.toList());
     }

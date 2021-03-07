@@ -56,7 +56,9 @@ public class UserService {
         return Optional.ofNullable(user.getLikedKnowledges().getOrDefault(topic.getName(), null).level());
     }
 
-    public <T> Optional<IMatchResult<T>> matching(String strategyName, User user, User matchingUser){
+    public <T> Optional<IMatchResult<T>> matching(String strategyName, User user, User matchingUser, Optional<Set<String>> excludedTopicList){
+        if(excludedTopicList.isPresent())
+            this.matcherMap.get(strategyName).setFilteredTopic(excludedTopicList.get());
         return this.matcherMap.get(strategyName).match(user, matchingUser);
     }
 
