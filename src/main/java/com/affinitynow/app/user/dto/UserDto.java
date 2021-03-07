@@ -1,11 +1,14 @@
 package com.affinitynow.app.user.dto;
 
 import com.affinitynow.app.model.Knowledge;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import org.springframework.lang.Nullable;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.Set;
 
 
 public class UserDto {
@@ -14,6 +17,10 @@ public class UserDto {
     private String pseudo;
     private Map<String, Knowledge> seekedKnowledges = Collections.emptyMap();
     private Map<String, Knowledge> likedKnowledges = Collections.emptyMap();
+    @JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
+    private Set<UserDto> friends = Collections.emptySet();
 
     public Long getId() {
         return id;
@@ -55,5 +62,13 @@ public class UserDto {
     }
 
     public UserDto() {
+    }
+
+    public Set<UserDto> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(Set<UserDto> friends) {
+        this.friends = friends;
     }
 }

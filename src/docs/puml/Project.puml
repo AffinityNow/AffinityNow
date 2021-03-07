@@ -8,6 +8,7 @@ package com.affinitynow.app {
             - pseudo: string
             - likedKnowledges: Map<String, Knowledge>
             - seekedKnowledges: Map<String, Knowledge>
+            - friends: Set<User>
             + User(name: string)
             + getPseudo(): string
             + setPseudo(): void
