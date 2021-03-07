@@ -48,18 +48,29 @@ package com.affinitynow.app {
             class UserControler {
                 - userService: UserService
                 - userRepository: UserRepository
-                + createNewUserWithKnowledge(dto: UserDto): UserDto, POST/user/unowledges
-                + getUserMatcherListById(id: long, strategyName:string) , GET/user/{id}/match/{strategyName}
+                + createNewUserWithKnowledge(dto: UserDto): UserDto, POST/user/knowledges
+                + getUserMatchingListById(id: long, strategyName:string) , GET/user/{username}/match/{strategyName}
+                + getUserByUsername(username: string): UserDto, GET /{username}
+                + getFriendListFromUser(username: string): Set<UserDto>, "/{username}/friend"
+                + addFriendToUserFriendList(username: string): UserDto, PUT "/{username}/friend"
+                + removeFriendFromUserFriendList(username: user, friend, string), DELETE "/{username}/friend/{friend}"
+                - convertToDto(user: User): userDto
+                - convertToEntity(userDto: UserDto): User
             }
         }
 
         package service {
             class UserService {
-                - matcherStrategy: Map<String, Matcher>
-                + knowledges(user: User): Stream<Knowledge>
-                + know(topic: Topic, user:User): boolean 
-                + level(topic: Topic, user: User): Optional<Level>
-                + match(strategyName: string, user: User, MatcherUser: User)
+                - matcherMap: Map<String, Matcher>
+                + listOfTopicsByType(user: User): Stream<Knowledge>
+                + isLikedTopic(topic: Topic, user:User): boolean 
+                + isSeekedTopic(topic: Topic, user:User): boolean 
+                + levelOfLikedTopic(topic: Topic, user: User): Optional<Level>
+                + matching(strategyName: string, user: User, MatcherUser: User)
+                + addToFriendList(user: User, friend: User): void
+                + removeFromFriendList(user, friend): void
+                + getFriendList(user: User): Set<User>
+                + getAllUsers(): List<User>
             }
 
             package matcher {
