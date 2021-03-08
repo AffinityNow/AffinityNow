@@ -50,7 +50,7 @@ public class UserController {
         return convertToDto(userCreated);
     }
 
-    @GetMapping(value = "/{username}/match/{strategyName}")
+    @PostMapping(value = "/{username}/match/{strategyName}")
     public List<IMatchResult<Object>> getUserMatchingList(@PathVariable("username") String username,
                                                           @PathVariable String strategyName,
                                                           @RequestBody Set<String> excludedTopics) throws UserNotFoundException {
