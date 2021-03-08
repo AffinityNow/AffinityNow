@@ -23,16 +23,19 @@ Une fois cela effectuer le serveur sera en marche et vous pourrz consulter la li
 
 Aujourd'hui avec la version V1.2 de AffinityNow on peut :
 
-1. Avoir la possibilité de renseigner les topics (centre d'intérêt)favoris
+1. Avoir la possibilité de renseigner les centres d'intérêts favoris
 
 2. Pouvoir matcher avec une (ou plusieurs) personnes suivant une des méthodes de match suivantes :
+    - Match en fonction des centres d'intérêts aimés en commun qui ont une note supérieur à un seuil fixe.
+    - Match en fonction des centres d'intérêts aimés et recherchés en commun.
 
-    Match en fonction des centres d'intérêts aimés en commun qui ont une note supérieur à un seuil fixe.
+3. Possibilité d'exclure des centres d'intérêts lors du choix d'une méthode de match.
 
-    Match en fonction des centres d'intérêts aimés et recherchés en commun.
+4. Il existe 2 types de match : avec ou sans resultat.
 
-3. Il existe 2 types de match : avec ou sans resultat.
-4. On peut déterminer la qualité d'un match entre 2 utilisateurs.
+5. On peut déterminer la qualité d'un match entre 2 utilisateurs.
+
+6. On peut gérer sa liste d'amis (Ajout, suppression, recherche)
 
 == Wireframes et Mockups "Affinity Now"
 Main Page

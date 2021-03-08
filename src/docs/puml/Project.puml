@@ -8,6 +8,7 @@ package com.affinitynow.app {
             - pseudo: string
             - likedKnowledges: Map<String, Knowledge>
             - seekedKnowledges: Map<String, Knowledge>
+            - friends: Set<User>
             + User(name: string)
             + getPseudo(): string
             + setPseudo(): void
@@ -47,24 +48,38 @@ package com.affinitynow.app {
             class UserControler {
                 - userService: UserService
                 - userRepository: UserRepository
-                + createNewUserWithKnowledge(dto: UserDto): UserDto, POST/user/unowledges
-                + getUserMatcherListById(id: long, strategyName:string) , GET/user/{id}/match/{strategyName}
+                + createNewUserWithKnowledge(dto: UserDto): UserDto, POST/user/knowledges
+                + getUserMatchingListById(username: string, strategyName:string, excludedTopics: Set<string>) , GET/user/{username}/match/{strategyName}
+                + getUserByUsername(username: string): UserDto, GET /{username}
+                + getFriendListFromUser(username: string): Set<UserDto>, "/{username}/friend"
+                + addFriendToUserFriendList(username: string): UserDto, PUT "/{username}/friend"
+                + removeFriendFromUserFriendList(username: user, friend, string), DELETE "/{username}/friend/{friend}"
+                - convertToDto(user: User): userDto
+                - convertToEntity(userDto: UserDto): User
             }
         }
 
         package service {
             class UserService {
-                - matcherStrategy: Map<String, Matcher>
-                + knowledges(user: User): Stream<Knowledge>
-                + know(topic: Topic, user:User): boolean 
-                + level(topic: Topic, user: User): Optional<Level>
-                + match(strategyName: string, user: User, MatcherUser: User)
+                - matcherMap: Map<String, Matcher>
+                + listOfTopicsByType(user: User): Stream<Knowledge>
+                + isLikedTopic(topic: Topic, user:User): boolean 
+                + isSeekedTopic(topic: Topic, user:User): boolean 
+                + levelOfLikedTopic(topic: Topic, user: User): Optional<Level>
+                + matching(strategyName: string, user: User, matchingUser: User, excludedTopicList: Optional<Set<string>>): Optional<IMatchResult<T>>
+                + addToFriendList(user: User, friend: User): void
+                + removeFromFriendList(user, friend): void
+                + getFriendList(user: User): Set<User>
+                + getAllUsers(): List<User>
             }
 
             package matcher {
                 interface Matcher {
                     + match(user1: User, user2: User): Optional<IMatchResult>
-                    + calculateQuality(user: User, user: matchingUser, intersection: Set<Knowledge>);
+                    + calculateQuality(user: User, user: matchingUser, intersection: Set<Knowledge>)
+                    + boolean isExcluded()
+                    + getFilteredTopic(): Set<String>
+                    + setFilteredTopic(Set<String> topics): void
                 }
 
                 interface ScoreMatcher extends Matcher{}
@@ -73,17 +88,21 @@ package com.affinitynow.app {
 
                 class DoubleSeekedTopicMatcher implements SeekedTopicMatcher {
                     + match(user1: User, user2: User): IMatchResult
-                    + calculateQuality(user: User, user: matchingUser, intersection: Set<Knowledge>);
+                    + calculateQuality(user: User, user: matchingUser, intersection: Set<Knowledge>)
                 }
                 
                 class BooleanScoreMatcher implements ScoreMatcher {
                     + match(user1: User, user2: User): IMatchResult
-                    + calculateQuality(user: User, user: matchingUser, intersection: Set<Knowledge>);
+                    + calculateQuality(user: User, user: matchingUser, intersection: Set<Knowledge>)
+                    + getFilteredTopic(): Set<String>
+                    + setFilteredTopic(Set<String> topics): void
                 }
 
                 class DoubleScoreMatcher implements ScoreMatcher {
                     + match(user1: User, user2: User): IMatchResult
-                    + calculateQuality(user: User, user: matchingUser, intersection: Set<Knowledge>);
+                    + calculateQuality(user: User, user: matchingUser, intersection: Set<Knowledge>)
+                    + getFilteredTopic(): Set<String>
+                    + setFilteredTopic(Set<String> topics): void
                 }
 
                 interface IMatchResult<T> extends java.lang.Comparable{
@@ -172,6 +191,7 @@ package com.affinitynow.app {
 
 UserService *--> "*" Matcher
 UserControler --> UserService: "uses"
+UserControler --> UserDto: "uses"
 UserService --> UserRepository: "uses"
 UserRepository --> User: "uses"
 Knowledge *--> "1" Topic

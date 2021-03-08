@@ -18,18 +18,28 @@ public class BooleanScoreMatcher implements ScoreMatcher {
     @Autowired
     private UserService userService;
     IntPredicate isHigherThan3 = x -> x >= 3;
+    private Set<String> excludedTopics;
 
     @Override
     public Optional<IMatchResult<Boolean>> match(User user, User matchingUser) {
         Optional<IMatchResult<Boolean>> rtr = Optional.empty();
         Set<Knowledge> intersection = userService.listOfTopicsByType(user, "liked")
             .filter(c -> userService.isLikedTopic(c.topic(), matchingUser))
+            .filter(e -> !isExcluded(e.getTopic().getName()))
             .filter(p -> userService.levelOfLikedTopic(user, p.topic()).map(Level::value).filter(isHigherThan3::test).isPresent()
                 && userService.levelOfLikedTopic(matchingUser, p.topic()).map(Level::value).filter(isHigherThan3::test).isPresent())
             .collect(Collectors.toSet());
         if(!intersection.isEmpty())
             rtr = Optional.of(new BooleanMatchResult<>(intersection, user, matchingUser, true,  calculateQuality(user,  matchingUser, intersection)));
         return rtr;
+    }
+
+    public Set<String> getTopicsExcluded() {
+        return excludedTopics;
+    }
+
+    public void setTopicsExcluded(Set<String> excludedTopics) {
+        this.excludedTopics = excludedTopics;
     }
 
     @Override
@@ -44,5 +54,20 @@ public class BooleanScoreMatcher implements ScoreMatcher {
                 .map(Knowledge::getLevel)
                 .mapToDouble(Level::value)
                 .reduce(0.0, Double::sum);
+    }
+
+    @Override
+    public boolean isExcluded(String topic) {
+        return excludedTopics.contains(topic);
+    }
+
+    @Override
+    public Set<String> getFilteredTopic() {
+        return excludedTopics;
+    }
+
+    @Override
+    public void setFilteredTopic(Set<String> topics) {
+        excludedTopics = topics;
     }
 }
