@@ -19,19 +19,22 @@ import java.util.stream.Collectors;
 @CrossOrigin
 @RequestMapping("/user")
 public class UserController {
+    private final UserService userService;
+    private final UserRepository userRepository;
+    private final ModelMapper modelMapper;
+    public static final String USERNOTFOUND = "User not found - ";
 
     @Autowired
-    private UserService userService;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private ModelMapper modelMapper;
-    public static final String USERNOTFOUND = "User not found - ";
+    public UserController(UserService userService, UserRepository userRepository, ModelMapper modelMapper) {
+        this.userService = userService;
+        this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
+    }
 
     @GetMapping
     public List<UserDto> getAllUsers() {
         return userService.getAllUsers().stream()
-            .map(p -> convertToDto(p))
+            .map(this::convertToDto)
             .collect(Collectors.toList());
     }
 
@@ -69,7 +72,7 @@ public class UserController {
             .map(User::getFriends)
             .stream()
             .flatMap(Set::stream)
-            .map(a -> convertToDto(a))
+            .map(this::convertToDto)
             .collect(Collectors.toSet());
     }
 
@@ -81,7 +84,7 @@ public class UserController {
         if(friend.isPresent())
             userService.addToFriendList(user, friend.get());
         else
-            throw new UserNotFoundException(USERNOTFOUND + dto.getPseudo()); 
+            throw new UserNotFoundException(USERNOTFOUND + dto.getPseudo());
         userService.save(user);
         return convertToDto(user);
     }
@@ -103,10 +106,7 @@ public class UserController {
     private User convertToEntity(UserDto userDto) {
         User user = modelMapper.map(userDto, User.class);
         if (userDto.getId() != null) {
-            Optional<User> oldUser = userRepository.findById(userDto.getId());
-            if(oldUser.isPresent()){
-                user.setId(oldUser.get().getId());
-            }
+            userRepository.findById(userDto.getId()).ifPresent(value -> user.setId(value.getId()));
         }
         return user;
     }

@@ -34,9 +34,6 @@ public class BooleanScoreMatcher implements ScoreMatcher {
         return rtr;
     }
 
-    public Set<String> getTopicsExcluded() {
-        return excludedTopics;
-    }
 
     public void setTopicsExcluded(Set<String> excludedTopics) {
         this.excludedTopics = excludedTopics;
@@ -45,15 +42,6 @@ public class BooleanScoreMatcher implements ScoreMatcher {
     @Override
     public Double calculateQuality(User user, User matchingUser, Set<Knowledge> intersection) {
         return getUserTotalScore(user, intersection) + getUserTotalScore(matchingUser, intersection) / intersection.size();
-    }
-
-    double getUserTotalScore(User user, Set<Knowledge> intersection) {
-        return user.getLikedKnowledges().values()
-                .stream()
-                .filter(p -> intersection.contains(p))
-                .map(Knowledge::getLevel)
-                .mapToDouble(Level::value)
-                .reduce(0.0, Double::sum);
     }
 
     @Override
