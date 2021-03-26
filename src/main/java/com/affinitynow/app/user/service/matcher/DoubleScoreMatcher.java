@@ -8,18 +8,19 @@ import com.affinitynow.app.model.Knowledge;
 import com.affinitynow.app.model.Level;
 import com.affinitynow.app.model.User;
 import com.affinitynow.app.user.service.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component("scoreDouble")
+
 public class DoubleScoreMatcher implements ScoreMatcher {
     private final UserService userService;
     IntPredicate isHigherThan3 = x -> x >= 3;
     private Set<String> excludedTopics;
 
     @Autowired
-    public DoubleScoreMatcher(UserService userService) {
+    public DoubleScoreMatcher(@Lazy UserService userService) {
         this.userService = userService;
     }
 

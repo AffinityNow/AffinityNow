@@ -10,15 +10,20 @@ import com.affinitynow.app.model.User;
 import com.affinitynow.app.user.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component("scoreBool")
-public class BooleanScoreMatcher implements ScoreMatcher {
 
-    @Autowired
-    private UserService userService;
+public class BooleanScoreMatcher implements ScoreMatcher {
+    private final UserService userService;
     IntPredicate isHigherThan3 = x -> x >= 3;
     private Set<String> excludedTopics;
+
+    @Autowired
+    public BooleanScoreMatcher(@Lazy UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public Optional<IMatchResult<Boolean>> match(User user, User matchingUser) {

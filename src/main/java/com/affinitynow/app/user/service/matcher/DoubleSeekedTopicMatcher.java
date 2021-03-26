@@ -9,6 +9,7 @@ import com.affinitynow.app.model.Level;
 import com.affinitynow.app.model.User;
 import com.affinitynow.app.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component("seekedDouble")
@@ -20,7 +21,7 @@ public class DoubleSeekedTopicMatcher implements SeekedTopicMatcher {
     private Set<String> excludedTopics;
 
     @Autowired
-    public DoubleSeekedTopicMatcher(UserService userService) {
+    public DoubleSeekedTopicMatcher(@Lazy UserService userService) {
         this.userService = userService;
     }
 
