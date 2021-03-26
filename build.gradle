@@ -65,6 +65,7 @@ dependencies {
     // https://mvnrepository.com/artifact/org.mockito/mockito-core
     testCompile group: 'org.mockito', name: 'mockito-core', version: '3.7.7'
     compile 'org.modelmapper:modelmapper:2.3.9'
+    compile 'org.springframework.boot:spring-boot-starter-mail'
 }
 
 test {
