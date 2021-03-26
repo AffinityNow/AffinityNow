@@ -6,9 +6,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 
-
-
-
 public class Feedback {
     public String getName() {
         return name;
