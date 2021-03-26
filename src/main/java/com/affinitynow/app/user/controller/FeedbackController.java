@@ -19,7 +19,7 @@ public class FeedbackController {
     }
 
     @PostMapping
-    public void sendFeddback(@RequestBody Feedback feedback, BindingResult bindingResult) throws ValidationException {
+    public void sendFeedback(@RequestBody Feedback feedback, BindingResult bindingResult) throws ValidationException {
         if(bindingResult.hasErrors()){
             throw new ValidationException("Feedback is not valid");
         }

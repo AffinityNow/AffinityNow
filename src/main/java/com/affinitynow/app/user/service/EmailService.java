@@ -3,7 +3,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 @Component
 public class EmailService {
-    @Value("${spring.mail.host")
+    @Value("${spring.mail.host}")
     private String host;
 
     @Value("${spring.mail.port}")
