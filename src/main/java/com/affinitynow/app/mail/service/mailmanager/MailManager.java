@@ -1,14 +1,11 @@
-package com.affinitynow.app.mail;
+package com.affinitynow.app.mail.service.mailmanager;
 
 import com.affinitynow.app.model.Mail;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.xml.bind.ValidationException;
 @Component
 public class MailManager {
     private static MailManager INSTANCE;

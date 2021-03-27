@@ -1,8 +1,7 @@
-package com.affinitynow.app.mail;
-import com.affinitynow.app.mail.MailManager;
+package com.affinitynow.app.mail.service;
+import com.affinitynow.app.mail.service.mailmanager.MailManager;
 import com.affinitynow.app.model.Mail;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
