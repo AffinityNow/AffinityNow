@@ -1,6 +1,7 @@
 package com.affinitynow.app.user.dto;
 
 import com.affinitynow.app.model.Knowledge;
+import com.affinitynow.app.model.User;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -20,7 +21,6 @@ public class UserDto {
     @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
-    private Set<UserDto> friends = Collections.emptySet();
 
     public Long getId() {
         return id;
@@ -49,26 +49,19 @@ public class UserDto {
         return this;
     }
 
-    public void addSeekedKnowledges(String name, Knowledge knowledge) {
-        this.seekedKnowledges.put(name, knowledge);
-    }
-
     public Map<String, Knowledge> getLikedKnowledges() {
         return likedKnowledges;
     }
 
-    public void setLikedKnowledges(Map<String, Knowledge> likedKnowledges) {
+    public UserDto setLikedKnowledges(Map<String, Knowledge> likedKnowledges) {
         this.likedKnowledges = likedKnowledges;
+        return this;
     }
 
     public UserDto() {
     }
 
-    public Set<UserDto> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(Set<UserDto> friends) {
-        this.friends = friends;
+    public static UserDto fromEntity(User user) {
+        return new UserDto().setPseudo(user.getPseudo()).setId(user.getId()).setLikedKnowledges(user.getLikedKnowledges()).setSeekedKnowledges(user.getSeekedKnowledges());
     }
 }

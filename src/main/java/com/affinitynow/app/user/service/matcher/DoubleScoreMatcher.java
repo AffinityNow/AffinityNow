@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component("scoreDouble")
-
 public class DoubleScoreMatcher implements ScoreMatcher {
     private final UserService userService;
     IntPredicate isHigherThan3 = x -> x >= 3;

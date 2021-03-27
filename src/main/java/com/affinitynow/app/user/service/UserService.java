@@ -21,11 +21,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserService {
     private final UserRepository userRepo;
-    @Autowired
-    Map<String, Matcher> matcherMap =  new HashMap<>();
+    private final Map<String, Matcher> matcherMap;
 
-    public UserService(UserRepository userRepo) {
+    @Autowired
+    public UserService(UserRepository userRepo, Map<String, Matcher> matcherMap) {
         this.userRepo = userRepo;
+        this.matcherMap = matcherMap;
     }
 
     public User save(User newUser) {
@@ -35,21 +36,21 @@ public class UserService {
     public Stream<Knowledge> listOfTopicsByType(User user, String type) {
         Stream<Knowledge> rtr = Stream.empty();
         Optional<Collection<Knowledge>> list = switch(type) {
-            case "liked" -> Optional.ofNullable(user.getLikedKnowledges().values());
-            case "seeked" -> Optional.ofNullable(user.getSeekedKnowledges().values());
+            case "liked" -> Optional.of(user.getLikedKnowledges().values());
+            case "seeked" -> Optional.of(user.getSeekedKnowledges().values());
             default -> Optional.empty();
         };
-        if(list.isPresent()) 
+        if(list.isPresent())
             rtr = list.get().stream();
         return rtr;
     }
 
     public boolean isLikedTopic(Topic topic, User user) {
-       return  user.getLikedKnowledges().get(topic.getName()) == null ? false : true;
+       return user.getLikedKnowledges().get(topic.getName()) != null;
     }
     
     public boolean isSeekedTopic(Topic topic, User user) {
-       return  user.getSeekedKnowledges().get(topic.getName()) == null ? false : true;
+       return user.getSeekedKnowledges().get(topic.getName()) != null;
     }
 
     public Optional<Level> levelOfLikedTopic(User user, Topic topic) {
@@ -57,25 +58,24 @@ public class UserService {
     }
 
     public <T> Optional<IMatchResult<T>> matching(String strategyName, User user, User matchingUser, Optional<Set<String>> excludedTopicList){
-        if(excludedTopicList.isPresent())
-            this.matcherMap.get(strategyName).setFilteredTopic(excludedTopicList.get());
+        excludedTopicList.ifPresent(strings -> this.matcherMap.get(strategyName).setFilteredTopic(strings));
         return this.matcherMap.get(strategyName).match(user, matchingUser);
     }
 
-    public void addToFriendList(User user, User friend) {
-       user.getFriends().add(friend);
-    }
+//    public void addToFriendList(User user, User friend) {
+//       user.getFriends().add(friend);
+//    }
 
-    public void removeFromFriendList(User user, User friend) {
-        user.getFriends().remove(friend);
-    }
+//    public void removeFromFriendList(User user, User friend) {
+//        user.getFriends().remove(friend);
+//    }
 
     public List<User> getAllUsers() {
         return userRepo.findAll();
     }
 
-    public Set<User> getFriendList(User user){
-        return user.getFriends();
-    }
+//    public Set<User> getFriendList(User user){
+//        return user.getFriends();
+//    }
 }
 
