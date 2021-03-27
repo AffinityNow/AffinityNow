@@ -33,7 +33,7 @@ public class UserServiceTest {
     Topic topic2 = new Topic("Food");
     Topic topic3 = new Topic("BasketBall");
     Topic topic4 = new Topic("Sport");
-    Set<User> friendList;
+    Set<User> followList;
     Map<String, Knowledge> likedKnowledges = Map.of(
         "Football", new Knowledge(topic1, "ONE"),
         "Food", new Knowledge(topic2, "FIVE")
@@ -51,8 +51,8 @@ public class UserServiceTest {
         user3 = new User();
         user1.setLikedKnowledges(likedKnowledges);
         user1.setSeekedKnowledges(seekedKnowledges);
-        friendList = new HashSet<>();
-        friendList.add(user2);
+        followList = new HashSet<>();
+        followList.add(user2);
     }
 
     @Test
@@ -105,5 +105,43 @@ public class UserServiceTest {
     @Test
     public void levelOfTopicTestShouldReturnNull() {
         assertEquals(Optional.of(Level.ONE),userService.levelOfLikedTopic(user1, topic1));
+    }
+
+    @Test
+    public void addToFollowListTest(){
+        userService.followUser(user1, user3);
+        Set<User> friends = user1.getFollows();
+        assertTrue(friends.contains(user3));
+    }
+
+    @Test
+    public void removeFromFollowListTest(){
+        userService.unFollowUser(user1, user3);
+        Set<User> friends = user1.getFollows();
+        assertFalse(friends.contains(user3));
+    }
+
+    @Test
+    public void getFollowListTest() {
+        assertEquals(followList, userService.getFollows(user1));
+    }
+
+    @Test
+    public void addToFriendListTest(){
+        userService.addToFriendList(user1, user3);
+        Set<User> friends = user1.getFriends();
+        assertTrue(friends.contains(user3) && user3.getFriends().contains(user1));
+    }
+
+    @Test
+    public void removeFromFriendListTest(){
+        userService.removeFromFriendList(user1, user3);
+        Set<User> friends = user1.getFollows();
+        assertFalse(friends.contains(user3) && user3.getFriends().contains(user1));
+    }
+
+    @Test
+    public void getFriendListTest() {
+        assertEquals(user1.getFriends(), userService.getFriendList(user1));
     }
 }

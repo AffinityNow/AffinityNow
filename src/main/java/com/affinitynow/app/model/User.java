@@ -1,15 +1,14 @@
 package com.affinitynow.app.model;
 
-import com.affinitynow.app.api.BiDirectionNetwork;
-import com.affinitynow.app.api.Network;
-
-import org.springframework.lang.Nullable;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -25,16 +24,35 @@ public class User {
     @Email
     @NotNull
     private String email ;
-    @Embedded
-    private Network uniDirectionNetwork;
-    @Embedded
-    private BiDirectionNetwork biDirectionNetwork;
+    @ElementCollection
+    private Set<User> follows;
+    @ElementCollection
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
+    private Set<User> friends;
 
-    public User(String pseudo, Map<String, Knowledge> likedKnowledges, Map<String, Knowledge> seekedKnowledges, Set<User> friends, @Email @NotNull String email) {
+    public Set<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(Set<User> friends) {
+        this.friends = friends;
+    }
+
+    public Set<User> getFollows() {
+        return follows;
+    }
+
+    public void setFollows(Set<User> followers) {
+        this.follows = followers;
+    }
+
+
+    public User(String pseudo, Map<String, Knowledge> likedKnowledges, Map<String, Knowledge> seekedKnowledges, @Email @NotNull String email) {
         this.pseudo = pseudo;
         this.likedKnowledges = likedKnowledges;
         this.seekedKnowledges = seekedKnowledges;
-        this.friends = friends;
         this.email = email;
     }
 
@@ -48,22 +66,6 @@ public class User {
 
     public Long getId() {
         return id;
-    }
-
-    public Network getUniDirectionNetwork() {
-        return uniDirectionNetwork;
-    }
-
-    public void setUniDirectionNetwork(Network uniDirectionNetwork) {
-        this.uniDirectionNetwork = uniDirectionNetwork;
-    }
-
-    public BiDirectionNetwork getBiDirectionNetwork() {
-        return biDirectionNetwork;
-    }
-
-    public void setBiDirectionNetwork(BiDirectionNetwork biDirectionNetwork) {
-        this.biDirectionNetwork = biDirectionNetwork;
     }
 
     public User setId(Long id) {

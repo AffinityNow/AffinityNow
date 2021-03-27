@@ -6,7 +6,7 @@ import com.affinitynow.app.user.dto.UserDto;
 import com.affinitynow.app.user.repository.UserRepository;
 import com.affinitynow.app.user.service.UserService;
 import com.affinitynow.app.user.service.matcher.IMatchResult;
-import org.modelmapper.ModelMapper;
+import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -64,35 +64,54 @@ public class UserController {
             .collect(Collectors.toList());
     }
 
-//    @GetMapping(value = "/{username}/friend")
-//    public Set<UserDto> getFriendListFromUser(@PathVariable("username") String username) {
-//        return userRepository.findByPseudo(username)
-//            .map(User::getFriends)
-//            .stream()
-//            .flatMap(Set::stream)
-//            .map(UserDto::fromEntity)
-//            .collect(Collectors.toSet());
-//    }
 
-//    @PutMapping(value = "/{username}/friend")
-//    @ResponseBody
-//    public UserDto addFriendToUserFriendList(@RequestBody UserDto dto, @PathVariable("username") String username) throws UserNotFoundException {
-//        User user = userRepository.findByPseudo(username).orElseThrow(() -> new UserNotFoundException(USERNOTFOUND + username));
-//        Optional<User> friend = userRepository.findByPseudo(dto.getPseudo());
-//        if(friend.isEmpty())
-//            throw new UserNotFoundException(USERNOTFOUND + dto.getPseudo());
-//        userService.addToFriendList(user, friend.get());
-//        userService.save(user);
-//        return UserDto.fromEntity(user);
-//    }
-//
-//    @DeleteMapping(value = "/{username}/friend/{friend}")
-//    @ResponseBody
-//    public UserDto removeFriendFromUserFriendList(@PathVariable("username") String username, @PathVariable("friend") String friend) throws UserNotFoundException {
-//        User user = userRepository.findByPseudo(username).orElseThrow(() -> new UserNotFoundException(USERNOTFOUND + username));
-//        User userFriend = userRepository.findByPseudo(friend).orElseThrow(() -> new UserNotFoundException(USERNOTFOUND + friend));
-//        userService.removeFromFriendList(user, userFriend);
-//        userService.save(user);
-//        return UserDto.fromEntity(user);
-//    }
+    @GetMapping(value = "/{username}/follow")
+    public Set<UserDto> getFollowsOfUser(@PathVariable("username") String username) {
+        return userRepository.findByPseudo(username)
+                .map(User::getFollows)
+                .stream()
+                .flatMap(Set::stream)
+                .map(UserDto::fromEntity)
+                .collect(Collectors.toSet());
+    }
+
+    @PostMapping(value = "/{username}/follow")
+    @ResponseBody
+    public UserDto addFollowToUserFollowList(@RequestBody UserDto dto, @PathVariable("username") String username) throws UserNotFoundException {
+        User user = userRepository.findByPseudo(username).orElseThrow(() -> new UserNotFoundException(USERNOTFOUND + username));
+        User friend = userRepository.findByPseudo(dto.getPseudo()).orElseThrow(() -> new UserNotFoundException(USERNOTFOUND + dto.getPseudo()));
+        userService.followUser(user, friend);
+        userService.save(user);
+        return UserDto.fromEntity(user);
+    }
+
+    @DeleteMapping(value = "/{username}/unfollow")
+    @ResponseBody
+    public UserDto removeFollowFromUserFollowList(@PathVariable("username") String username, @RequestBody UserDto dto) throws UserNotFoundException {
+        User user = userRepository.findByPseudo(username).orElseThrow(() -> new UserNotFoundException(USERNOTFOUND + username));
+        User userFriend = userRepository.findByPseudo(dto.getPseudo()).orElseThrow(() -> new UserNotFoundException(USERNOTFOUND + dto.getPseudo()));
+        userService.unFollowUser(user, userFriend);
+        userService.save(user);
+        return UserDto.fromEntity(user);
+    }
+
+    @GetMapping(value = "/{username}/friend")
+    public Set<UserDto> getFriendListFromUser(@PathVariable("username") String username) {
+        return userRepository.findByPseudo(username)
+                .map(User::getFriends)
+                .stream()
+                .flatMap(Set::stream)
+                .map(UserDto::fromEntity)
+                .collect(Collectors.toSet());
+    }
+
+    @PostMapping(value = "/{username}/friend")
+    public UserDto addFriendToUserFriendList(@PathVariable("username") String username, @RequestBody UserDto dto) throws UserNotFoundException {
+        User user = userRepository.findByPseudo(username).orElseThrow(() -> new UserNotFoundException(USERNOTFOUND + username));
+        User userFriend = userRepository.findByPseudo(dto.getPseudo()).orElseThrow(() -> new UserNotFoundException(USERNOTFOUND + dto.getPseudo()));
+        userService.addToFriendList(user, userFriend);
+        userService.save(user);
+        return UserDto.fromEntity(user);
+    }
+
 }

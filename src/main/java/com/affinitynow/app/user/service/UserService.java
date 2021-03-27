@@ -1,7 +1,6 @@
 package com.affinitynow.app.user.service;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -62,20 +61,34 @@ public class UserService {
         return this.matcherMap.get(strategyName).match(user, matchingUser);
     }
 
-//    public void addToFriendList(User user, User friend) {
-//       user.getFriends().add(friend);
-//    }
+    public void addToFriendList(User user, User friend) {
+       user.getFriends().add(friend);
+       friend.getFriends().add(user);
+    }
 
-//    public void removeFromFriendList(User user, User friend) {
-//        user.getFriends().remove(friend);
-//    }
+    public void removeFromFriendList(User user, User friend) {
+        user.getFriends().remove(friend);
+        friend.getFriends().remove(user);
+    }
 
     public List<User> getAllUsers() {
         return userRepo.findAll();
     }
 
-//    public Set<User> getFriendList(User user){
-//        return user.getFriends();
-//    }
+    public Set<User> getFriendList(User user){
+        return user.getFriends();
+    }
+
+    public void followUser(User user, User userToFollow) {
+        user.getFollows().add(userToFollow);
+    }
+
+    public  Set<User> getFollows(User user) {
+        return user.getFollows();
+    }
+
+    public void unFollowUser(User user, User userToUnFollow) {
+        user.getFollows().remove(userToUnFollow);
+    }
 }
 

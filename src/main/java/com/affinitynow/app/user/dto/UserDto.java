@@ -18,6 +18,38 @@ public class UserDto {
     private String pseudo;
     private Map<String, Knowledge> seekedKnowledges = Collections.emptyMap();
     private Map<String, Knowledge> likedKnowledges = Collections.emptyMap();
+    private Set<User> follow;
+    private Set<User> friends;
+
+    public Set<User> getFriends() {
+        return friends;
+    }
+
+    public UserDto setFriends(Set<User> friends) {
+        this.friends = friends;
+        return this;
+    }
+
+    public Set<User> getFollow() {
+        return follow;
+    }
+
+    public UserDto setFollow(Set<User> follow) {
+        this.follow = follow;
+        return this;
+    }
+
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public UserDto setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
     @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
@@ -62,6 +94,11 @@ public class UserDto {
     }
 
     public static UserDto fromEntity(User user) {
-        return new UserDto().setPseudo(user.getPseudo()).setId(user.getId()).setLikedKnowledges(user.getLikedKnowledges()).setSeekedKnowledges(user.getSeekedKnowledges());
+        return new UserDto().setPseudo(user.getPseudo())
+                .setId(user.getId()).setLikedKnowledges(user.getLikedKnowledges())
+                .setSeekedKnowledges(user.getSeekedKnowledges())
+                .setEmail(user.getEmail())
+                .setFollow(user.getFollows())
+                .setFriends(user.getFriends());
     }
 }
