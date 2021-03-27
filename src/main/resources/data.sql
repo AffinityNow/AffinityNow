@@ -10,17 +10,17 @@ VALUES (1000, 'Gastronomy'),
        (1008, 'Mathematics'),
        (1009, 'Literature');
 
-INSERT INTO user(id,pseudo,mail)
+INSERT INTO user(id,pseudo,email)
 VALUES
-(10,"Jean",'jean@gmail.com'),
-(11,"Michel",'michel@gmail.com'),
-(12,"Toto",'toto@gmail.com'),
-(13,"Titi",'titi@gmail.com'),
-(14,"Charles",'charles@gmail.com',
-(15,"Jeanne",'jeanne@gmail.com'),
-(17,"Louise",'louise@gmail.com'),
-(18,"Ginnette",'ginnette@gmail.com'),
-(19,"Francoise",'francoise@gmail.com');
+(10,"Jean","jean@gmail.com"),
+(11,"Michel","michel@gmail.com"),
+(12,"Toto","toto@gmail.com"),
+(13,"Titi","titi@gmail.com"),
+(14,"Charles","charles@gmail.com"),
+(15,"Jeanne","jeanne@gmail.com"),
+(17,"Louise","louise@gmail.com"),
+(18,"Ginnette","ginnette@gmail.com"),
+(19,"Francoise","francoise@gmail.com");
 
 INSERT INTO user_liked_knowledges(user_id,level,id,name,liked_knowledges_key)
 VALUES

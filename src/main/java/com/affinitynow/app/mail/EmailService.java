@@ -1,15 +1,16 @@
 package com.affinitynow.app.mail;
 import com.affinitynow.app.mail.MailManager;
 import com.affinitynow.app.model.Mail;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class EmailService {
-
-private MailManager mailManager = MailManager.getInstance();
+@Autowired
+private MailManager mailManager ;
 
     public MailManager getMailManager() {
         return mailManager;
@@ -21,10 +22,12 @@ private MailManager mailManager = MailManager.getInstance();
 
     public void sendMail(Mail feedback){
         SimpleMailMessage mailToSend = this.createMail(feedback.getFrom(), feedback.getTo(), feedback.getBody(), feedback.getSubject());
-        JavaMailSenderImpl mailSender= mailManager.createMailSender();
+        JavaMailSenderImpl mailSender= this.createMailSender();
         mailSender.send(mailToSend);
     }
 
-
+    public JavaMailSenderImpl createMailSender(){
+        return mailManager.createMailSender();
+    }
 
 }
