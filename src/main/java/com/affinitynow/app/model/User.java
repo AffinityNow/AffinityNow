@@ -3,7 +3,11 @@ package com.affinitynow.app.model;
 import com.affinitynow.app.api.BiDirectionNetwork;
 import com.affinitynow.app.api.Network;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.Collections;
 import java.util.Map;
 
@@ -18,10 +22,29 @@ public class User {
     private Map<String, Knowledge> likedKnowledges = Collections.emptyMap();
     @ElementCollection
     private Map<String, Knowledge> seekedKnowledges = Collections.emptyMap();
+    @Email
+    @NotNull
+    private String email ;
     @Embedded
     private Network uniDirectionNetwork;
     @Embedded
     private BiDirectionNetwork biDirectionNetwork;
+
+    public User(String pseudo, Map<String, Knowledge> likedKnowledges, Map<String, Knowledge> seekedKnowledges, Set<User> friends, @Email @NotNull String email) {
+        this.pseudo = pseudo;
+        this.likedKnowledges = likedKnowledges;
+        this.seekedKnowledges = seekedKnowledges;
+        this.friends = friends;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Long getId() {
         return id;
