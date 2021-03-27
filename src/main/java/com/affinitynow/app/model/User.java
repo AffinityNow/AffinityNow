@@ -1,6 +1,10 @@
 package com.affinitynow.app.model;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
@@ -18,6 +22,25 @@ public class User {
     private Map<String, Knowledge> seekedKnowledges = Collections.emptyMap();
     @ElementCollection
     private Set<User> friends;
+    @Email
+    @NotNull
+    private String email ;
+
+    public User(String pseudo, Map<String, Knowledge> likedKnowledges, Map<String, Knowledge> seekedKnowledges, Set<User> friends, @Email @NotNull String email) {
+        this.pseudo = pseudo;
+        this.likedKnowledges = likedKnowledges;
+        this.seekedKnowledges = seekedKnowledges;
+        this.friends = friends;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Long getId() {
         return id;
