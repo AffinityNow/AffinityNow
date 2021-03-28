@@ -9,15 +9,22 @@ package com.affinitynow.app {
             - likedKnowledges: Map<String, Knowledge>
             - seekedKnowledges: Map<String, Knowledge>
             - friends: Set<User>
+            - email: string
+            - follows: Set<User>
+            - friends: Set<User>
             + User(name: string)
             + getPseudo(): string
             + setPseudo(): void
             + getTopic(): string
             + setTopic(): void
-            + getLikedKnowledge(knowledges: Map<String, Knowledge>): Map<String, Knowledge>
-            + setLikedKnowledges(): void
-            + getSeekedKnowledges(knowledges: Map<String, Knowledge>): Map<String, Knowledge>
-            + setSeekedKnowledges(): void
+            + getLikedKnowledge(): Map<String, Knowledge>
+            + setLikedKnowledges(knowledges: Map<String, Knowledge>): void
+            + getSeekedKnowledges(): Map<String, Knowledge>
+            + setSeekedKnowledges(knowledges: Map<String, Knowledge>): void
+            + setFollows(Set<User>) : void
+            + getFollows() : void
+            + setFriend(Set<User>) : void
+            + getFriend() : void
             + equals(user: User): boolean
             + hashcode(): integer
             + toString(): string
@@ -41,6 +48,14 @@ package com.affinitynow.app {
         enum Level {
             ONE, TWO, THREE, FOUR, FIVE
         }
+
+        class Mail {
+            - nom: string
+            - from: string
+            - to: string
+            - body: string
+            + Mail(from: string, to: string, body: string, subject: string)
+        }
     }
 
     package user {
@@ -48,14 +63,16 @@ package com.affinitynow.app {
             class UserControler {
                 - userService: UserService
                 - userRepository: UserRepository
-                + createNewUserWithKnowledge(dto: UserDto): UserDto, POST/user/knowledges
-                + getUserMatchingListById(username: string, strategyName:string, excludedTopics: Set<string>) , GET/user/{username}/match/{strategyName}
-                + getUserByUsername(username: string): UserDto, GET /{username}
+                + getAllUsers(): List<UserDto>, GET "/user"
+                + createNewUserWithKnowledge(dto: UserDto): UserDto, POST "/user/knowledges"
+                + getUserMatchingListById(username: string, strategyName:string, excludedTopics: Set<string>) , GET /user/{username}/match/{strategyName}
+                + getUserByUsername(username: string): UserDto, GET "/{username}"
                 + getFriendListFromUser(username: string): Set<UserDto>, "/{username}/friend"
                 + addFriendToUserFriendList(username: string): UserDto, PUT "/{username}/friend"
                 + removeFriendFromUserFriendList(username: user, friend, string), DELETE "/{username}/friend/{friend}"
-                - convertToDto(user: User): userDto
-                - convertToEntity(userDto: UserDto): User
+                + getFollowsOfUser(string: username): Set<UserDto>, GET "/{username}/follow"
+                + addFollowToUserFollowList(UserDto dto, String username): UserDto, POST "/{username}/follow"
+                + removeFollowFromUserFollowList(String username, UserDto dto): UserDto, DELETE "/{username}/unfollow"
             }
         }
 
@@ -71,6 +88,9 @@ package com.affinitynow.app {
                 + removeFromFriendList(user, friend): void
                 + getFriendList(user: User): Set<User>
                 + getAllUsers(): List<User>
+                + followUser(user: User, userToFollow: User) :void
+                + unFollowUser(user: User, : user): void
+                + getFollows(user: User): Set<User>
             }
 
             package matcher {
@@ -146,13 +166,20 @@ package com.affinitynow.app {
             class UserDto {
                 - id: long
                 - pseudo: string
-                - Knowledges: Map<string, Knowledge>
+                - likedKnowledgesnowledges: Map<string, Knowledge>
+                - seekedKnowledgesnowledges: Map<string, Knowledge>
+                - friends: Set<User>
+                - follows: Set<User
+                - email: string
                 + getId(): long
                 + setId(id: Long): UserDto
                 + getPseudo(): string
+                + getFollows(): Set<User>
+                + getFriend(): Set<User>
                 + setPseudo(pseudo: string): UserDto
-                + setKnowledges(pseudo: string): UserDto
-                + addKnowledge(name: string, Knowledge: Knowledge)
+                + setLikedKnowledgesKnowledges(knowledge: Map<string, Knowledge>): UserDto
+                + setSeekedKnowledgesKnowledges(knowledge: Map<string, Knowledge>): UserDto
+                + "static" UserDto fromEntity(user: User): UserDto
             }
         }
 
@@ -187,6 +214,42 @@ package com.affinitynow.app {
             class TopicRepository {}
         }
     }
+
+    namespace mail {
+        namespace controller {
+            class EmailController {
+                - emailService: EmailService
+                + EmailController(emailService: EmailService)
+                + sendFeedback(feedback: Mail): void, POST "/mail"
+            }
+        }
+
+        namespace service {
+            class EmailService {
+                - mailManager: MailManager
+                + EmailService(mailManager: MailManager)
+                + getMailManager(): MailManager
+                + createMail(from: String, to: String, body: String, subject: String): SimpleMailMessage
+                + sendMail(feedback: Mail): void
+                + createMailSender(): JavaMailSenderImpl
+            }
+
+            namespace mailmanager {
+                class MailManager {
+                    - host: string
+                    - port: integer
+                    - username: string
+                    - password: string
+                    + createMailSender(): JavaMailSenderImpl
+                    + createMailMessage(mail: Mail): SimpleMailMessage
+                    + getHost(): string
+                    + getPort(): integer
+                    + getUsername: string
+                    + getPassword: string
+                }
+            }
+        }
+    }
 }
 
 UserService *--> "*" Matcher
@@ -199,4 +262,7 @@ Knowledge *--> "1" Level
 User *--> "*" Knowledge: "liked knowledge"
 User *--> "*" Knowledge: "seeked knowledge"
 Matcher --> IMatchResult: "uses"
+mail.controller.EmailController --> mail.service.EmailService: "uses""
+mail.service.EmailService --> mail.service.mailmanager.MailManager: "uses""
+mail.service.EmailService --> Mail: "uses""
 @enduml
