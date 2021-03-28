@@ -29,6 +29,8 @@ jobs:
           root-password: 'root'
           auto-start: true
       - run: |
+          chown mysql.mysql /var/run/mysqld/
+      - run: |
           sudo /etc/init.d/mysql start
       - run: mysql -uroot -h127.0.0.1 -proot -e 'SELECT version()'
       - name: Get permission for gradle wrapper
