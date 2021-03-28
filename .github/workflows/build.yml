@@ -28,7 +28,7 @@ jobs:
           mysql-version: '8.0'
           root-password: 'root'
           auto-start: true
-      - run: mysql -uroot -h127.0.0.1 -e 'SELECT version()'
+      - run: mysql -uroot -h127.0.0.1 -proot -e 'SELECT version()'
       - name: Get permission for gradle wrapper
         run: chmod a+x ./gradlew
       - name: Cache SonarCloud packages
