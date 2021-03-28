@@ -1,12 +1,14 @@
 package com.affinitynow.app.user.dto;
 
 import com.affinitynow.app.model.Knowledge;
+import com.affinitynow.app.model.User;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import org.springframework.lang.Nullable;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -17,10 +19,41 @@ public class UserDto {
     private String pseudo;
     private Map<String, Knowledge> seekedKnowledges = Collections.emptyMap();
     private Map<String, Knowledge> likedKnowledges = Collections.emptyMap();
+    private Set<User> follow = new HashSet<>();
+    private Set<User> friends = new HashSet<>();
+
+    public Set<User> getFriends() {
+        return friends;
+    }
+
+    public UserDto setFriends(Set<User> friends) {
+        this.friends = friends;
+        return this;
+    }
+
+    public Set<User> getFollow() {
+        return follow;
+    }
+
+    public UserDto setFollow(Set<User> follow) {
+        this.follow = follow;
+        return this;
+    }
+
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public UserDto setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
     @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
-    private Set<UserDto> friends = Collections.emptySet();
 
     public Long getId() {
         return id;
@@ -49,26 +82,24 @@ public class UserDto {
         return this;
     }
 
-    public void addSeekedKnowledges(String name, Knowledge knowledge) {
-        this.seekedKnowledges.put(name, knowledge);
-    }
-
     public Map<String, Knowledge> getLikedKnowledges() {
         return likedKnowledges;
     }
 
-    public void setLikedKnowledges(Map<String, Knowledge> likedKnowledges) {
+    public UserDto setLikedKnowledges(Map<String, Knowledge> likedKnowledges) {
         this.likedKnowledges = likedKnowledges;
+        return this;
     }
 
     public UserDto() {
     }
 
-    public Set<UserDto> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(Set<UserDto> friends) {
-        this.friends = friends;
+    public static UserDto fromEntity(User user) {
+        return new UserDto().setPseudo(user.getPseudo())
+                .setId(user.getId()).setLikedKnowledges(user.getLikedKnowledges())
+                .setSeekedKnowledges(user.getSeekedKnowledges())
+                .setEmail(user.getEmail())
+                .setFollow(user.getFollows())
+                .setFriends(user.getFriends());
     }
 }

@@ -10,15 +10,20 @@ import com.affinitynow.app.model.User;
 import com.affinitynow.app.user.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component("scoreBool")
-public class BooleanScoreMatcher implements ScoreMatcher {
 
-    @Autowired
-    private UserService userService;
+public class BooleanScoreMatcher implements ScoreMatcher {
+    private final UserService userService;
     IntPredicate isHigherThan3 = x -> x >= 3;
     private Set<String> excludedTopics;
+
+    @Autowired
+    public BooleanScoreMatcher(@Lazy UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public Optional<IMatchResult<Boolean>> match(User user, User matchingUser) {
@@ -34,9 +39,6 @@ public class BooleanScoreMatcher implements ScoreMatcher {
         return rtr;
     }
 
-    public Set<String> getTopicsExcluded() {
-        return excludedTopics;
-    }
 
     public void setTopicsExcluded(Set<String> excludedTopics) {
         this.excludedTopics = excludedTopics;
@@ -45,15 +47,6 @@ public class BooleanScoreMatcher implements ScoreMatcher {
     @Override
     public Double calculateQuality(User user, User matchingUser, Set<Knowledge> intersection) {
         return getUserTotalScore(user, intersection) + getUserTotalScore(matchingUser, intersection) / intersection.size();
-    }
-
-    double getUserTotalScore(User user, Set<Knowledge> intersection) {
-        return user.getLikedKnowledges().values()
-                .stream()
-                .filter(p -> intersection.contains(p))
-                .map(Knowledge::getLevel)
-                .mapToDouble(Level::value)
-                .reduce(0.0, Double::sum);
     }
 
     @Override

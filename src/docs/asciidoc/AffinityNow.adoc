@@ -7,35 +7,38 @@ Smart Mapper <SmartMapperProject@gmail.com>
 Le projet AffinityNow une partie front _https://github.com/AffinityNow/AffinityNowFront_
 et une partie back _https://github.com/AffinityNow/AffinityNow_.
 
-Le back est écrit en Java et quand au front il s'agit d'une application angular donc
-vous devrez avoir sur votre machine une version assez récente de Java (14 minimum), gradle (6) ainsi que Node (14).
+Le back est écrit en Java et quant au front il s'agit d'une application angular donc
+vous devrez avoir sur votre machine une version assez récente de Java (14 minimums), gradle (6) ainsi que Node (14).
 
 === Installation
 * FRONT:
-Il suffira d'execute simplement la commande : *ng serve* pour lancer le serveur.
+Il suffira d'exécuter simplement la commande : *ng serve* pour lancer le serveur.
 Naviguez vers http://localhost:4200/. L'application se rechargera automatiquement si vous modifiez l'un des fichiers sources.
 
 * BACK :
-Il suffira d'executer simplement la commande : *gradle bootRun* pour lancer le serveur.
-Une fois cela effectuer le serveur sera en marche et vous pourrz consulter la liste des End Points via _http://localhost:8080/swagger-ui.html_
+Il suffira d'exécuter simplement la commande : *gradle bootRun* pour lancer le serveur.
+Une fois cela effectuer le serveur sera en marche et vous pourrez consulter la liste des End Points via _http://localhost:8080/swagger-ui.html_
 
-== Les Fonctionalités d'Affinity Now
+== Les Fonctionnalités d'Affinity Now
 
-Aujourd'hui avec la version V1.2 de AffinityNow on peut :
+Aujourd'hui avec la version v1.4 de AffinityNow on peut :
 
 1. Avoir la possibilité de renseigner les centres d'intérêts favoris
 
 2. Pouvoir matcher avec une (ou plusieurs) personnes suivant une des méthodes de match suivantes :
     - Match en fonction des centres d'intérêts aimés en commun qui ont une note supérieur à un seuil fixe.
     - Match en fonction des centres d'intérêts aimés et recherchés en commun.
+    - Inclure ou exclure certains centres d'intérêts lors d'un match.
 
 3. Possibilité d'exclure des centres d'intérêts lors du choix d'une méthode de match.
 
-4. Il existe 2 types de match : avec ou sans resultat.
+4. Il existe 2 types de match : avec ou sans résultat.
 
 5. On peut déterminer la qualité d'un match entre 2 utilisateurs.
 
-6. On peut gérer sa liste d'amis (Ajout, suppression, recherche)
+6. On peut gérer sa liste d'amis/d'abonnements (Ajout, suppression, recherche)
+
+7. On peut envoyer des mails entre utilisateurs.
 
 == Wireframes et Mockups "Affinity Now"
 Main Page
@@ -77,8 +80,8 @@ POST / GET / PUT / DELETE
 |===
 |URL |METHODE |ACTION
 
-|/utilisateur/knowledges|POST|Insertion d'un utilisateur ainsi que ses topics et les notations choisis
-|/utilisateur/{name}/match/{nomdumatcher}|GET|Récupérer la liste des matchs d'un utilisateur donné.
+|/user/knowledges|POST|Insertion d'un utilisateur ainsi que ses topics et les notations choisis
+|/user/{name}/match/{nomdumatcher}|GET|Récupérer la liste des matchs d'un utilisateur donné.
 |
 
 |
@@ -120,3 +123,4 @@ _https://affinitynow.github.io/AffinityNow/_
 == Retours & Feedback
 
 == Burndown Chart 
+image::../burndownchart-1.3.png[Release 1.3]

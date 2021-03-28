@@ -1,9 +1,12 @@
 package com.affinitynow.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import java.util.*;
 
 @Entity
 public class User {
@@ -13,11 +16,51 @@ public class User {
     @Column(unique=true, nullable = false)
     private String pseudo;
     @ElementCollection
-    private Map<String, Knowledge> likedKnowledges = Collections.emptyMap();
+    private Map<String, Knowledge> likedKnowledges = new HashMap<>();
     @ElementCollection
-    private Map<String, Knowledge> seekedKnowledges = Collections.emptyMap();
+    private Map<String, Knowledge> seekedKnowledges =  new HashMap<>();
+    @Email
+    @NotNull
+    private String email ;
     @ElementCollection
-    private Set<User> friends;
+    private Set<User> follows = new HashSet<>();
+    @ElementCollection
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
+    private Set<User> friends = new HashSet<>();
+
+    public Set<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(Set<User> friends) {
+        this.friends = friends;
+    }
+
+    public Set<User> getFollows() {
+        return follows;
+    }
+
+    public void setFollows(Set<User> followers) {
+        this.follows = followers;
+    }
+
+
+    public User(String pseudo, Map<String, Knowledge> likedKnowledges, Map<String, Knowledge> seekedKnowledges, @Email @NotNull String email) {
+        this.pseudo = pseudo;
+        this.likedKnowledges = likedKnowledges;
+        this.seekedKnowledges = seekedKnowledges;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Long getId() {
         return id;
@@ -60,13 +103,5 @@ public class User {
 
     public void setSeekedKnowledges(Map<String, Knowledge> seekedKnowledges) {
         this.seekedKnowledges = seekedKnowledges;
-    }
-
-    public Set<User> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(Set<User> friends) {
-        this.friends = friends;
     }
 }

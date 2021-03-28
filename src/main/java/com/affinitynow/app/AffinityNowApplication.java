@@ -14,9 +14,4 @@ public class AffinityNowApplication {
 		SpringApplication.run(AffinityNowApplication.class, args);
 	}
 
-	@Bean
-	public ModelMapper modelMapper() {
-		return new ModelMapper();
-	}
-
 }
