@@ -60,12 +60,8 @@ public class UserServiceTest {
         friendList.add(user2);
         user1.setFollows(followList);
         user1.setFriends(friendList);
-    }
-
-    @Test
-    public void saveTest() {
-        userService.save(user1);
-        verify(userRepository, times(1)).save(user1);
+        user1.setEmail("test@email.com");
+        user1.setPseudo("Test");
     }
 
     @Test

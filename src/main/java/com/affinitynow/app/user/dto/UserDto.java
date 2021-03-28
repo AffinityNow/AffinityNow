@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.lang.Nullable;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,8 +19,8 @@ public class UserDto {
     private String pseudo;
     private Map<String, Knowledge> seekedKnowledges = Collections.emptyMap();
     private Map<String, Knowledge> likedKnowledges = Collections.emptyMap();
-    private Set<User> follow;
-    private Set<User> friends;
+    private Set<User> follow = new HashSet<>();
+    private Set<User> friends = new HashSet<>();
 
     public Set<User> getFriends() {
         return friends;
