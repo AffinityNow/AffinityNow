@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class User {
@@ -18,19 +16,19 @@ public class User {
     @Column(unique=true, nullable = false)
     private String pseudo;
     @ElementCollection
-    private Map<String, Knowledge> likedKnowledges = Collections.emptyMap();
+    private Map<String, Knowledge> likedKnowledges = new HashMap<>();
     @ElementCollection
-    private Map<String, Knowledge> seekedKnowledges = Collections.emptyMap();
+    private Map<String, Knowledge> seekedKnowledges =  new HashMap<>();
     @Email
     @NotNull
     private String email ;
     @ElementCollection
-    private Set<User> follows;
+    private Set<User> follows = new HashSet<>();
     @ElementCollection
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id")
-    private Set<User> friends;
+    private Set<User> friends = new HashSet<>();
 
     public Set<User> getFriends() {
         return friends;
