@@ -28,6 +28,8 @@ jobs:
           mysql-version: '8.0'
           root-password: 'root'
           auto-start: true
+      - run: |
+          sudo /etc/init.d/mysql start
       - run: mysql -uroot -h127.0.0.1 -proot -e 'SELECT version()'
       - name: Get permission for gradle wrapper
         run: chmod a+x ./gradlew
