@@ -64,7 +64,6 @@ public class UserController {
             .collect(Collectors.toList());
     }
 
-
     @GetMapping(value = "/{username}/follow")
     public Set<UserDto> getFollowsOfUser(@PathVariable("username") String username) {
         return userRepository.findByPseudo(username)
@@ -123,5 +122,4 @@ public class UserController {
         userService.save(user);
         return UserDto.fromEntity(user);
     }
-
 }
