@@ -46,7 +46,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public UserDto createNewUserWithKnowledges(@RequestBody UserDto dto) {
-        User user = new User(dto.getPseudo(), dto.getLikedKnowledges(), dto.getSeekedKnowledges());
+        User user = new User(dto.getPseudo(), dto.getLikedKnowledges(), dto.getSeekedKnowledges(), dto.getEmail());
         User userCreated = userService.save(user);
         return UserDto.fromEntity(userCreated);
     }
@@ -110,6 +110,16 @@ public class UserController {
         User user = userRepository.findByPseudo(username).orElseThrow(() -> new UserNotFoundException(USERNOTFOUND + username));
         User userFriend = userRepository.findByPseudo(dto.getPseudo()).orElseThrow(() -> new UserNotFoundException(USERNOTFOUND + dto.getPseudo()));
         userService.addToFriendList(user, userFriend);
+        userService.save(user);
+        return UserDto.fromEntity(user);
+    }
+
+    @DeleteMapping(value = "/{username}/friend")
+    @ResponseBody
+    public UserDto removeFriendFromUserFriendList(@PathVariable("username") String username, @RequestBody UserDto dto) throws UserNotFoundException {
+        User user = userRepository.findByPseudo(username).orElseThrow(() -> new UserNotFoundException(USERNOTFOUND + username));
+        User userFriend = userRepository.findByPseudo(dto.getPseudo()).orElseThrow(() -> new UserNotFoundException(USERNOTFOUND + dto.getPseudo()));
+        userService.removeFromFriendList(user, userFriend);
         userService.save(user);
         return UserDto.fromEntity(user);
     }
