@@ -14,6 +14,10 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env:
+      DB_DATABASE: affinityNow
+      DB_USER: root
+      DB_PASSWORD: root
     steps:
       - uses: actions/checkout@v2
         with:
@@ -22,6 +26,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 14
+      - name: Set up MySQL
+        run: |
+          sudo /etc/init.d/mysql start
+          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
       - name: Get permission for gradle wrapper
         run: chmod a+x ./gradlew
       - name: Cache SonarCloud packages
@@ -43,6 +51,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Build and Test with Gradle
         run: ./gradlew build
+        env:
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
       - name: Generate coverage report
         run: ./gradlew jacocoTestReport 
       - name: Code coverage with CodeCov
