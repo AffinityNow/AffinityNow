@@ -15,7 +15,7 @@ plugins {
 }
 
 group = 'com.affinitynow'
-version = '1.3.0'
+version = '1.6.0'
 sourceCompatibility = '14'
 
 // plugin to get the version of the project
