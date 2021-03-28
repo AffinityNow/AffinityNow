@@ -5,11 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 @Service
 public class EmailService {
-@Autowired
-private MailManager mailManager ;
+    private final MailManager mailManager ;
+
+    @Autowired
+    public EmailService(MailManager mailManager) {
+        this.mailManager = mailManager;
+    }
 
     public MailManager getMailManager() {
         return mailManager;
