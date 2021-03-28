@@ -30,8 +30,6 @@ jobs:
           auto-start: true
       - run: |
           sudo chown mysql:mysql /var/log/mysql/*
-      - run: |
-          sudo service mysql start
       - run: mysql -uroot -h127.0.0.1 -proot -e 'SELECT version()'
       - name: Get permission for gradle wrapper
         run: chmod a+x ./gradlew
