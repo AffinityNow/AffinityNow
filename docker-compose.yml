@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  
+  db:
+    image: mysql:8.0.23
+    container_name: mysql-affinity
+    command: --default-authentication-plugin=mysql_native_password
+    restart: on-failure
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: affinityNow
+    cap_add:
+      - SYS_NICE  
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db:/docker-entrypoint-initdb.d/:ro
+    networks:
+      - backend
+  
+  backend:
+    image: devopsback
+    container_name: spring-boot-affinity
+    restart: on-failure
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on: 
+      - db 
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-affinity:3306/affinityNow?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - backend
+      - frontend
